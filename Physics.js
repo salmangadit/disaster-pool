@@ -1,6 +1,8 @@
 function Physics(){
     var math = new Maths();
 
+    var gravity = 9.81;
+
 	this.applyForceAtAngle = function(ball, force, forceAngle){
 		var direction = forceAngle;
 		var acceleration = getAccelerationFromForce(force,ball.mass);
@@ -14,8 +16,8 @@ function Physics(){
 	}
 
 	this.updatePoint = function(ball){
-		var endVelocity = vuat(ball.velocity, ball.acceleration, screenUpdateTime);
-		var distMoved = sutat2(ball.velocity, screenUpdateTime, ball.acceleration);
+		var endVelocity = vuat(ball.velocity, ball.acceleration, 0.3);
+		var distMoved = sutat2(ball.velocity, 0.3, ball.acceleration);
 
 		var quadrant = math.getQuadrantByAngle(ball.direction);
 		var angleWithHoriz = math.getAngleWithQuadrant(ball.direction);
@@ -23,34 +25,55 @@ function Physics(){
 		var x_disp;
 		var y_disp;
 
-		if (quadrant == 1){
-			x_disp = distMoved*Math.cos(angleWithHoriz);
-			y_disp = -1*distMoved*Math.sin(angleWithHoriz);
-		} else if (quadrant == 2){
-			x_disp = -1*distMoved*Math.cos(angleWithHoriz);
-			y_disp = -1*distMoved*Math.sin(angleWithHoriz);
-		} else if (quadrant == 3){
-			x_disp = -1*distMoved*Math.cos(angleWithHoriz);
-			y_disp = distMoved*Math.sin(angleWithHoriz);
-		} else {
-			x_disp = distMoved*Math.cos(angleWithHoriz);
-			y_disp = distMoved*Math.sin(angleWithHoriz);
+		if (distMoved > 0){
+			if (quadrant == 1){
+				x_disp = distMoved*Math.cos(angleWithHoriz);
+				y_disp = -1*distMoved*Math.sin(angleWithHoriz);
+			} else if (quadrant == 2){
+				x_disp = -1*distMoved*Math.cos(angleWithHoriz);
+				y_disp = -1*distMoved*Math.sin(angleWithHoriz);
+			} else if (quadrant == 3){
+				x_disp = -1*distMoved*Math.cos(angleWithHoriz);
+				y_disp = distMoved*Math.sin(angleWithHoriz);
+			} else {
+				x_disp = distMoved*Math.cos(angleWithHoriz);
+				y_disp = distMoved*Math.sin(angleWithHoriz);
+			}
 		}
 
 		ball.centerPoint.x = ball.centerPoint.x + x_disp;
 		ball.centerPoint.y = ball.centerPoint.y + y_disp;
 		ball.velocity = endVelocity;
-		
+
+		if (ball.velocity > 0){
+			if (ball.acceleration > 0){
+			ball.acceleration = ball.acceleration - getAccelerationFromFriction();
+			}
+			else
+			{
+				ball.acceleration = - getAccelerationFromFriction();
+			}
+		} else {
+			ball.acceleration = 0;
+			ball.velocity = 0;
+		}
 		console.log("distMoved"+ distMoved);
-		if (x_disp > 0 || y_disp > 0){
-			console.log("Direction"+ ball.direction);
-			console.log("X disp"+ x_disp);
-			console.log("Y disp"+ y_disp);
-			console.log("Quadrant"+ quadrant);
-			console.log("angleWithHoriz"+ angleWithHoriz);
+		if (x_disp != 0 || y_disp != 0){
+			console.log("Direction "+ ball.direction);
+			console.log("X disp "+ x_disp);
+			console.log("Y disp "+ y_disp);
+			console.log("Quadrant "+ quadrant);
+			console.log("angleWithHoriz "+ angleWithHoriz);
 			console.log("Ball position updated to "+ball.centerPoint.x);
+			console.log ("Ball acceleration " + ball.acceleration);
+			console.log ("Ball velocity " + ball.velocity);
 		}
 		return ball;
+	}
+
+	// F - (mu)R = ma
+	function getAccelerationFromFriction(){
+		return table.coefficientOfFriction*gravity;
 	}
 
 	// F = ma

@@ -5,6 +5,9 @@ function Table(){
 	this.width = 1000;
 	this.height = 500;
 
+	this.coefficientOfFriction = 0.5;
+
+
 	for (var i =0; i<2; i++){
 		balls[i] = new Ball(new Point(100*(i+2),100),10,10);
 		balls[i].color = 'red';
