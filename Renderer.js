@@ -1,17 +1,19 @@
 function Renderer(){
-	var physicsEngine = new Physics();
-
 	this.updatePoints = function(){
 		var balls = table.getBalls();
 
 		for (var i=0;i<balls.length;i++){
-			balls[i] = physicsEngine.updatePoint(balls[i]);  
+			balls[i] = physicsEngine.updatePoint(balls[i]);
+			collider.detectCollisionWithWalls(balls[i]);
+			collider.detectCollisionWithBalls(balls[i]);  
 		}
 
 		table.setBalls(balls);
 
 		// Cue ball
 		cueBall = physicsEngine.updatePoint(cueBall);
+		collider.detectCollisionWithWalls(cueBall);
+		collider.detectCollisionWithBalls(cueBall); 
 	}
 
 	this.drawTable = function (){

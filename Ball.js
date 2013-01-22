@@ -6,4 +6,9 @@ function Ball(centerPoint, radius, mass){
 	this.direction = 0;
 	this.color = 'white';
 	this.acceleration = 0;
+
+	this.stop = function() {
+		this.velocity = 0;
+		this.acceleration = 0;
+	}
 }

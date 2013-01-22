@@ -1,6 +1,4 @@
 function Physics(){
-    var math = new Maths();
-
     var gravity = 9.81;
 
 	this.applyForceAtAngle = function(ball, force, forceAngle){
@@ -16,14 +14,14 @@ function Physics(){
 	}
 
 	this.updatePoint = function(ball){
-		var endVelocity = vuat(ball.velocity, ball.acceleration, 0.3);
-		var distMoved = sutat2(ball.velocity, 0.3, ball.acceleration);
+		var endVelocity = vuat(ball.velocity, ball.acceleration, 0.1);
+		var distMoved = sutat2(ball.velocity, 0.1, ball.acceleration);
 
 		var quadrant = math.getQuadrantByAngle(ball.direction);
 		var angleWithHoriz = math.getAngleWithQuadrant(ball.direction);
 
-		var x_disp;
-		var y_disp;
+		var x_disp = 0;
+		var y_disp = 0;
 
 		if (distMoved > 0){
 			if (quadrant == 1){
@@ -57,16 +55,16 @@ function Physics(){
 			ball.acceleration = 0;
 			ball.velocity = 0;
 		}
-		console.log("distMoved"+ distMoved);
+		// console.log("distMoved"+ distMoved);
 		if (x_disp != 0 || y_disp != 0){
-			console.log("Direction "+ ball.direction);
-			console.log("X disp "+ x_disp);
-			console.log("Y disp "+ y_disp);
-			console.log("Quadrant "+ quadrant);
-			console.log("angleWithHoriz "+ angleWithHoriz);
-			console.log("Ball position updated to "+ball.centerPoint.x);
-			console.log ("Ball acceleration " + ball.acceleration);
-			console.log ("Ball velocity " + ball.velocity);
+			// console.log("Direction "+ ball.direction);
+			// console.log("X disp "+ x_disp);
+			// console.log("Y disp "+ y_disp);
+			// console.log("Quadrant "+ quadrant);
+			// console.log("angleWithHoriz "+ angleWithHoriz);
+			// console.log("Ball position updated to "+ball.centerPoint.x);
+			// console.log ("Ball acceleration " + ball.acceleration);
+			// console.log ("Ball velocity " + ball.velocity);
 		}
 		return ball;
 	}

@@ -8,9 +8,13 @@
 
   // Objects
   var table = new Table();
+  var math = new Maths();
+  var physicsEngine = new Physics();
+  var collider = new Collider();
   var renderingEngine = new Renderer();
   var cueBall = new Ball(new Point(100,100), 10, 1);
   
+
   function init(){
   	canvas = document.getElementById('gameCanvas');
   	if (canvas.getContext){
@@ -23,7 +27,9 @@
   			renderingEngine.updatePoints();
   		}, screenUpdateTime);
 
-  		var physics = new Physics();
-  		cueBall = physics.applyForceAtAngle(cueBall, 20, 0);
+  		
+
+      // Ball - Force - Angle of hitting
+  		cueBall = physicsEngine.applyForceAtAngle(cueBall, 50,0);
   	}
   }

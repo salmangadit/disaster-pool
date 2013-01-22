@@ -5,7 +5,7 @@ function Table(){
 	this.width = 1000;
 	this.height = 500;
 
-	this.coefficientOfFriction = 0.5;
+	this.coefficientOfFriction = 0.3;
 
 
 	for (var i =0; i<2; i++){
@@ -21,8 +21,6 @@ function Table(){
 		return holes;
 	}
 
-	// This function can be removed later with a constructor
-	// to create the balls
 	 this.setBalls = function(allBalls){
 	 	this.balls = allBalls;
 	 }
