@@ -26,6 +26,9 @@ function Renderer(){
 
 		// Draw cue ball
 		this.drawBall(cueBall);
+
+        //Draw tornado
+	    this.drawTornado(tornadoTest);
 	}
 
 	this.drawBalls = function(){
@@ -49,5 +52,23 @@ function Renderer(){
 		ctx.stroke();
 
 		console.log("Drew Ball, center "+ ball.centerPoint.toString() + ", radius "+ ball.radius);
+	}
+
+    this.drawTornado = function (tornado) {
+	    //alert('Drawing tornado!');
+	    ctx.beginPath();
+	    ctx.arc(tornado.centerPoint.x, tornado.centerPoint.y, tornado.radius, 0, 2 * Math.PI, false);
+
+	    // create radial gradient
+	    var grd = ctx.createRadialGradient(tornado.centerPoint.x, tornado.centerPoint.y, 0, tornado.centerPoint.x, tornado.centerPoint.y, tornado.radius);
+	    grd.addColorStop(0, 'ghostwhite');
+	    grd.addColorStop(0.2, 'dimgray');
+	    grd.addColorStop(0.4, 'grey');
+	    grd.addColorStop(1, 'lightsteelblue');
+
+	    ctx.fillStyle = grd;
+	    ctx.fill();
+
+        console.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
 	}
 }

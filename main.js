@@ -13,7 +13,7 @@
   var collider = new Collider();
   var renderingEngine = new Renderer();
   var cueBall = new Ball(new Point(100,100), 10, 1);
-  
+  var tornadoTest = new Tornado(new Point(500,250), 50);
 
   function init(){
   	canvas = document.getElementById('gameCanvas');

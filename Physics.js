@@ -66,6 +66,14 @@ function Physics(){
 			// console.log ("Ball acceleration " + ball.acceleration);
 			// console.log ("Ball velocity " + ball.velocity);
 		}
+
+        //to curve the ball due to tornado's effect
+	    if (tornadoCurve != 0) {
+	        //alert('Tornado effect!');
+	        ball.direction += tornadoCurve;
+            console.log("Applying tornado curving strength of " + tornadoCurve);
+	    }
+
 		return ball;
 	}
 
@@ -103,6 +111,8 @@ function Physics(){
 		return result;
 	}
 
+
+
 	// F - (mu)R = ma
 	function getAccelerationFromFriction(){
 		return table.coefficientOfFriction*gravity;
@@ -132,5 +142,28 @@ function Physics(){
 		return resultant;
 	}
 
+    //curve ball left
+    this.turnLeft = function (ball, percent) {
+        if(percent < 1 && percent >= 0){
+            ball.tornadoEffect = -1 * percent;
+        } else if(percent < 100 && percent >= 1){
+            ball.tornadoEffect = -1 * (percent/100);
+        } else {
+            ball.tornadoEffect = 0;
+        }
+        console.log("Setting curve left strength of " + percent);
+	}
+
+    //curve ball right
+    this.turnRight = function (ball, percent) {
+        if(percent < 1 && percent >= 0){
+            ball.tornadoEffect = percent;
+        } else if(percent < 100 && percent >= 1){
+            ball.tornadoEffect = percent/100;
+        } else {
+            ball.tornadoEffect = 0;
+        }
+        console.log("Setting curve right strength of " + percent);
+	}
 	
 }
