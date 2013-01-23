@@ -111,4 +111,11 @@ function Maths(){
 
 		return distance;
 	}
+
+	this.pythagorasTheorem = function(x, y){
+		var squared = Math.pow(x,2) + Math.pow(y,2);
+		var root = Math.sqrt(squared);
+
+		return root;
+	}
 }

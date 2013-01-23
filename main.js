@@ -30,6 +30,6 @@
   		
 
       // Ball - Force - Angle of hitting
-  		cueBall = physicsEngine.applyForceAtAngle(cueBall, 50,0);
+  		cueBall = physicsEngine.applyForceAtAngle(cueBall, 60,0.1);
   	}
   }

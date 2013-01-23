@@ -69,6 +69,40 @@ function Physics(){
 		return ball;
 	}
 
+	this.getVector = function(x,y){
+		var result = new Vector();
+		var magnitude = math.pythagorasTheorem(x,y);
+
+		var quadrant = math.getQuadrantByPoint(x,y);
+		var angle = Math.atan(Math.abs(y)/Math.abs(x));
+
+		if (quadrant == 4){
+			result.direction = angle;
+		} else if (quadrant == 3) {
+			result.direction = Math.PI - angle;
+		} else if (quadrant == 2) {
+			result.direction = Math.PI + angle;
+		} else {
+			result.direction = (2* Math.PI) - angle;
+		}
+
+		result.magnitude = magnitude;
+
+		return result;
+	}
+
+	this.vectorSubtract = function(vector1, vector2){
+		
+		var x1 = vector1.getXComponent();
+		var x2 = vector2.getXComponent();
+		var y1 = vector1.getYComponent();
+		var y2 = vector2.getYComponent();
+
+		var result = this.getVector(x1-x2, y1-y2);
+
+		return result;
+	}
+
 	// F - (mu)R = ma
 	function getAccelerationFromFriction(){
 		return table.coefficientOfFriction*gravity;
@@ -88,4 +122,15 @@ function Physics(){
 	function sutat2(u,t,a){
 		return (u*t)+(0.5*a*Math.pow(t,2));
 	}
+
+	this.getMomentum = function(mass,velocityVector){
+		var mom_x = mass*velocityVector.getXComponent();
+		var mom_y = mass*velocityVector.getYComponent();
+
+		var resultant = this.getVector(mom_x, mom_y);
+
+		return resultant;
+	}
+
+	
 }
