@@ -48,11 +48,11 @@ function Maths(){
 		var angle;
 		var distancebetpoints = this.getDistanceBetweenTwoPoints(ball.centerPoint,point);
 		if (quadrant == 1)
-		{angle = Math.atan((point.x-ball.centerPoint.x)/(point.y - ball.centerPoint.y));}
+		{angle = Math.atan((point.y - ball.centerPoint.y)/(point.x-ball.centerPoint.x));}
 		else if(quadrant == 2)
 		{angle = (Math.PI/2) + Math.atan((ball.centerPoint.x-point.x)/(point.y - ball.centerPoint.y));}
 		else if(quadrant == 3)
-		{angle = (Math.PI) + Math.atan((ball.centerPoint.x-point.x)/(ball.centerPoint.y - point.y));}
+		{angle = (Math.PI) + Math.atan((ball.centerPoint.y - point.y)/(ball.centerPoint.x-point.x));}
 		else
 		{angle = (3*Math.PI/2) + Math.atan((point.x - ball.centerPoint.x)/(ball.centerPoint.y - point.y));}
 
@@ -60,16 +60,17 @@ function Maths(){
 		
 		angle = Math.round(angle*100)/100;
 
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.font = '18pt Calibri';
-        ctx.fillStyle = 'black';
-        ctx.fillText("Angle in radians: " + angle, 10, 25);
+		//ctx.clearRect(0, 0, canvas.width, canvas.height);
+        //ctx.font = '18pt Calibri';
+        //ctx.fillStyle = 'black';
+        //ctx.fillText("Angle in radians: " + angle, 10, 25);
 		return angle;
 	}
 
 	this.getQuadrantByPoint = function(xDiff,yDiff){
-		//if point is on the left side
+		//if point is on the right side
 		if (xDiff < 0){
+			//if on top
 			if (yDiff >= 0){
 				return 4;
 			}
@@ -78,6 +79,7 @@ function Maths(){
 			}
 		}
 		else{
+			//if point is on the right side
 			if (yDiff >= 0){
 				return 3;
 			}
