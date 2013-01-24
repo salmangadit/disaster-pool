@@ -26,4 +26,12 @@ function Vector(){
 			return (-1* this.magnitude * Math.sin(angleWithHoriz));
 		}
 	}
+
+	this.toCartesianString = function(){
+		return "("+this.getXComponent()+","+this.getYComponent()+")";
+	}
+
+	this.toString = function(){
+		return "("+this.magnitude+"<" + this.direction+")";
+	}
 }

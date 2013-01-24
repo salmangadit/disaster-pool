@@ -55,8 +55,14 @@ function Collider(){
 		initialVel2.magnitude = ball2.velocity;
 		initialVel2.direction = ball2.direction;
 
+		console.log("Ball1 initial velocity: " + initialVel1.toString());
+		console.log("Ball2 initial velocity: " + initialVel2.toString());
+
 		var initialMomentum1 = physicsEngine.getMomentum(ball1.mass, initialVel1);
 		var initialMomentum2 = physicsEngine.getMomentum(ball2.mass, initialVel2);
+
+		console.log("Ball1 initial momentum: " + initialMomentum1.toString());
+		console.log("Ball2 initial momentum: " + initialMomentum2.toString());
 
 		var massRatio = ball2.mass/ball1.mass;
 		var impactParameter_x = ball2.centerPoint.x - ball1.centerPoint.x;
@@ -78,6 +84,9 @@ function Collider(){
 
        	var finalVel1 = physicsEngine.getVector(finalVelX1, finalVelY1);
 		var finalVel2 = physicsEngine.getVector(finalVelX2, finalVelY2);
+
+		console.log("Ball1 final velocity: " + finalVel1.toString());
+		console.log("Ball2 final velocity: " + finalVel2.toString());
 
 		var finalMomentum1 = physicsEngine.getMomentum(ball1.mass, finalVel1);
 		var finalMomentum2 = physicsEngine.getMomentum(ball2.mass, finalVel2);
