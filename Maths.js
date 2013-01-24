@@ -42,19 +42,28 @@ function Maths(){
 		return angle;
 	}
 
+//Need to recalculate for every quadrant because t is not a circle.
 		this.getAngleFromAnyPoint = function(ball, point){
 		var quadrant = this.getQuadrantByPoint(ball.centerPoint.x - point.x, ball.centerPoint.y - point.y);
 		var angle;
 		var distancebetpoints = this.getDistanceBetweenTwoPoints(ball.centerPoint,point);
-		if (quadrant == 1 || quadrant == 4){
-			angle = Math.asin((point.x-ball.centerPoint.x)/distancebetpoints);
-		}
-		else{
-			angle = Math.asin((ball.centerPoint.x-point.x)/distancebetpoints);
-		}
+		if (quadrant == 1)
+		{angle = Math.atan((point.x-ball.centerPoint.x)/(point.y - ball.centerPoint.y));}
+		else if(quadrant == 2)
+		{angle = (Math.PI/2) + Math.atan((ball.centerPoint.x-point.x)/(point.y - ball.centerPoint.y));}
+		else if(quadrant == 3)
+		{angle = (Math.PI) + Math.atan((ball.centerPoint.x-point.x)/(ball.centerPoint.y - point.y));}
+		else
+		{angle = (3*Math.PI/2) + Math.atan((point.x - ball.centerPoint.x)/(ball.centerPoint.y - point.y));}
+
 		//console.log(quadrant);
-		console.log(angle);
+		
 		angle = Math.round(angle*100)/100;
+
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.font = '18pt Calibri';
+        ctx.fillStyle = 'black';
+        ctx.fillText("Angle in radians: " + angle, 10, 25);
 		return angle;
 	}
 
@@ -128,12 +137,5 @@ function Maths(){
 	//	console.log("Distance between " + p1.toString()+" and "+p2.toString()+ " is " + distance);
 
 		return distance;
-	}
-
-	this.pythagorasTheorem = function(x, y){
-		var squared = Math.pow(x,2) + Math.pow(y,2);
-		var root = Math.sqrt(squared);
-
-		return root;
 	}
 }
