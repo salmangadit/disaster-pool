@@ -36,13 +36,31 @@ function Maths(){
 		else{
 			angle = Math.asin((ball.centerPoint.x-point.x)/ball.radius);
 		}
+		//console.log(quadrant);
+		//console.log(angle);
+		angle = Math.round(angle*100)/100;
+		return angle;
+	}
 
+		this.getAngleFromAnyPoint = function(ball, point){
+		var quadrant = this.getQuadrantByPoint(ball.centerPoint.x - point.x, ball.centerPoint.y - point.y);
+		var angle;
+		var distancebetpoints = this.getDistanceBetweenTwoPoints(ball.centerPoint,point);
+		if (quadrant == 1 || quadrant == 4){
+			angle = Math.asin((point.x-ball.centerPoint.x)/distancebetpoints);
+		}
+		else{
+			angle = Math.asin((ball.centerPoint.x-point.x)/distancebetpoints);
+		}
+		//console.log(quadrant);
+		console.log(angle);
 		angle = Math.round(angle*100)/100;
 		return angle;
 	}
 
 	this.getQuadrantByPoint = function(xDiff,yDiff){
-		if (xDiff >= 0){
+		//if point is on the left side
+		if (xDiff < 0){
 			if (yDiff >= 0){
 				return 4;
 			}
@@ -107,7 +125,7 @@ function Maths(){
 
 		var distance = Math.sqrt(distanceSquared);
 
-		console.log("Distance between " + p1.toString()+" and "+p2.toString()+ " is " + distance);
+	//	console.log("Distance between " + p1.toString()+" and "+p2.toString()+ " is " + distance);
 
 		return distance;
 	}
