@@ -46,6 +46,40 @@ function Collider(){
 		
 	}
 
+	this.detectCollisionWithTornado = function (tornado) {
+	    var balls = table.getBalls();
+	    var random = Math.floor(Math.random() * 11); //generates a random number between 1 to 10
+
+	    for (var i = 0; i < balls.length; i++) {
+	        var centerPointDistance = math.getDistanceBetweenTwoPoints(tornado.centerPoint, balls[i].centerPoint);
+
+	        if (centerPointDistance != 0 /*&& balls[i].tornadoEffect == 0*/ && centerPointDistance <= (tornado.radius + balls[i].radius)) {
+	            alert('Ball entered tornado!');
+                if(ball[i].tornadoEffect == 0){
+                    if(random % 2 != 1){
+                        physicsEngine.turnLeft(balls[i], tornado.strength);
+                    } else {
+                        physicsEngine.turnRight(balls[i], tornado.strength);
+                    }
+                }
+	        }
+	    }
+
+	    // Check with cueball
+	    var centerPointDistance = math.getDistanceBetweenTwoPoints(tornado.centerPoint, cueBall.centerPoint);
+
+	    if (centerPointDistance != 0 && centerPointDistance <= (tornado.radius + cueBall.radius)) {
+	        alert('Cue ball entered tornado!');
+	        if (cueBall.tornadoEffect == 0) {
+	            if (random % 2 != 1) {
+                    physicsEngine.turnLeft(cueBall, tornado.strength);
+                } else {
+                    physicsEngine.turnRight(cueBall, tornado.strength);
+                }
+	        }
+	    }
+	}
+
 	this.performCollisionBetweenBalls = function(ball1, ball2){
 		var initialVel1 = new Vector();
 		initialVel1.magnitude = ball1.velocity;
