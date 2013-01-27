@@ -27,6 +27,14 @@ function Maths(){
 		return resultPoint;
 	}
 
+	this.pythagorasTheorem = function(x, y){
+		var squared = Math.pow(x,2) + Math.pow(y,2);
+		var root = Math.sqrt(squared);
+
+		return root;
+	}
+
+
 	this.getAngleFromCollisionPoint = function(ball, point){
 		var quadrant = this.getQuadrantByPoint(ball.centerPoint.x - point.x, ball.centerPoint.y - point.y);
 		var angle;
@@ -43,7 +51,7 @@ function Maths(){
 	}
 
 //Need to recalculate for every quadrant because t is not a circle.
-		this.getAngleFromAnyPoint = function(ball, point){
+	this.getAngleFromAnyPoint = function(ball, point){
 		var quadrant = this.getQuadrantByPoint(ball.centerPoint.x - point.x, ball.centerPoint.y - point.y);
 		var angle;
 		var distancebetpoints = this.getDistanceBetweenTwoPoints(ball.centerPoint,point);
@@ -72,19 +80,19 @@ function Maths(){
 		if (xDiff < 0){
 			//if on top
 			if (yDiff >= 0){
-				return 4;
+				return 3;
 			}
 			else if (yDiff < 0){
-				return 1;
+				return 2;
 			}
 		}
 		else{
 			//if point is on the right side
 			if (yDiff >= 0){
-				return 3;
+				return 4;
 			}
 			else if (yDiff < 0){
-				return 2;
+				return 1;
 			}
 		}
 	}
@@ -112,6 +120,10 @@ function Maths(){
 	}
 
 	this.getQuadrantByAngle = function(angle){
+		if (angle > 2*Math.PI){
+			angle = this.correctAngleToFirstCircle(angle);
+		}
+
 		if (angle >= 0 && angle <= Math.PI/2){
 			return 4;
 		}
@@ -124,6 +136,14 @@ function Maths(){
 		else {
 			return 1;
 		}
+	}
+
+	this.correctAngleToFirstCircle = function(angle){
+		while (angle > 2*Math.PI){
+			angle = angle - 2*Math.PI;
+		}
+
+		return angle;
 	}
 
 	this.getDistanceBetweenTwoPoints = function(p1, p2){

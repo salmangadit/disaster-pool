@@ -1,8 +1,19 @@
 function Renderer(){
+	var ballsPosXToClear = new Array();
+	var ballsPosYToClear = new Array();
+	var ballsRadToClear = new Array();
+
 	this.updatePoints = function(){
 		var balls = table.getBalls();
+		ballsPosXToClear.length = 0;
+		ballsPosYToClear.length = 0;
+		ballsRadToClear.length = 0;
 
 		for (var i=0;i<balls.length;i++){
+			//this.clearBall(balls[i]);
+			ballsPosXToClear.push(balls[i].centerPoint.x);
+			ballsPosYToClear.push(balls[i].centerPoint.y);
+			ballsRadToClear.push(balls[i].radius);
 			balls[i] = physicsEngine.updatePoint(balls[i]);
 			collider.detectCollisionWithWalls(balls[i]);
 			collider.detectCollisionWithBalls(balls[i]);  
@@ -11,6 +22,10 @@ function Renderer(){
 		table.setBalls(balls);
 
 		// Cue ball
+		//this.clearBall(cueBall);
+		ballsPosXToClear.push(cueBall.centerPoint.x);
+		ballsPosYToClear.push(cueBall.centerPoint.y);
+		ballsRadToClear.push(cueBall.radius);
 		cueBall = physicsEngine.updatePoint(cueBall);
 		collider.detectCollisionWithWalls(cueBall);
 		collider.detectCollisionWithBalls(cueBall); 
@@ -21,7 +36,19 @@ function Renderer(){
 		canvas.height = table.height;
 	}
 
+	this.clearBall = function(x, y, radius){
+		ctx.clearRect(x - radius - 1, 
+			y - radius - 1, radius * 2 + 2, radius * 2 + 2);
+	}
+
+	this.clearBalls = function(){
+		for (var i = 0; i<ballsPosXToClear.length; i++){
+			this.clearBall(ballsPosXToClear[i],ballsPosYToClear[i],ballsRadToClear[i]);
+		}
+	}
+
 	this.draw = function(){
+		this.clearBalls();
 		this.drawBalls();
 
 		// Draw cue ball

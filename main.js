@@ -9,11 +9,11 @@
   // Objects
   var table = new Table();
   var math = new Maths();
+  var renderingEngine = new Renderer();
   var physicsEngine = new Physics();
   var collider = new Collider();
-  var renderingEngine = new Renderer();
   var cueBall = new Ball(new Point(100,100), 10, 1);
-  var tornadoTest = new Tornado(new Point(500,250), 50);
+  //var tornadoTest = new Tornado(new Point(500,250), 50);
 
   function init(){
   	canvas = document.getElementById('gameCanvas');
@@ -30,6 +30,6 @@
   		
 
       // Ball - Force - Angle of hitting
-  		cueBall = physicsEngine.applyForceAtAngle(cueBall, 60,0.1);
+  		cueBall = physicsEngine.applyForceAtAngle(cueBall, 400,0.1);
   	}
   }

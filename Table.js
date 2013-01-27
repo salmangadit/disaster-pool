@@ -5,7 +5,7 @@ function Table(){
 	this.width = 1000;
 	this.height = 500;
 
-	this.coefficientOfFriction = 0.1;
+	this.coefficientOfFriction = 0.4;
 
 
 	for (var i =0; i<2; i++){

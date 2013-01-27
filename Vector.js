@@ -20,10 +20,10 @@ function Vector(){
 		var quadrant = mathsValues.getQuadrantByAngle(this.direction);
 
 		if (quadrant == 1 || quadrant == 2){
-			return (this.magnitude * Math.sin(angleWithHoriz));
+			return (-1* this.magnitude * Math.sin(angleWithHoriz));
 		}
 		else {
-			return (-1* this.magnitude * Math.sin(angleWithHoriz));
+			return ( this.magnitude * Math.sin(angleWithHoriz));
 		}
 	}
 
