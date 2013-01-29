@@ -52,7 +52,7 @@ function Maths(){
 
 //Need to recalculate for every quadrant because t is not a circle.
 	this.getAngleFromAnyPoint = function(ball, point){
-		var quadrant = this.getQuadrantByPoint(ball.centerPoint.x - point.x, ball.centerPoint.y - point.y);
+		var quadrant = this.getQuadrantByPointforshoot(ball.centerPoint.x - point.x, ball.centerPoint.y - point.y);
 		var angle;
 		var distancebetpoints = this.getDistanceBetweenTwoPoints(ball.centerPoint,point);
 		if (quadrant == 1)
@@ -73,6 +73,28 @@ function Maths(){
         //ctx.fillStyle = 'black';
         //ctx.fillText("Angle in radians: " + angle, 10, 25);
 		return angle;
+	}
+
+		this.getQuadrantByPointforshoot = function(xDiff,yDiff){
+		//if point is on the right side
+		if (xDiff < 0){
+			//if on top
+			if (yDiff >= 0){
+				return 4;
+			}
+			else if (yDiff < 0){
+				return 1;
+			}
+		}
+		else{
+			//if point is on the right side
+			if (yDiff >= 0){
+				return 3;
+			}
+			else if (yDiff < 0){
+				return 2;
+			}
+		}
 	}
 
 	this.getQuadrantByPoint = function(xDiff,yDiff){

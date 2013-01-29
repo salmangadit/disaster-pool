@@ -13,7 +13,9 @@
   var physicsEngine = new Physics();
   var collider = new Collider();
   var cueBall = new Ball(new Point(100,100), 10, 1);
-  //var tornadoTest = new Tornado(new Point(500,250), 50);
+  var shoot = new Movenhit();
+ // var tornadoTest = new Tornado(new Point(500,250), 50);
+  
 
   function init(){
   	canvas = document.getElementById('gameCanvas');
@@ -26,10 +28,11 @@
   		setInterval(function () {
   			renderingEngine.updatePoints();
   		}, screenUpdateTime);
+      setInterval(function () {shoot.loadwindow();}, screenUpdateTime);
 
   		
 
       // Ball - Force - Angle of hitting
-  		cueBall = physicsEngine.applyForceAtAngle(cueBall, 400,0.1);
+  		//cueBall = physicsEngine.applyForceAtAngle(cueBall, 400,0.1);
   	}
   }
