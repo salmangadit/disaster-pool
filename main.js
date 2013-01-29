@@ -14,7 +14,8 @@
   var collider = new Collider();
   var cueBall = new Ball(new Point(100,100), 10, 1);
   var shoot = new Movenhit();
- // var tornadoTest = new Tornado(new Point(500,250), 50);
+  var tornadoTest = new Tornado(new Point(500,250), 25);
+  var debugMode = true;
   
 
   function init(){

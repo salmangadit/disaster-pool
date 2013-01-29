@@ -8,6 +8,13 @@ function Physics(){
 		ball.direction = direction;
 		ball.acceleration = acceleration;
 
+		//to curve the ball due to tornado's effect
+	    if (ball.tornadoEffect != 0) {
+	        //alert('Tornado effect!');
+	        ball.direction += ball.tornadoEffect;
+            console.log("Applying tornado curving strength of " + ball.tornadoEffect);
+	    }
+
 		console.log("Force applied: "+force+" at angle: " + forceAngle);
 
 		return ball;
@@ -54,6 +61,7 @@ function Physics(){
 		} else {
 			ball.acceleration = 0;
 			ball.velocity = 0;
+			ball.tornadoEffect = 0;
 		}
 		// console.log("distMoved"+ distMoved);
 		if (x_disp != 0 || y_disp != 0){
@@ -68,11 +76,11 @@ function Physics(){
 		}
 
         //to curve the ball due to tornado's effect
-	    if (ball.tornadoEffect != 0) {
+	    /*if (ball.tornadoEffect != 0) {
 	        //alert('Tornado effect!');
 	        ball.direction += ball.tornadoEffect;
             console.log("Applying tornado curving strength of " + ball.tornadoEffect);
-	    }
+	    }*/
 
 		return ball;
 	}

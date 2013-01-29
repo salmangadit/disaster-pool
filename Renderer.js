@@ -16,7 +16,8 @@ function Renderer(){
 			ballsRadToClear.push(balls[i].radius);
 			balls[i] = physicsEngine.updatePoint(balls[i]);
 			collider.detectCollisionWithWalls(balls[i]);
-			collider.detectCollisionWithBalls(balls[i]);  
+			collider.detectCollisionWithBalls(balls[i]);
+			collider.detectCollisionWithTornado(tornadoTest);
 		}
 
 		table.setBalls(balls);
@@ -48,7 +49,8 @@ function Renderer(){
 	}
 
 	this.draw = function(){
-		this.clearBalls();
+		//this.clearBalls();
+		this.drawTable();
 		this.drawBalls();
 
 		// Draw cue ball
@@ -78,6 +80,23 @@ function Renderer(){
 		ctx.strokeStyle = '#000000';
 		ctx.stroke();
 
+		if(debugMode == true){
+	    	var stringToSend = "Vel:"+ball.velocity;
+	    	var ballX = ball.centerPoint.x + ball.radius;
+	    	var ballY = ball.centerPoint.y;
+	    	var pointToDisplay = new Point(ballX, ballY);
+	    	this.writeText(stringToSend, pointToDisplay);
+	    	pointToDisplay.y += 10;
+	    	stringToSend = "Dir:"+ball.direction;
+	    	this.writeText(stringToSend, pointToDisplay);
+	    	pointToDisplay.y += 10;
+	    	stringToSend = "Acc:"+ball.acceleration;
+	    	this.writeText(stringToSend, pointToDisplay);
+	    	pointToDisplay.y += 10;
+	    	stringToSend = "Spin:"+ball.tornadoEffect;
+	    	this.writeText(stringToSend, pointToDisplay);
+	    }
+
 		console.log("Drew Ball, center "+ ball.centerPoint.toString() + ", radius "+ ball.radius);
 	}
 
@@ -96,6 +115,20 @@ function Renderer(){
 	    ctx.fillStyle = grd;
 	    ctx.fill();
 
+	    if(debugMode == true){
+	    	var stringToSend = "Str:"+tornado.strength;
+	    	var tornadoX = tornado.centerPoint.x + tornado.radius;
+	    	var tornadoY = tornado.centerPoint.y;
+	    	var pointToDisplay = new Point(tornadoX, tornadoY);
+	    	this.writeText(stringToSend, pointToDisplay);
+	    }
+
         console.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
+	}
+
+	this.writeText = function (myString, myPoint) {
+		ctx.fillStyle = "black";
+		ctx.font = "bold 10px Arial";
+		ctx.fillText(myString, myPoint.x, myPoint.y);
 	}
 }
