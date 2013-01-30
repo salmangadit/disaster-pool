@@ -4,8 +4,8 @@ function Movenhit()
 
      this.loadwindow = function(){
 
-        var item;
-
+        var item,realtimer1=0,realtimer2=0;
+ 
         // cueStick function
         function cueStick() {
             var item = this;
@@ -18,7 +18,7 @@ function Movenhit()
                 //ctx.beginPath();
                 //ctx.moveTo(event.x, event.y);
                 speed = 0;
-                timer = 20;
+                timer = 15;
 
                 item.shooting = true;
             };
@@ -26,19 +26,32 @@ function Movenhit()
             // Funtion to check whether mouse moves and only activated if shooting
             this.mousemove = function (event) {
                 if (item.shooting) {
+                var realtimer1 = new Date().getTime();
                  //   ctx.lineTo(event.x, event.y);
                  //   ctx.stroke();
                  timer--;
                  if(timer <= 0)
                     {item.shooting = false;
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    //ctx.clearRect(0, 0, canvas.width, canvas.height);
                     }
                 var ang = math.getAngleFromAnyPoint(cueBall,event);
                cueBall = physicsEngine.applyForceAtAngle(cueBall,speed,ang);
-               speed=80;
-               if(speed >= 80)
-                {speed = 80;}
+               speed+=50;
+               if(speed >= 270)
+                {speed = 270;}
+
+                if((realtimer1-realtimer2) >30 && (realtimer1-realtimer2) < 100000)
+                    {item.shooting=false;}
+               console.log("Time difference = "+(realtimer1-realtimer2));
+              // renderingEngine.writeText((realtimer1-realtimer2),event);
+               // table.drawTable();
+               // ctx.font = '10pt Calibri';
+               // ctx.fillStyle = 'black';
+               // ctx.fillText("Timer1: " + realtimer1 + "Timer2: " + (realtimer2-realtimer1), 10, 25);
+                realtimer2 = new Date().getTime();
                 }
+                
+
             };
 
             // Function where the user releases mouse button
@@ -49,7 +62,7 @@ function Movenhit()
 
                    //console.log("X: " + event.x + ", y: " + event.y);
 
-               ctx.clearRect(0, 0, canvas.width, canvas.height);
+              // table.drawTable();
              //   ctx.font = '18pt Calibri';
              //   ctx.fillStyle = 'black';
                 //ctx.fillText("X: " + event.x + ", y: " + event.y, 10, 25);
