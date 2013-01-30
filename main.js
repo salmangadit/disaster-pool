@@ -12,7 +12,7 @@
   var renderingEngine = new Renderer();
   var physicsEngine = new Physics();
   var collider = new Collider();
-  var cueBall = new Ball(new Point(100,100), 10, 1);
+  var cueBall = new Ball(new Point(100,100), 23, 5);
   var shoot = new Movenhit();
   var tornadoTest = new Tornado(new Point(500,250), 25);
   var debugMode = true;
