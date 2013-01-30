@@ -38,6 +38,7 @@ function Collider(){
 				//ball.stop();
 				this.performCollisionBetweenBalls(ball,balls[i]);
 			}
+			
 		}
 
 		// Check with cueball
@@ -90,7 +91,7 @@ function Collider(){
 
 	        if (centerPointDistance != 0 /*&& balls[i].tornadoEffect == 0*/ && centerPointDistance <= (tornado.radius + balls[i].radius)) {
 	            alert('Ball entered tornado!');
-                if(ball[i].tornadoEffect == 0){
+                if(balls[i].tornadoEffect == 0){
                     if(random % 2 != 1){
                         physicsEngine.turnLeft(balls[i], tornado.strength);
                     } else {

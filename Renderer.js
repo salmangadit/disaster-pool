@@ -95,6 +95,17 @@ function Renderer(){
 	    	pointToDisplay.y += 10;
 	    	stringToSend = "Spin:"+ball.tornadoEffect;
 	    	this.writeText(stringToSend, pointToDisplay);
+
+	    	// Draw arrow of velocity
+
+	    	var endX = ball.centerPoint.x + ball.velocity * Math.cos(ball.direction);
+	    	var endY = ball.centerPoint.y + ball.velocity * Math.sin(ball.direction);
+	    	ctx.beginPath();
+  			ctx.moveTo(ball.centerPoint.x,ball.centerPoint.y);
+  			ctx.lineTo(endX,endY);
+  			ctx.lineWidth = 5;
+  			ctx.strokeStyle = 'red';
+  			ctx.stroke();
 	    }
 
 		console.log("Drew Ball, center "+ ball.centerPoint.toString() + ", radius "+ ball.radius);

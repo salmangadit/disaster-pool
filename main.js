@@ -16,7 +16,6 @@
   var shoot = new Movenhit();
   var tornadoTest = new Tornado(new Point(500,250), 25);
   var debugMode = true;
-  
 
   function init(){
   	canvas = document.getElementById('gameCanvas');
