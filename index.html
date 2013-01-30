@@ -3,6 +3,11 @@
 <head>
   <title>Disaster Pool</title>
   <meta charset="utf-8">
+  <link href='http://fonts.googleapis.com/css?family=Iceland' rel='stylesheet' type='text/css'>
+
+
+
+  <script src="Logger.js"></script>
   <script src="Point.js"></script>
   <script src="Ball.js"></script>
   <script src="Hole.js"></script>
@@ -16,11 +21,23 @@
   <script src="movenhit.js"></script>
   <script src="main.js"></script>
 
+  <script type="text/javascript">
+  function clearLog(){
+    logDiv.innerHTML = "<div><b>Logger<b></div>";
+
+  }
+  </script>
+
   <style type="text/css">
   canvas { border: 1px solid black; }
+  .logger { border: 1px solid black; }
   </style>
 </head>
 <body onload="init();">
   <canvas id="gameCanvas" width="50" height="50"></canvas>
+  <input type='button' onclick='clearLog()' value="Clear"/>
+  <div id="logger" class="logger" style="font-family: 'Iceland', cursive;">
+    <div><b>Logger<b></div>
+  </div>
 </body>
 </html>

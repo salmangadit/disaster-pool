@@ -6,22 +6,22 @@ function Collider(){
 		var tableHeight = table.height;
 
 		if (((ball.centerPoint.x + ball.radius) >= table.width)){
-			//alert('Ball hit right wall!');
+			logger.log('Ball hit right wall!');
 			//ball.stop();
 			this.performCollisionWithWall(ball, 1);
 		}
 		else if (((ball.centerPoint.y + ball.radius) >= table.height)){
-			//alert('Ball hit bottom wall');
+			logger.log('Ball hit bottom wall');
 			//ball.stop();
 			this.performCollisionWithWall(ball, 2);
 		}
 		else if (((ball.centerPoint.y - ball.radius) <= 0)){
-			//alert('Ball hit top wall');
+			logger.log('Ball hit top wall');
 			//ball.stop();
 			this.performCollisionWithWall(ball,4);
 		}
 		else if (((ball.centerPoint.x - ball.radius) <= 0)){
-			//alert('Ball hit left wall');
+			logger.log('Ball hit left wall');
 			//ball.stop();
 			this.performCollisionWithWall(ball,3);
 		}
@@ -34,7 +34,7 @@ function Collider(){
 			var centerPointDistance = math.getDistanceBetweenTwoPoints(ball.centerPoint, balls[i].centerPoint);
 
 			if (centerPointDistance != 0 && centerPointDistance <= (ball.radius + balls[i].radius) ){
-				//alert('ball collision!');
+				logger.log('ball collision!');
 				//ball.stop();
 				this.performCollisionBetweenBalls(ball,balls[i]);
 			}
@@ -45,7 +45,7 @@ function Collider(){
 		var centerPointDistance = math.getDistanceBetweenTwoPoints(ball.centerPoint, cueBall.centerPoint);
 
 		if (centerPointDistance != 0 && centerPointDistance <= (ball.radius + cueBall.radius) ){
-			//alert('ball collision!');
+			logger.log('cueball collision!');
 			//ball.stop();
 			this.performCollisionBetweenBalls(ball, cueBall);
 		}
