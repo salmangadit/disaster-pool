@@ -2,7 +2,9 @@ function Tornado(centerPoint, radius){
 	this.centerPoint = centerPoint;
 	this.radius = radius;
 	this.direction = 0;
-	this.strength = 0.03;
+	this.strength = 0.07;
+    this.addForce = 80;
+    this.onScreen = false;
 
     this.setStrength = function (str){
         this.strength = str;

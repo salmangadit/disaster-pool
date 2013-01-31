@@ -8,19 +8,33 @@ function Physics(){
 		ball.direction = direction;
 		ball.acceleration = acceleration;
 
-		//to curve the ball due to tornado's effect
-	    if (ball.tornadoEffect != 0) {
-	        //alert('Tornado effect!');
-	        ball.direction += ball.tornadoEffect;
-            console.log("Applying tornado curving strength of " + ball.tornadoEffect);
-	    }
-
 		console.log("Force applied: "+force+" at angle: " + forceAngle);
 
 		return ball;
 	}
 
 	this.updatePoint = function(ball){
+
+		// to spin the ball due to tornado's effect
+	    if (ball.spin != 0) {
+	        //alert('Tornado effect!');
+	        ball.direction += ball.spin;
+	        ball.spinCounter -= 1;
+
+	        // decelerate ball every (5*1000/30) miliseconds
+	        if(ball.spinCounter <= 0){
+	        	ball.spin -= ball.spinDeceleration
+	        	ball.spinCounter = 5;
+	        }/*end if(ball.spinCounter <= 0)*/
+
+	        // stop spinning when decelerate finish 
+	        if(ball.spin <= 0) {
+	        	ball.spinStop();
+	        }/*end if(ball.spin <= 0)*/
+
+            console.log("Applying tornado curving strength of " + ball.spin);
+	    }/*end if(ball.spin != 0)*/
+
 		var endVelocity = vuat(ball.velocity, ball.acceleration, 0.1);
 		var distMoved = sutat2(ball.velocity, 0.1, ball.acceleration);
 
@@ -61,7 +75,7 @@ function Physics(){
 		} else {
 			ball.acceleration = 0;
 			ball.velocity = 0;
-			ball.tornadoEffect = 0;
+			ball.spin = 0;
 		}
 		// console.log("distMoved"+ distMoved);
 		if (x_disp != 0 || y_disp != 0){
@@ -74,13 +88,6 @@ function Physics(){
 			 console.log ("Ball acceleration " + ball.acceleration);
 			 console.log ("Ball velocity " + ball.velocity);
 		}
-
-        //to curve the ball due to tornado's effect
-	    /*if (ball.tornadoEffect != 0) {
-	        //alert('Tornado effect!');
-	        ball.direction += ball.tornadoEffect;
-            console.log("Applying tornado curving strength of " + ball.tornadoEffect);
-	    }*/
 
 		return ball;
 	}
@@ -150,27 +157,27 @@ function Physics(){
 		return resultant;
 	}
 
-    //curve ball left
+    // spin ball left
     this.turnLeft = function (ball, percent) {
         if(percent < 1 && percent >= 0){
-            ball.tornadoEffect = -1 * percent;
+            ball.spin = -1 * percent;
         } else if(percent < 100 && percent >= 1){
-            ball.tornadoEffect = -1 * (percent/100);
+            ball.spin = -1 * (percent/100);
         } else {
-            ball.tornadoEffect = 0;
-        }
+            ball.spin = 0;
+        }/*end if-else*/
         console.log("Setting curve left strength of " + percent);
 	}
 
-    //curve ball right
+    // spin ball right
     this.turnRight = function (ball, percent) {
         if(percent < 1 && percent >= 0){
-            ball.tornadoEffect = percent;
+            ball.spin = percent;
         } else if(percent < 100 && percent >= 1){
-            ball.tornadoEffect = percent/100;
+            ball.spin = percent/100;
         } else {
-            ball.tornadoEffect = 0;
-        }
+            ball.spin = 0;
+        }/*end if-else*/
         console.log("Setting curve right strength of " + percent);
 	}
 	

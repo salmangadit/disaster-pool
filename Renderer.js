@@ -17,7 +17,6 @@ function Renderer(){
 			balls[i] = physicsEngine.updatePoint(balls[i]);
 			collider.detectCollisionWithWalls(balls[i]);
 			collider.detectCollisionWithBalls(balls[i]);
-			collider.detectCollisionWithTornado(tornadoTest);
 		}
 
 		table.setBalls(balls);
@@ -30,6 +29,7 @@ function Renderer(){
 		cueBall = physicsEngine.updatePoint(cueBall);
 		collider.detectCollisionWithWalls(cueBall);
 		collider.detectCollisionWithBalls(cueBall); 
+		collider.detectCollisionWithTornado(tornado);
 	}
 
 	this.drawTable = function (){
@@ -57,7 +57,9 @@ function Renderer(){
 		this.drawBall(cueBall);
 
         //Draw tornado
-	    this.drawTornado(tornadoTest);
+	    if(tornado.onScreen == true){
+	    	this.drawTornado(tornado);
+	    }
 	}
 
 	this.drawBalls = function(){
@@ -93,7 +95,7 @@ function Renderer(){
 	    	stringToSend = "Acc:"+ball.acceleration;
 	    	this.writeText(stringToSend, pointToDisplay);
 	    	pointToDisplay.y += 10;
-	    	stringToSend = "Spin:"+ball.tornadoEffect;
+	    	stringToSend = "Spin:"+ball.spin;
 	    	this.writeText(stringToSend, pointToDisplay);
 
 	    	// Draw arrow of velocity
@@ -133,6 +135,9 @@ function Renderer(){
 	    	var pointToDisplay = new Point(tornadoX, tornadoY);
 	    	this.writeText(stringToSend, pointToDisplay);
 	    }
+
+	    // make tornado last for 2 seconds
+	    setTimeout(function () {tornado.onScreen = false;}, 2000);
 
         console.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
 	}
