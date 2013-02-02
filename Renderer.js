@@ -35,6 +35,11 @@ function Renderer(){
 	this.drawTable = function (){
 		canvas.width = table.width;
 		canvas.height = table.height;
+
+		for (var i = 0; i<table.regions.length; i++){
+			ctx.fillStyle = table.regions[i].color;
+			ctx.fillRect(table.regions[i].x, table.regions[i].y, table.regions[i].width, table.regions[i].height);
+		}
 	}
 
 	this.clearBall = function(x, y, radius){

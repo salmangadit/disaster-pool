@@ -66,11 +66,11 @@ function Physics(){
 
 		if (ball.velocity > 0){
 			if (ball.acceleration > 0){
-			ball.acceleration = ball.acceleration - getAccelerationFromFriction();
+			ball.acceleration = ball.acceleration - getAccelerationFromFriction(ball.centerPoint);
 			}
 			else
 			{
-				ball.acceleration = - getAccelerationFromFriction();
+				ball.acceleration = - getAccelerationFromFriction(ball.centerPoint);
 			}
 		} else {
 			ball.acceleration = 0;
@@ -126,11 +126,11 @@ function Physics(){
 		return result;
 	}
 
-
-
 	// F - (mu)R = ma
-	function getAccelerationFromFriction(){
-		return table.coefficientOfFriction*gravity;
+	function getAccelerationFromFriction(point){
+		var region = table.getRegionFromPoint(point);
+		//logger.log("Friction is "+ region.coefficientOfFriction);
+		return region.coefficientOfFriction*gravity;
 	}
 
 	// F = ma
