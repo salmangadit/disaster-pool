@@ -35,30 +35,6 @@
   		}, screenUpdateTime);
       setInterval(function () {shoot.loadwindow();}, screenUpdateTime);
       
-      /*setTimeout(function(){
-        degree = (Math.PI/180)*20;
-        setTimeout(function(){
-          degree = (Math.PI/180)*340;
-          setTimeout(function(){
-            degree = (Math.PI/180)*20;
-            setTimeout(function(){
-              degree = (Math.PI/180)*340;
-              setTimeout(function(){
-                degree = (Math.PI/180)*20;
-                setTimeout(function(){
-                  degree = (Math.PI/180)*340;
-                  setTimeout(function(){
-                    degree = (Math.PI/180)*20;
-                    setTimeout(function(){
-                      degree = (Math.PI/180)*0;
-                    }, 50);
-                  }, 50);
-                }, 50);
-              }, 50);
-            }, 50);
-          }, 50);
-        }, 50);
-      }, 500);*/
       //setTimeout(function(){degree = (Math.PI/180)*340;}, 50);
       setTimeout(function(){
         renderingEngine.earthquake();
