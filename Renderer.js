@@ -36,6 +36,15 @@ function Renderer(){
 		canvas.width = table.width;
 		canvas.height = table.height;
 
+		// move registration point to the center of the canvas
+		ctx.translate(table.width/2, table.height/2);
+			
+		// rotate 1 degree
+		ctx.rotate(degree);
+		    
+		// move registration point back to the top left corner of canvas
+		ctx.translate(-table.width/2, -table.height/2);
+
 		for (var i = 0; i<table.regions.length; i++){
 			ctx.fillStyle = table.regions[i].color;
 			ctx.fillRect(table.regions[i].x, table.regions[i].y, table.regions[i].width, table.regions[i].height);
@@ -151,5 +160,33 @@ function Renderer(){
 		ctx.fillStyle = "black";
 		ctx.font = "bold 10px Arial";
 		ctx.fillText(myString, myPoint.x, myPoint.y);
+	}
+
+	this.earthquake = function () {
+		var oneDegree = Math.PI/180;
+		setTimeout(function(){
+	      degree = oneDegree*20;
+	      setTimeout(function(){
+	        degree = oneDegree*340;
+	        setTimeout(function(){
+	          degree = oneDegree*20;
+	          setTimeout(function(){
+	            degree = oneDegree*340;
+	            setTimeout(function(){
+	              degree = oneDegree*20;
+	              setTimeout(function(){
+	                degree = oneDegree*340;
+	                setTimeout(function(){
+	                  degree = oneDegree*20;
+	                  setTimeout(function(){
+	                    degree = oneDegree*0;
+	                  }, 50);
+	                }, 50);
+	              }, 50);
+	            }, 50);
+	          }, 50);
+	        }, 50);
+	      }, 50);
+	    }, 500);
 	}
 }

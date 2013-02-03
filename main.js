@@ -18,6 +18,7 @@
   var shoot = new Movenhit();
   var tornado = new Tornado(new Point(500,250), 25);
   var debugMode = false;
+  var degree = 0;
   
 
   function init(){
@@ -33,6 +34,35 @@
   			renderingEngine.updatePoints();
   		}, screenUpdateTime);
       setInterval(function () {shoot.loadwindow();}, screenUpdateTime);
+      
+      /*setTimeout(function(){
+        degree = (Math.PI/180)*20;
+        setTimeout(function(){
+          degree = (Math.PI/180)*340;
+          setTimeout(function(){
+            degree = (Math.PI/180)*20;
+            setTimeout(function(){
+              degree = (Math.PI/180)*340;
+              setTimeout(function(){
+                degree = (Math.PI/180)*20;
+                setTimeout(function(){
+                  degree = (Math.PI/180)*340;
+                  setTimeout(function(){
+                    degree = (Math.PI/180)*20;
+                    setTimeout(function(){
+                      degree = (Math.PI/180)*0;
+                    }, 50);
+                  }, 50);
+                }, 50);
+              }, 50);
+            }, 50);
+          }, 50);
+        }, 50);
+      }, 500);*/
+      //setTimeout(function(){degree = (Math.PI/180)*340;}, 50);
+      setTimeout(function(){
+        renderingEngine.earthquake();
+      }, 500);
 
   		// to test if tornado will disappear after it comes out
       //setTimeout(function () {tornado.onScreen=true;}, 3000);
