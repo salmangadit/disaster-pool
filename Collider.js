@@ -51,6 +51,24 @@ function Collider(){
 		}
 	}
 
+	this.detectPotting = function(ball){
+		var holes = table.getHoles();
+
+		for (var i=0; i<holes.length; i++){
+			var centerPointDistance = math.getDistanceBetweenTwoPoints(ball.centerPoint, holes[i].centerPoint);
+
+			if (centerPointDistance <= holes[i].radius){
+				logger.log('ball potted!');
+				ball.potted = true;
+				ball.stop();
+				ball.centerPoint.x =0;
+				ball.centerPoint.y = 600;
+			}
+			
+		}
+
+	}
+
 	this.performCollisionWithWall = function(ball, wall){
 		var angleWithHoriz = math.getAngleWithQuadrant(ball.direction);
 		var quadrant = math.getQuadrantByAngle(ball.direction);

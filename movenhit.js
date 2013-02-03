@@ -3,7 +3,7 @@ function Movenhit()
 {   
 
      this.loadwindow = function(){
-
+        var notmoving;
         var item,realtimer1=0,realtimer2=0;
         var balls = table.getBalls();
  
@@ -16,6 +16,11 @@ function Movenhit()
         
             // Starts shooting/drawing when mouse is pressed
             this.mousedown = function (event) {
+              logger.log(notmoving);
+              if(cueBall.potted && notmoving)
+                {cueBall.potted = false;
+                cueBall.centerPoint = event;
+                }
 
              //   ctx.clearRect(0, 0, canvas.width, canvas.height);
                 //ctx.beginPath();
@@ -42,7 +47,7 @@ function Movenhit()
                     //ctx.clearRect(0, 0, canvas.width, canvas.height);
                     }
                 var ang = math.getAngleFromAnyPoint(cueBall,event);
-                if(timer<12)
+                //if(timer<12)
                  //{speed+=20;}
                if(speed >= 270)
                 {speed = 270;}
@@ -60,7 +65,7 @@ function Movenhit()
 
              //  console.log("Time difference = "+(realtimer1-realtimer2));
 
-               logger.log("Timer = "+timer);
+               //logger.log("Timer = "+timer);
               // renderingEngine.writeText((realtimer1-realtimer2),event);
                // table.drawTable();
                // ctx.font = '10pt Calibri';
@@ -97,16 +102,19 @@ function Movenhit()
         // Function to get mouse postition relative to canvas
         function mou2canv(event) {
 
+   notmoving = true;
 for (var i=0;i<balls.length;i++){
 if(balls[i].velocity > 0)
 {   
     canvas.removeEventListener('mousedown',mou2canv);
     canvas.removeEventListener('mousemove',mou2canv);
     canvas.removeEventListener('mouseup',mou2canv);
+    notmoving = false; 
+
 }
 }
 
-if(cueBall.velocity > 20)
+if(cueBall.velocity > 0)
 {
 //logger.log(cueBall.velocity);
         

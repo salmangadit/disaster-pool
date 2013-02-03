@@ -9,6 +9,7 @@ function Ball(centerPoint, radius, mass){
 	this.spin = 0;
 	this.spinDeceleration = 0.01;
 	this.spinCounter = 5;
+	this.potted = false;
 
 	this.stop = function() {
 		this.velocity = 0;

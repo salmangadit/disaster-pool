@@ -1,3 +1,4 @@
+
 function Renderer(){
 	var ballsPosXToClear = new Array();
 	var ballsPosYToClear = new Array();
@@ -11,15 +12,24 @@ function Renderer(){
 
 		for (var i=0;i<balls.length;i++){
 			//this.clearBall(balls[i]);
+
+
 			ballsPosXToClear.push(balls[i].centerPoint.x);
 			ballsPosYToClear.push(balls[i].centerPoint.y);
 			ballsRadToClear.push(balls[i].radius);
+
 			balls[i] = physicsEngine.updatePoint(balls[i]);
+
+			if(!balls[i].potted)
+			{
 			collider.detectCollisionWithWalls(balls[i]);
 			collider.detectCollisionWithBalls(balls[i]);
+			collider.detectPotting(balls[i]);
+			}
 		}
 
 		table.setBalls(balls);
+
 
 		// Cue ball
 		//this.clearBall(cueBall);
@@ -27,9 +37,13 @@ function Renderer(){
 		ballsPosYToClear.push(cueBall.centerPoint.y);
 		ballsRadToClear.push(cueBall.radius);
 		cueBall = physicsEngine.updatePoint(cueBall);
+	    if(!cueBall.potted){
 		collider.detectCollisionWithWalls(cueBall);
 		collider.detectCollisionWithBalls(cueBall); 
 		collider.detectCollisionWithTornado(tornado);
+		collider.detectPotting(cueBall);
+	}
+
 	}
 
 	this.drawTable = function (){
@@ -79,6 +93,14 @@ function Renderer(){
 
 	}
 
+	this.drawHoles = function(){
+		var holes = table.getHoles();
+
+		for (var i=0;i<holes.length;i++){
+			this.drawHole(holes[i]);  
+		}
+	}
+
 
 	this.clearBall = function(x, y, radius){
 		ctx.clearRect(x - radius - 1, 
@@ -95,9 +117,11 @@ function Renderer(){
 		//this.clearBalls();
 		this.drawTable();
 		this.drawBalls();
+		this.drawHoles();
 
 		// Draw cue ball
-		this.drawBall(cueBall);
+		if(!cueBall.potted){
+		this.drawBall(cueBall);}
 
         //Draw tornado
 	    if(tornado.onScreen == true){
