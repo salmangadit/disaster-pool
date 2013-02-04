@@ -4,5 +4,7 @@ function Region(x, y, width, height, mu){
 	this.width = width;
 	this.height = height;
 
+	this.color = 'green';
+
 	this.coefficientOfFriction = mu;
 }

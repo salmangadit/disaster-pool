@@ -1,4 +1,5 @@
 function Ball(centerPoint, radius, mass){
+	this.id = 0;
 	this.centerPoint = centerPoint;
 	this.radius = radius;
 	this.mass = mass;
