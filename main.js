@@ -34,6 +34,7 @@
       setInterval(function () {
         renderingEngine.updatePoints();
       }, screenUpdateTime);
+      shoot.setupmnh(false,true);
       setInterval(function () {shoot.loadwindow();}, screenUpdateTime);
       
       //setTimeout(function(){degree = (Math.PI/180)*340;}, 50);

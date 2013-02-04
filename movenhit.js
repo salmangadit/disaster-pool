@@ -2,8 +2,11 @@
 function Movenhit()
 {   
 
+    var notmoving, prevnotmoving;
+    this.setupmnh = function(pnm,nm)
+    {notmoving = nm; prevnotmoving=pnm;}
      this.loadwindow = function(){
-        var notmoving;
+        
         var item,realtimer1=0,realtimer2=0;
         var balls = table.getBalls();
  
@@ -16,10 +19,15 @@ function Movenhit()
         
             // Starts shooting/drawing when mouse is pressed
             this.mousedown = function (event) {
-              logger.log(notmoving);
+             // logger.log(notmoving);
+
+              // do ball with cueball check
               if(cueBall.potted && notmoving)
                 {cueBall.potted = false;
                 cueBall.centerPoint = event;
+                //check cueball collision with any ball and if that happens change 
+                //cueBall.potted = true and put cueball position to out of screen again
+                //alert("Cant place cueball there");
                 }
 
              //   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -101,27 +109,29 @@ function Movenhit()
 
         // Function to get mouse postition relative to canvas
         function mou2canv(event) {
-
+  
+   prevnotmoving = notmoving;
    notmoving = true;
 for (var i=0;i<balls.length;i++){
 if(balls[i].velocity > 0)
 {   
-    canvas.removeEventListener('mousedown',mou2canv);
-    canvas.removeEventListener('mousemove',mou2canv);
-    canvas.removeEventListener('mouseup',mou2canv);
     notmoving = false; 
-
 }
 }
-
 if(cueBall.velocity > 0)
 {
-//logger.log(cueBall.velocity);
-        
+notmoving = false;
+}
+//logger.log(prevnotmoving + "and" + notmoving);
+
+ if(prevnotmoving == true && notmoving == false){       
     canvas.removeEventListener('mousedown',mou2canv);
     canvas.removeEventListener('mousemove',mou2canv);
     canvas.removeEventListener('mouseup',mou2canv); 
-    }
+logger.log("listener disabled");
+prevnotmoving = false;
+
+  }
             // For firefox browser
             if (event.layerX || event.layerX == 0) {
                 event.x = event.layerX;
@@ -147,12 +157,33 @@ if(cueBall.velocity > 0)
 
 
             item = new cueStick();
-            //Event listeners for mousedown, mouseup and mousemove
-        var setevent = setTimeout(function() {canvas.addEventListener('mousedown', mou2canv);
+            //Event listeners for mousedown, mouseup and mousemove           ADD trigger edge stop to move(disable) and move to stop(enable settimeout)
+       var firstcheck = false,secondcheck = false;
+for (var i=0;i<balls.length;i++){
+if(balls[i].velocity == 0)
+{   
+    firstcheck = true; 
+}
+}
+if(cueBall.velocity == 0)
+{
+ secondcheck = true;
+}
+if(firstcheck && secondcheck)
+  {notmoving = true;}
+
+
+//logger.log(prevnotmoving + "and" + notmoving);
+
+       if(prevnotmoving == false && notmoving == true)
+        {this.setevent = setTimeout(function() {canvas.addEventListener('mousedown', mou2canv);
             canvas.addEventListener('mouseup', mou2canv);
             canvas.addEventListener('mousemove', mou2canv);
 
         },100);
+      logger.log("listener enabled");
+      prevnotmoving=true;
+    }
 
         
 
