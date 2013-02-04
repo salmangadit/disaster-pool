@@ -23,16 +23,16 @@
 
   function init(){
     logDiv = document.getElementById('logger');
-  	canvas = document.getElementById('gameCanvas');
-  	if (canvas.getContext){
-  		ctx = canvas.getContext('2d');
-  		renderingEngine.drawTable();
-  		setInterval(function () {
-  			renderingEngine.draw();
-  		}, screenUpdateTime);
-  		setInterval(function () {
-  			renderingEngine.updatePoints();
-  		}, screenUpdateTime);
+    canvas = document.getElementById('gameCanvas');
+    if (canvas.getContext){
+      ctx = canvas.getContext('2d');
+      renderingEngine.drawTable();
+      setInterval(function () {
+        renderingEngine.draw();
+      }, screenUpdateTime);
+      setInterval(function () {
+        renderingEngine.updatePoints();
+      }, screenUpdateTime);
       setInterval(function () {shoot.loadwindow();}, screenUpdateTime);
       
       //setTimeout(function(){degree = (Math.PI/180)*340;}, 50);
@@ -40,10 +40,27 @@
         renderingEngine.earthquake();
       }, 500);
 
-  		// to test if tornado will disappear after it comes out
+      // to test if tornado will disappear after it comes out
       //setTimeout(function () {tornado.onScreen=true;}, 3000);
 
       // Ball - Force - Angle of hitting
-  		//cueBall = physicsEngine.applyForceAtAngle(cueBall, 80,0);
-  	}
+      //cueBall = physicsEngine.applyForceAtAngle(cueBall, 80,0);
+
+
+    //to trigger the hurricane
+    document.addEventListener('keydown', function(event) {
+    if(event.keyCode == 37) {
+        renderingEngine.hurricane(Math.PI);
+    }
+    else if(event.keyCode == 39) {
+        alert('Right was pressed');
+    }
+    else if(event.keyCode == 38) {
+        alert('Up was pressed');
+    }
+    else if(event.keyCode == 40) {
+        alert('Down was pressed');
+    }
+    });
+    }
   }

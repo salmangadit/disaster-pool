@@ -63,6 +63,17 @@ function Table(){
 	balls[14] = new Ball(new Point(797,283),12,1);
 	balls[14].color = '#00FF00';	
 
+	//big holes
+	holes[0] = new Hole(new Point(0,0), 40);
+	holes[1] = new Hole(new Point(500,500), 40);
+
+	//medium holes
+	holes[2] = new Hole(new Point(1000,0), 30);
+	holes[3] = new Hole(new Point(0,500), 30);
+
+	//small holes
+	holes[4] = new Hole(new Point(1000,500), 20);
+	holes[5] = new Hole(new Point(500,0), 20);
 
 	this.getBalls = function(){
 		return balls;

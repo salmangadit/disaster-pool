@@ -49,7 +49,36 @@ function Renderer(){
 			ctx.fillStyle = table.regions[i].color;
 			ctx.fillRect(table.regions[i].x, table.regions[i].y, table.regions[i].width, table.regions[i].height);
 		}
+	
+		//drawing holes
+		var holes = table.getHoles();
+
+		for (var i=0; i<holes.length; i++) {
+			this.drawHole(holes[i]);
+		}
+	
+		//drawing the starting line
+		ctx.beginPath();
+     	ctx.moveTo(300, 0);
+  	  	ctx.lineTo(300, 500);
+   		ctx.stroke();
+   		ctx.lineWidth = 5;
+   		ctx.strokeStyle = "#0B3B0B";
+    	ctx.stroke();
 	}
+
+	this.drawHole = function(hole){
+		ctx.beginPath();
+		ctx.arc(hole.centerPoint.x, hole.centerPoint.y, hole.radius, 0, 2 * Math.PI, false);
+		ctx.fillStyle = hole.color;
+		ctx.fill();
+		ctx.lineWidth = 1;
+
+		ctx.strokeStyle = '#000000';
+		ctx.stroke();
+
+	}
+
 
 	this.clearBall = function(x, y, radius){
 		ctx.clearRect(x - radius - 1, 
@@ -188,5 +217,16 @@ function Renderer(){
 	        }, 50);
 	      }, 50);
 	    }, 500);
+	}
+
+	this.hurricane = function (direction) {
+
+		var balls = table.getBalls();
+
+		for (var i=0; i<balls.length; i++) {
+			Physics.applyForceAtAngle(balls[i], 100, direction);
+		}
+
+		console.log("Hurricane is applied at " + direction);
 	}
 }
