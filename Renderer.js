@@ -180,21 +180,19 @@ function Renderer(){
 		console.log("Drew Ball, center "+ ball.centerPoint.toString() + ", radius "+ ball.radius);
 	}
 
+	/*Original drawTornado function using radial gradient
     this.drawTornado = function (tornado) {
-	    //alert('Drawing tornado!');
 	    ctx.beginPath();
 	    ctx.arc(tornado.centerPoint.x, tornado.centerPoint.y, tornado.radius, 0, 2 * Math.PI, false);
-
 	    // create radial gradient
 	    var grd = ctx.createRadialGradient(tornado.centerPoint.x, tornado.centerPoint.y, 0, tornado.centerPoint.x, tornado.centerPoint.y, tornado.radius);
 	    grd.addColorStop(0, 'ghostwhite');
 	    grd.addColorStop(0.2, 'dimgray');
 	    grd.addColorStop(0.4, 'grey');
 	    grd.addColorStop(1, 'lightsteelblue');
-
 	    ctx.fillStyle = grd;
 	    ctx.fill();
-
+	    //tornado stats for debug mode
 	    if(debugMode == true){
 	    	var stringToSend = "Str:"+tornado.strength;
 	    	var tornadoX = tornado.centerPoint.x + tornado.radius;
@@ -202,12 +200,29 @@ function Renderer(){
 	    	var pointToDisplay = new Point(tornadoX, tornadoY);
 	    	this.writeText(stringToSend, pointToDisplay);
 	    }
-
 	    // make tornado last for 2 seconds
-	    setTimeout(function () {tornado.onScreen = false;}, 2000);
+	    //setTimeout(function () {tornado.onScreen = false;}, 2000);
+	}//end drawTornado*/
 
-        console.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
-	}
+	/*drawTornado function using png file*/
+	this.drawTornado = function (tornado) {
+		var imgX = tornado.centerPoint.x - tornado.radius;
+		var imgY = tornado.centerPoint.y - tornado.radius;
+		var imgSize = tornado.radius * 2;
+	    var drawing = new Image();
+	    drawing.src = "tornado.png";
+	    ctx.drawImage(drawing, imgX, imgY, imgSize, imgSize);
+	    //tornado stats for debug mode
+	    if(debugMode == true){
+	    	var stringToSend = "Str:"+tornado.strength;
+	    	var tornadoX = tornado.centerPoint.x + tornado.radius;
+	    	var tornadoY = tornado.centerPoint.y;
+	    	var pointToDisplay = new Point(tornadoX, tornadoY);
+	    	this.writeText(stringToSend, pointToDisplay);
+	    }
+	    // make tornado last for 2 seconds
+	    //setTimeout(function () {tornado.onScreen = false;}, 2000);
+	}//end drawTornado*/
 
 	this.writeText = function (myString, myPoint) {
 		ctx.fillStyle = "black";
@@ -241,6 +256,9 @@ function Renderer(){
 	        }, 50);
 	      }, 50);
 	    }, 500);
+
+	    //apply force to all balls
+	    var pointBalls = table.getBalls();
 	}
 
 	this.hurricane = function (direction) {
