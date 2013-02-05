@@ -28,6 +28,17 @@ function Movenhit()
                 //check cueball collision with any ball and if that happens change 
                 //cueBall.potted = true and put cueball position to out of screen again
                 //alert("Cant place cueball there");
+                logger.log(collider.checkIfCollisionPairExists(cueBall,balls[i]));
+                for (var i=0;i<balls.length;i++){
+                if(collider.checkIfCollisionPairExists(cueBall,balls[i])){
+                cueBall.potted = true; 
+                cueBall.centerPoint.x=0;
+                cueBall.centerPoint.y=600;
+                alert("Cant place cueball there");
+               }
+                }
+
+
                 }
 
              //   ctx.clearRect(0, 0, canvas.width, canvas.height);
