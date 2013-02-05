@@ -17,9 +17,10 @@ function Ball(centerPoint, radius, mass){
 		this.acceleration = 0;
 	}
 
+	/*to stop the ball from spinning*/
 	this.spinStop = function() {
 		this.spin = 0;
 		this.spinDeceleration = 0.01;
 		this.spinCounter = 10;
-	}
+	}//end spinStop*/
 }

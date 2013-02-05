@@ -127,6 +127,7 @@ function Collider(){
 		}
 	}
 
+	/*to detect any balls entering the tornado*/
 	this.detectCollisionWithTornado = function (tornado) {
 		if(tornado.onScreen == true){
 			var balls = table.getBalls();
@@ -164,7 +165,7 @@ function Collider(){
 		        }/*end if(cueBall.spin == 0) */
 		    }/*end if(centerPointDistance ...)*/
 		}/*end if(tornado.onScreen == true)*/
-	}
+	}//end detectCollisionWithTornado*/
 
 	this.performCollisionBetweenBalls = function(ball1, ball2){
 		

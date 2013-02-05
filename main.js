@@ -42,14 +42,7 @@
       shoot.setupmnh(false,true);
       setInterval(function () {shoot.loadwindow();}, screenUpdateTime);
       
-      //setTimeout(function(){degree = (Math.PI/180)*340;}, 50);
-      /*setTimeout(function(){
-        renderingEngine.earthquake();
-      }, 500);*/
-
-      // to test if tornado will disappear after it comes out
-      //setTimeout(function () {tornado.onScreen=true;}, 3000);
-
+     
       // Ball - Force - Angle of hitting
       //cueBall = physicsEngine.applyForceAtAngle(cueBall, 80,0);
 

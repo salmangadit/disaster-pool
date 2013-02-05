@@ -157,7 +157,7 @@ function Physics(){
 		return resultant;
 	}
 
-    // spin ball left
+    /*spin ball left*/
     this.turnLeft = function (ball, percent) {
         if(percent < 1 && percent >= 0){
             ball.spin = -1 * percent;
@@ -165,11 +165,11 @@ function Physics(){
             ball.spin = -1 * (percent/100);
         } else {
             ball.spin = 0;
-        }/*end if-else*/
-        console.log("Setting curve left strength of " + percent);
-	}
+        }//end if-else
+        logger.log("Setting curve left strength of " + percent);
+	}//end turnLeft*/
 
-    // spin ball right
+    /*spin ball right*/
     this.turnRight = function (ball, percent) {
         if(percent < 1 && percent >= 0){
             ball.spin = percent;
@@ -177,8 +177,8 @@ function Physics(){
             ball.spin = percent/100;
         } else {
             ball.spin = 0;
-        }/*end if-else*/
-        console.log("Setting curve right strength of " + percent);
-	}
+        }//end if-else*/
+        logger.log("Setting curve right strength of " + percent);
+	}//end turnRight*/
 	
 }
