@@ -20,7 +20,11 @@
   var tornado = new Tornado(new Point(500,250), 25);
   var debugMode = false;
   var degree = 0;
-  
+
+  // Players
+  var players = new Array();
+  players[0] = new Player(1);
+  players[1] = new Player(2);
 
   function init(){
     logDiv = document.getElementById('logger');
