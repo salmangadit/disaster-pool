@@ -3,6 +3,7 @@ function Renderer(){
 	var ballsPosXToClear = new Array();
 	var ballsPosYToClear = new Array();
 	var ballsRadToClear = new Array();
+	var ctr = 0;
 
 	this.updatePoints = function(){
 		var balls = table.getBalls();
@@ -52,10 +53,8 @@ function Renderer(){
 
 		// move registration point to the center of the canvas
 		ctx.translate(table.width/2, table.height/2);
-			
 		// rotate 1 degree
 		ctx.rotate(degree);
-		    
 		// move registration point back to the top left corner of canvas
 		ctx.translate(-table.width/2, -table.height/2);
 
@@ -211,7 +210,9 @@ function Renderer(){
 		var imgSize = tornado.radius * 2;
 	    var drawing = new Image();
 	    drawing.src = "tornado.png";
-	    ctx.drawImage(drawing, imgX, imgY, imgSize, imgSize);
+	    ctr = this.tornadoRotation(ctr);
+	    this.drawImageRot(drawing, imgX, imgY, imgSize, imgSize, ctr);
+	    //ctx.drawImage(drawing, imgX, imgY, imgSize, imgSize);
 	    //tornado stats for debug mode
 	    if(debugMode == true){
 	    	var stringToSend = "Str:"+tornado.strength;
@@ -223,6 +224,28 @@ function Renderer(){
 	    // make tornado last for 2 seconds
 	    //setTimeout(function () {tornado.onScreen = false;}, 2000);
 	}//end drawTornado*/
+
+	this.drawImageRot = function(img,x,y,width,height,deg){
+		var rad = deg * Math.PI / 180;
+	    //Set the origin to the center of the image
+	    ctx.translate(x + width / 2, y + height / 2);
+	    //Rotate the canvas around the origin
+	    ctx.rotate(rad);
+	    //draw the image    
+	    ctx.drawImage(img,width / 2 * (-1),height / 2 * (-1),width,height);
+	    //reset the canvas  
+	    ctx.rotate(rad * ( -1 ) );
+	    ctx.translate((x + width / 2) * (-1), (y + height / 2) * (-1));
+	}
+
+	this.tornadoRotation = function(ctr){
+		if(ctr == 360){
+	    	ctr = 0;
+	    } else {
+	    	ctr += 10;
+	    }
+	    return ctr;
+	}
 
 	this.writeText = function (myString, myPoint) {
 		ctx.fillStyle = "black";
