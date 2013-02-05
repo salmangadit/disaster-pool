@@ -9,6 +9,9 @@ function Movenhit()
         
         var item,realtimer1=0,realtimer2=0;
         var balls = table.getBalls();
+
+
+
  
         // cueStick function
         function cueStick() {
@@ -23,36 +26,48 @@ function Movenhit()
 
               // do ball with cueball check
               if(cueBall.potted && notmoving)
-                {cueBall.potted = false;
-                cueBall.centerPoint = event;
+                {
+                var stillplacingcue = false;
+                var dummyball = new Ball(new Point(0,700), 23, 2);
+                dummyball.centerPoint = event;
                 //check cueball collision with any ball and if that happens change 
                 //cueBall.potted = true and put cueball position to out of screen again
                 //alert("Cant place cueball there");
-                logger.log(collider.checkIfCollisionPairExists(cueBall,balls[i]));
+
+
+
+       
                 for (var i=0;i<balls.length;i++){
-                if(collider.checkIfCollisionPairExists(cueBall,balls[i])){
-                cueBall.potted = true; 
-                cueBall.centerPoint.x=0;
-                cueBall.centerPoint.y=600;
+      if (collider.detectBallToBallCollision(balls[i],dummyball)){
                 alert("Cant place cueball there");
-               }
-                }
+                stillplacingcue = true;
+      }
+                                                }
+              if(!stillplacingcue)
+              {
 
-
+                cueBall.potted = false;
+                cueBall.centerPoint = event;
+              }       
+                
                 }
 
              //   ctx.clearRect(0, 0, canvas.width, canvas.height);
                 //ctx.beginPath();
                 //ctx.moveTo(event.x, event.y);
-
+                if(!cueBall.potted && notmoving)
+                {
                 speed = 0;
                 timer = 15;
                 startpoint = event;
                 item.shooting = true;
+                }
+              
             };
 
             // Funtion to check whether mouse moves and only activated if shooting
             this.mousemove = function (event) {
+
                 if (item.shooting) {
 
                 var realtimer1 = new Date().getTime();
@@ -160,10 +175,21 @@ prevnotmoving = false;
                 fnc(event);
             }
 
+                if(cueBall.potted && notmoving){
+                var dummyball = new Ball(new Point(0,700), 23, 2);
+                dummyball.centerPoint = event;                
+                ctx.beginPath();
+                ctx.arc(dummyball.centerPoint.x, dummyball.centerPoint.y, dummyball.radius, 0, 2 * Math.PI, false);
+                ctx.fillStyle =  "rgba(1, 1, 1, 0.5)";
+                ctx.fill();
+                ctx.lineWidth = 1;
+                ctx.strokeStyle = '#000000';
+                ctx.stroke();
+                                              }
+
 
         }
 
-        
         // item which is cueStick is called later in mou2canv
 
 
