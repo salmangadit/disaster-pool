@@ -25,7 +25,14 @@
   <script type="text/javascript">
   function clearLog(){
     logDiv.innerHTML = "<div><b>Logger<b></div>";
+  }
 
+  function toggleDebug(){
+    if (debugMode){
+      debugMode = false;
+    } else {
+      debugMode = true;
+    }
   }
   </script>
 
@@ -37,6 +44,7 @@
 <body onload="init();">
   <canvas id="gameCanvas" width="50" height="50"></canvas>
   <input type='button' onclick='clearLog()' value="Clear"/>
+  <input type='button' onclick='toggleDebug()' value="Toggle Debug Mode"/>
   <div id="logger" class="logger" style="font-family: 'Iceland', cursive;">
     <div><b>Logger<b></div>
   </div>
