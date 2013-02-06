@@ -27,6 +27,7 @@ function Movenhit()
               // do ball with cueball check
               if(cueBall.potted && notmoving)
                 {
+
                 var stillplacingcue = false;
                 var dummyball = new Ball(new Point(0,700), 23, 2);
                 dummyball.centerPoint = event;
@@ -62,6 +63,36 @@ function Movenhit()
                 startpoint = event;
                 item.shooting = true;
                 }
+//check placement of function, it is wrong i think
+          var switchtemp =false;
+          for(var i=0;i<players.length;i++){
+        if(players[i].isplaying)
+        {
+          if(players[i].ballsPotted.length == players[i].prevpottedlength)
+          {
+
+          if(i == 0)
+          {
+
+          players[i].isplaying = !players[i].isplaying;
+          players[i+1].isplaying = !players[i+1].isplaying;
+
+          }
+          else //i=1
+          {
+          players[i].isplaying = !players[i].isplaying;
+          players[i-1].isplaying = !players[i-1].isplaying;
+          }
+
+          }
+          else
+          {
+
+          players[i].prevpottedlength = players[i].ballsPotted.length;
+          }
+
+        }
+}
 
               
             };
@@ -100,6 +131,16 @@ function Movenhit()
               //  {speed += (190 - (realtimer1-realtimer2))/3;}
               
                this.cueBall = physicsEngine.applyForceAtAngle(cueBall,speed,ang);
+
+     for(var i=0;i<players.length;i++){
+        if(players[i].isplaying)
+        {
+          for(var j=0;j<players[i].ballsPotted.length;j++){
+          logger.log(players[i].ballsPotted[j]);
+        }
+
+        }
+}
               
 
 
@@ -227,8 +268,12 @@ if(firstcheck && secondcheck)
       logger.log("listener enabled");
       prevnotmoving=true;
     }
+/*
+        if(players[0].isplaying)
+          {logger.log("player 1 is playing");}
+        else
+          {logger.log("player 2 is playing");}*/
 
-        
 
 
             

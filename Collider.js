@@ -86,7 +86,11 @@ function Collider(){
 				ball.potted = true;
 		 for(var i=0;i<players.length;i++){
 				if(players[i].isplaying)
+				{
+				if(ball.id != 99) //check if cueball is potted and if it is dont add to potting
 				{players[i].ballsPotted.push(ball.id);}
+
+				}
 }
 				ball.stop();
 				ball.centerPoint.x =0;

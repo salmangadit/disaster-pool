@@ -4,4 +4,5 @@ function Player(playerNum){
 	this.isplaying = false;
 	this.ballsPotted = new Array();
 	this.hurrCount = 0;
+	this.prevpottedlength = 0;
 }

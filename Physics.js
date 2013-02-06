@@ -8,7 +8,7 @@ function Physics(){
 		ball.direction = direction;
 		ball.acceleration = acceleration;
 
-		console.log("Force applied: "+force+" at angle: " + forceAngle);
+		//console.log("Force applied: "+force+" at angle: " + forceAngle);
 
 		return ball;
 	}
@@ -82,14 +82,14 @@ function Physics(){
 		}
 		// console.log("distMoved"+ distMoved);
 		if (x_disp != 0 || y_disp != 0){
-			 console.log("Direction "+ ball.direction);
+			/* console.log("Direction "+ ball.direction);
 			 console.log("X disp "+ x_disp);
 			 console.log("Y disp "+ y_disp);
 			 console.log("Quadrant "+ quadrant);
 			 console.log("angleWithHoriz "+ angleWithHoriz);
 			 console.log("Ball position updated to "+ball.centerPoint.x);
 			 console.log ("Ball acceleration " + ball.acceleration);
-			 console.log ("Ball velocity " + ball.velocity);
+			 console.log ("Ball velocity " + ball.velocity);*/
 		}
 
 		return ball;
