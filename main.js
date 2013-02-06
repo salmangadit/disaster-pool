@@ -52,24 +52,26 @@
 
     //to trigger the hurricane
     //also to trigger the earthquake
-    var hurrCount = 0;
+    
+    //var hurrCount = 0;
 
     document.addEventListener('keydown', function(event) {
-      if((hurrCount == 0) && (event.keyCode == 37)) {
+      for (var i=0; i<players.length; i++) {
+      if((players[i].isplaying) && (players[i].hurrCount == 0) && (event.keyCode == 37)) {
           renderingEngine.hurricane(Math.PI);
-          hurrCount++;
+          players[i].hurrCount++;
       }
-      else if((hurrCount == 0) && (event.keyCode == 39)) {
+      else if((players[i].isplaying) && (players[i].hurrCount == 0) && (event.keyCode == 39)) {
           renderingEngine.hurricane(0);
-          hurrCount++;
+          players[i].hurrCount++;
       }
-      else if((hurrCount == 0) && (event.keyCode == 38)) {
+      else if((players[i].isplaying) && (players[i].hurrCount == 0) && (event.keyCode == 38)) {
           renderingEngine.hurricane(Math.PI*3/2);
-          hurrCount++;
+          players[i].hurrCount++;
       }
-      else if((hurrCount == 0) && (event.keyCode == 40)) {
+      else if((players[i].isplaying) && (players[i].hurrCount == 0) && (event.keyCode == 40)) {
           renderingEngine.hurricane(Math.PI/2);
-          hurrCount++;
+          players[i].hurrCount++;
       }
       else if(event.keyCode == 90) {
         //to trigger earthquake, press Z
@@ -88,6 +90,6 @@
           logger.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
         }
       }
-    });
+    }});
     }
   }
