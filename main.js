@@ -34,6 +34,8 @@
     if (canvas.getContext){
       ctx = canvas.getContext('2d');
       renderingEngine.drawTable();
+      players[0].isplaying = true;
+      players[1].isplaying = false;
       setInterval(function () {
         renderingEngine.draw();
       }, screenUpdateTime);
