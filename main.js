@@ -55,13 +55,13 @@
         renderingEngine.hurricane(Math.PI);
     }
     else if(event.keyCode == 39) {
-        alert('Right was pressed');
+        renderingEngine.hurricane(Math.PI*3/2);
     }
     else if(event.keyCode == 38) {
-        alert('Up was pressed');
+        renderingEngine.hurricane(0);
     }
     else if(event.keyCode == 40) {
-        alert('Down was pressed');
+        renderingEngine.hurricane(Math.PI/2);
     }
     else if(event.keyCode == 90) {
       //to trigger earthquake, press Z
