@@ -20,6 +20,7 @@
   var tornado = new Tornado(new Point(500,250), 15);
   var debugMode = false;
   var degree = 0;
+  var initialCollision = true;
 
 
   // Players
@@ -75,7 +76,7 @@
       } else {
         //tornado.onScreen = true;
         //tornado generate on impluse test
-        physicsEngine.tornadoGen(50, tornado);
+        physicsEngine.tornadoGen(50);
         logger.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
       }
     }

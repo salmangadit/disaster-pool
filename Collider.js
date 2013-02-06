@@ -57,6 +57,13 @@ function Collider(){
 			if (!checkIfCollisionPairExists(ball,cueBall)) {
 				collisionPairs.push(new CollisionPair(ball.id, cueBall.id));
 				this.performCollisionBetweenBalls(ball,cueBall);
+				if(initialCollision == true){
+					//get impact force
+					var impactForce = 0;
+					//call tornadoGen
+					physicsEngine.tornadoGen(impactForce);
+					initialCollision = false;
+				}
 			}
 			else{
 				ballPositionShift(ball, cueBall);

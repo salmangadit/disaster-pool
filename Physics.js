@@ -76,6 +76,9 @@ function Physics(){
 			ball.acceleration = 0;
 			ball.velocity = 0;
 			ball.spin = 0;
+			if(cueBall.acceleration == 0){
+				initialCollision = true;
+			}
 		}
 		// console.log("distMoved"+ distMoved);
 		if (x_disp != 0 || y_disp != 0){
@@ -236,7 +239,7 @@ function Physics(){
 	}//end randomDirection*/
 
 	/*generate tornado on cueBall impact*/
-	this.tornadoGen =  function(impact, tornado){
+	this.tornadoGen =  function(impact){
 		var tornadoCondition = 10;
 		if(impact >= tornadoCondition){
 			tornado.onScreen = true;
