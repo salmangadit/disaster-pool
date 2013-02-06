@@ -135,7 +135,7 @@ function Renderer(){
 			this.drawBall(balls[i]);  
 		}
 
-		console.log("Drew "+ balls.length + " balls");
+		//console.log("Drew "+ balls.length + " balls");
 	}
 
 	this.drawBall = function(ball){
@@ -176,7 +176,7 @@ function Renderer(){
   			ctx.stroke();
 	    }//end if(debugMode == true)
 
-		console.log("Drew Ball, center "+ ball.centerPoint.toString() + ", radius "+ ball.radius);
+		//console.log("Drew Ball, center "+ ball.centerPoint.toString() + ", radius "+ ball.radius);
 	}
 
 	/*Original drawTornado function using radial gradient

@@ -62,6 +62,7 @@ function Movenhit()
                 startpoint = event;
                 item.shooting = true;
                 }
+
               
             };
 
@@ -80,7 +81,12 @@ function Movenhit()
                       speed = math.getDistanceBetweenTwoPoints(startpoint,endpoint);
                     //ctx.clearRect(0, 0, canvas.width, canvas.height);
                     }
+                    endpoint = event;
                 var ang = math.getAngleFromAnyPoint(cueBall,event);
+                  ctx.beginPath();
+                  ctx.moveTo(startpoint.x,startpoint.y);
+                  ctx.lineTo(endpoint.x,endpoint.y);
+                  ctx.stroke();
                 //if(timer<12)
                  //{speed+=20;}
                if(speed >= 270)
@@ -194,7 +200,7 @@ prevnotmoving = false;
 
 
             item = new cueStick();
-            //Event listeners for mousedown, mouseup and mousemove           ADD trigger edge stop to move(disable) and move to stop(enable settimeout)
+            //Event listeners for mousedown, mouseup and mousemove           
        var firstcheck = false,secondcheck = false;
 for (var i=0;i<balls.length;i++){
 if(balls[i].velocity == 0)
