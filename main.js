@@ -65,6 +65,7 @@
     else if(event.keyCode == 90) {
       //to trigger earthquake, press Z
       renderingEngine.earthquake();
+      setTimeout(function(){physicsEngine.earthquakeEffect();}, 650);
       logger.log("Earthquake generated.");
     }
     else if(event.keyCode == 88) {

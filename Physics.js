@@ -181,4 +181,57 @@ function Physics(){
         logger.log("Setting curve right strength of " + percent);
 	}//end turnRight*/
 	
+	/*move balls after earthquake*/
+	this.earthquakeEffect = function(){
+		var pointBalls = table.getBalls();
+		var earthquakeForce = 50;
+		var dir = 0;
+		var acc = 0;
+		//apply force to all point balls in play
+	    for (var i=0;i<pointBalls.length;i++){
+	    	if(pointBalls[i].potted == false){ //check if ball is potted 1st
+				if(pointBalls[i].acceleration == 0){ //if ball is not moving
+					//apply a random direction vector
+					dir = this.randomDirection360();
+					pointBalls[i] = physicsEngine.applyForceAtAngle(pointBalls[i], earthquakeForce, dir);
+				} else {
+					//apply force to moving balls
+					dir = this.randomDirection();
+					pointBalls[i].direction += dir;
+					acc = physicsEngine.getAccelerationFromForce(earthquakeForce,pointBalls[i].mass);
+					pointBalls[i].acceleration += acc;
+				}//end if-else
+			}//end if(pointBalls[i].potted == false)
+		}//end for
+		//apply force to cueball
+		if(cueBall.potted == false){ //check if ball is potted 1st
+			if(cueBall.acceleration == 0){ //if ball is not moving
+				//apply a random direction vector
+				dir = this.randomDirection360() ;
+				cueBall = physicsEngine.applyForceAtAngle(cueBall, earthquakeForce, dir);
+			} else {
+				//apply force to moving balls
+				dir = this.randomDirection();
+				cueBall.direction += dir;
+				acc = physicsEngine.getAccelerationFromForce(earthquakeForce,cueBall.mass);
+				cueBall.acceleration += acc;
+			}//end if-else*/
+		}//end if(cueBall.potted == false)
+	}//end earthquakeEffect*/
+
+	/*gives a random angle of direction from 0 to 360*/
+	this.randomDirection360 = function(){
+		var random = Math.floor(Math.random() * 361); //generates a random number between 1 to 10
+		return ((Math.PI/180)*random);
+	}//end randomDirection360*/
+
+	/*gives a random angle of direction from 5 to 25 and -5 to -25*/
+	this.randomDirection = function(){
+		var random = 5 + Math.floor(Math.random()*(25+1-5)); //generates a random number between 5 and 25
+		var posNeg = Math.floor(Math.random() * 3);
+		if(posNeg == 2){
+			random *= -1;
+		}
+		return ((Math.PI/180)*random);
+	}//end randomDirection*/
 }

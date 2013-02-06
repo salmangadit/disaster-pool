@@ -259,12 +259,8 @@ function Renderer(){
 
 	/*generates the earthquake*/
 	this.earthquake = function () {
-		var oneDegree = Math.PI/180;
-		var pointBalls = table.getBalls();
-		var earthquakeForce = 60;
-		var dir = 0;
-		var acc = 0;
 		//for creating shaking movement
+		var oneDegree = (Math.PI/180);
 		setTimeout(function(){
 	      degree = oneDegree*20;
 	      setTimeout(function(){
@@ -289,54 +285,7 @@ function Renderer(){
 	        }, 50);
 	      }, 50);
 	    }, 500);
-
-	    //apply force to all point balls in play
-	    for (var i=0;i<pointBalls.length;i++){
-	    	if(pointBalls[i].potted == false){ //check if ball is potted 1st
-				if(pointBalls[i].acceleration == 0){ //if ball is not moving
-					//apply a random direction vector
-					dir = this.randomDirection360();
-					pointBalls[i] = physicsEngine.applyForceAtAngle(pointBalls[i], 60, dir);
-				} else {
-					//apply force to moving balls
-					dir = this.randomDirection();
-					pointBalls[i].direction += dir;
-					acc = physicsEngine.getAccelerationFromForce(60,pointBalls[i].mass);
-					pointBalls[i].acceleration += acc;
-				}//end if-else
-			}//end if(pointBalls[i].potted == false)
-		}//end for
-		//apply force to cueball
-		if(cueBall.potted == false){ //check if ball is potted 1st
-			if(cueBall.acceleration == 0){ //if ball is not moving
-				//apply a random direction vector
-				dir = this.randomDirection360();
-				cueBall = physicsEngine.applyForceAtAngle(cueBall, 60, dir);
-			} else {
-				//apply force to moving balls
-				dir = this.randomDirection();
-				cueBall.direction += dir;
-				acc = physicsEngine.getAccelerationFromForce(60,cueBall.mass);
-				cueBall.acceleration += acc;
-			}//end if-else*/
-		}//end if(cueBall.potted == false)
 	}//end earthquake*/
-
-	/*gives a random angle of direction from 0 to 360*/
-	this.randomDirection360 = function(){
-		var random = Math.floor(Math.random() * 361); //generates a random number between 1 to 10
-		return ((Math.PI/180)*random);
-	}//end randomDirection360*/
-
-	/*gives a random angle of direction from 10 to 30 and -10 to -30*/
-	this.randomDirection = function(){
-		var random = 10 + Math.floor(Math.random()*(30+1-10)); //generates a random number between 10 and 30
-		var posNeg = Math.floor(Math.random() * 3);
-		if(posNeg == 2){
-			random *= -1;
-		}
-		return random;
-	}//end randomDirection*/
 
 	this.hurricane = function (direction) {
 
