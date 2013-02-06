@@ -234,4 +234,12 @@ function Physics(){
 		}
 		return ((Math.PI/180)*random);
 	}//end randomDirection*/
+
+	/*generate tornado on cueBall impact*/
+	this.tornadoGen =  function(impact, tornado){
+		var tornadoCondition = 10;
+		if(impact >= tornadoCondition){
+			tornado.onScreen = true;
+		}
+	}//end tornadoGen*/
 }

@@ -72,9 +72,11 @@
       //to trigger tornado ON/OFF, press X
       if(tornado.onScreen == true){
         tornado.onScreen = false;
-        logger.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
       } else {
-        tornado.onScreen = true;
+        //tornado.onScreen = true;
+        //tornado generate on impluse test
+        physicsEngine.tornadoGen(50, tornado);
+        logger.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
       }
     }
     });
