@@ -292,10 +292,10 @@ function Renderer(){
 		var balls = table.getBalls();
 
 		for (var i=0; i<balls.length; i++) {
-			Physics.applyForceAtAngle(balls[i], 50, direction);
+			balls[i] = physicsEngine.applyForceAtAngle(balls[i], 50, direction);
 		}
 
-		cueBall = Physics.applyForceAtAngle(cueBall, 50, direction);
+		cueBall = physicsEngine.applyForceAtAngle(cueBall, 50, direction);
 
 		console.log("Hurricane is applied at " + direction);
 	}

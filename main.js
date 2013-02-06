@@ -50,36 +50,42 @@
 
     //to trigger the hurricane
     //also to trigger the earthquake
+    var hurrCount = 0;
+
     document.addEventListener('keydown', function(event) {
-    if(event.keyCode == 37) {
-        renderingEngine.hurricane(Math.PI);
-    }
-    else if(event.keyCode == 39) {
-        renderingEngine.hurricane(Math.PI*3/2);
-    }
-    else if(event.keyCode == 38) {
-        renderingEngine.hurricane(0);
-    }
-    else if(event.keyCode == 40) {
-        renderingEngine.hurricane(Math.PI/2);
-    }
-    else if(event.keyCode == 90) {
-      //to trigger earthquake, press Z
-      renderingEngine.earthquake();
-      setTimeout(function(){physicsEngine.earthquakeEffect();}, 650);
-      logger.log("Earthquake generated.");
-    }
-    else if(event.keyCode == 88) {
-      //to trigger tornado ON/OFF, press X
-      if(tornado.onScreen == true){
-        tornado.onScreen = false;
-      } else {
-        //tornado.onScreen = true;
-        //tornado generate on impluse test
-        physicsEngine.tornadoGen(50);
-        logger.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
+      if((hurrCount == 0) && (event.keyCode == 37)) {
+          renderingEngine.hurricane(Math.PI);
+          hurrCount++;
       }
-    }
+      else if((hurrCount == 0) && (event.keyCode == 39)) {
+          renderingEngine.hurricane(0);
+          hurrCount++;
+      }
+      else if((hurrCount == 0) && (event.keyCode == 38)) {
+          renderingEngine.hurricane(Math.PI*3/2);
+          hurrCount++;
+      }
+      else if((hurrCount == 0) && (event.keyCode == 40)) {
+          renderingEngine.hurricane(Math.PI/2);
+          hurrCount++;
+      }
+      else if(event.keyCode == 90) {
+        //to trigger earthquake, press Z
+        renderingEngine.earthquake();
+        setTimeout(function(){physicsEngine.earthquakeEffect();}, 650);
+        logger.log("Earthquake generated.");
+      }
+      else if(event.keyCode == 88) {
+        //to trigger tornado ON/OFF, press X
+        if(tornado.onScreen == true){
+          tornado.onScreen = false;
+        } else {
+          //tornado.onScreen = true;
+          //tornado generate on impluse test
+          physicsEngine.tornadoGen(50);
+          logger.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
+        }
+      }
     });
     }
   }
