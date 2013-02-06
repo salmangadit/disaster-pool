@@ -239,10 +239,12 @@ function Physics(){
 	}//end randomDirection*/
 
 	/*generate tornado on cueBall impact*/
-	this.tornadoGen =  function(impact){
+	this.tornadoGen =  function(impactForce, impactPoint){
 		var tornadoCondition = 10;
-		if(impact >= tornadoCondition){
-			tornado.onScreen = true;
+		if(impactForce >= tornadoCondition){
+			tornado.centerPoint.x = impactPoint.x;
+			tornado.centerPoint.y = impactPoint.y;
+			setTimeout(function(){tornado.onScreen = true;}, 1000);
 		}
 	}//end tornadoGen*/
 }

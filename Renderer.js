@@ -14,23 +14,20 @@ function Renderer(){
 		for (var i=0;i<balls.length;i++){
 			//this.clearBall(balls[i]);
 
-
 			ballsPosXToClear.push(balls[i].centerPoint.x);
 			ballsPosYToClear.push(balls[i].centerPoint.y);
 			ballsRadToClear.push(balls[i].radius);
 
 			balls[i] = physicsEngine.updatePoint(balls[i]);
 
-			if(!balls[i].potted)
-			{
-			collider.detectCollisionWithWalls(balls[i]);
-			collider.detectCollisionWithBalls(balls[i]);
-			collider.detectPotting(balls[i]);
+			if(!balls[i].potted) {
+				collider.detectCollisionWithWalls(balls[i]);
+				collider.detectCollisionWithBalls(balls[i]);
+				collider.detectPotting(balls[i]);
 			}
 		}
 
 		table.setBalls(balls);
-
 
 		// Cue ball
 		//this.clearBall(cueBall);
@@ -38,12 +35,12 @@ function Renderer(){
 		ballsPosYToClear.push(cueBall.centerPoint.y);
 		ballsRadToClear.push(cueBall.radius);
 		cueBall = physicsEngine.updatePoint(cueBall);
-	    if(!cueBall.potted){
-		collider.detectCollisionWithWalls(cueBall);
-		collider.detectCollisionWithBalls(cueBall); 
-		collider.detectCollisionWithTornado(tornado);
-		collider.detectPotting(cueBall);
-	}
+	    if(!cueBall.potted) {
+			collider.detectCollisionWithWalls(cueBall);
+			collider.detectCollisionWithBalls(cueBall); 
+			collider.detectCollisionWithTornado(tornado);
+			collider.detectPotting(cueBall);
+		}
 
 	}
 
@@ -178,30 +175,6 @@ function Renderer(){
 
 		//console.log("Drew Ball, center "+ ball.centerPoint.toString() + ", radius "+ ball.radius);
 	}
-
-	/*Original drawTornado function using radial gradient
-    this.drawTornado = function (tornado) {
-	    ctx.beginPath();
-	    ctx.arc(tornado.centerPoint.x, tornado.centerPoint.y, tornado.radius, 0, 2 * Math.PI, false);
-	    // create radial gradient
-	    var grd = ctx.createRadialGradient(tornado.centerPoint.x, tornado.centerPoint.y, 0, tornado.centerPoint.x, tornado.centerPoint.y, tornado.radius);
-	    grd.addColorStop(0, 'ghostwhite');
-	    grd.addColorStop(0.2, 'dimgray');
-	    grd.addColorStop(0.4, 'grey');
-	    grd.addColorStop(1, 'lightsteelblue');
-	    ctx.fillStyle = grd;
-	    ctx.fill();
-	    //tornado stats for debug mode
-	    if(debugMode == true){
-	    	var stringToSend = "Str:"+tornado.strength;
-	    	var tornadoX = tornado.centerPoint.x + tornado.radius;
-	    	var tornadoY = tornado.centerPoint.y;
-	    	var pointToDisplay = new Point(tornadoX, tornadoY);
-	    	this.writeText(stringToSend, pointToDisplay);
-	    }
-	    // make tornado last for 2 seconds
-	    //setTimeout(function () {tornado.onScreen = false;}, 2000);
-	}//end drawTornado*/
 
 	/*drawTornado function using png file*/
 	this.drawTornado = function (tornado) {

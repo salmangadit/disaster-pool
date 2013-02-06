@@ -35,79 +35,70 @@ function Collider(){
 		for (var i=0; i<balls.length; i++){
 			if (ball.id == balls[i].id){
 				continue;
-			}
+			}//end if(ball.id == balls[i].id)
 
 			if(this.detectBallToBallCollision(ball, balls[i])) {
 				if (!checkIfCollisionPairExists(ball, balls[i])) {
 					collisionPairs.push(new CollisionPair(ball.id, balls[i].id));
 					this.performCollisionBetweenBalls(ball,balls[i]);
-				}
-				else {
+				} else {
 					ballPositionShift(ball, balls[i]);
-				}
-			}
-			else {
+				}//end if-else(!checkIfCollisionPairExists(ball, balls[i]))
+			} else {
 				//console.log(collisionPairs.length);
 				removeCollisionPair(ball, balls[i]);
-			}
-		}
+			}//end if-else(this.detectBallToBallCollision(ball, balls[i]))
+		}//end for
 
 		// Check with cueball
 		if(this.detectBallToBallCollision(ball, cueBall)){
+			if(initialCollision == true){
+				//get impact force
+				var impactForce = 50;
+				var impactPoint = new Point(200, 100);
+				//call tornadoGen
+				physicsEngine.tornadoGen(impactForce, impactPoint);
+				initialCollision = false;
+				logger.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
+			}//end if(initialCollision == true)
 			if (!checkIfCollisionPairExists(ball,cueBall)) {
 				collisionPairs.push(new CollisionPair(ball.id, cueBall.id));
 				this.performCollisionBetweenBalls(ball,cueBall);
-				if(initialCollision == true){
-					//get impact force
-					var impactForce = 0;
-					//call tornadoGen
-					physicsEngine.tornadoGen(impactForce);
-					initialCollision = false;
-				}
-			}
-			else{
+			} else{
 				ballPositionShift(ball, cueBall);
-			}
-		}
-		else {
-				removeCollisionPair(ball, cueBall);
-		}
-
+			}//end if-else(!checkIfCollisionPairExists(ball,cueBall))
+		} else {
+			removeCollisionPair(ball, cueBall);
+		}//end if-else(this.detectBallToBallCollision(ball, cueBall))
 	}
 
 	this.detectPotting = function(ball){
 		var holes = table.getHoles();
-
 		for (var i=0; i<holes.length; i++){
 			var centerPointDistance = math.getDistanceBetweenTwoPoints(ball.centerPoint, holes[i].centerPoint);
-
-			if (centerPointDistance <= holes[i].radius){
+			if (centerPointDistance <= holes[i].radius) {
 				logger.log('ball potted!');
 				ball.potted = true;
-		 for(var i=0;i<players.length;i++){
-				if(players[i].isplaying)
-				{
-				if(ball.id != 99) //check if cueball is potted and if it is dont add to potting
-				{players[i].ballsPotted.push(ball.id);}
-
-				}
-}
+				for(var i=0;i<players.length;i++){
+					if(players[i].isplaying) {
+						//check if cueball is potted and if it is dont add to potting
+						if(ball.id != 99){
+							players[i].ballsPotted.push(ball.id);
+						}//end if(ball.id != 99)
+					}//end if(players[i].isplaying)
+				}//end for(var i=0;i<players.length;i++)
 				ball.stop();
 				ball.centerPoint.x =0;
 				ball.centerPoint.y = 600;
-			}
-			
-		}
-
+			}//end if(centerPointDistance <= holes[i].radius)
+		}//end for(var i=0; i<holes.length; i++)
 	}
 
 	this.detectBallToBallCollision = function(ball1, ball2){
 		var centerPointDistance = math.getDistanceBetweenTwoPoints(ball1.centerPoint, ball2.centerPoint);
-
 		if (centerPointDistance != 0 && centerPointDistance < (ball1.radius + ball2.radius) ){
 			return true;
 		}
-
 		return false;
 	}
 

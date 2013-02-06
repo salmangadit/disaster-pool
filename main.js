@@ -56,40 +56,40 @@
     //var hurrCount = 0;
 
     document.addEventListener('keydown', function(event) {
-      for (var i=0; i<players.length; i++) {
-      if((players[i].isplaying) && (players[i].hurrCount == 0) && (event.keyCode == 37)) {
+      for (var i=0; i<players.length; i++) { 
+        if((players[i].isplaying) && (players[i].hurrCount == 0) && (event.keyCode == 37)) {
           renderingEngine.hurricane(Math.PI);
           players[i].hurrCount++;
-      }
-      else if((players[i].isplaying) && (players[i].hurrCount == 0) && (event.keyCode == 39)) {
+        } else if((players[i].isplaying) && (players[i].hurrCount == 0) && (event.keyCode == 39)) {
           renderingEngine.hurricane(0);
           players[i].hurrCount++;
-      }
-      else if((players[i].isplaying) && (players[i].hurrCount == 0) && (event.keyCode == 38)) {
+        } else if((players[i].isplaying) && (players[i].hurrCount == 0) && (event.keyCode == 38)) {
           renderingEngine.hurricane(Math.PI*3/2);
           players[i].hurrCount++;
-      }
-      else if((players[i].isplaying) && (players[i].hurrCount == 0) && (event.keyCode == 40)) {
+        }  else if((players[i].isplaying) && (players[i].hurrCount == 0) && (event.keyCode == 40)) {
           renderingEngine.hurricane(Math.PI/2);
           players[i].hurrCount++;
-      }
-      else if(event.keyCode == 90) {
-        //to trigger earthquake, press Z
-        renderingEngine.earthquake();
-        setTimeout(function(){physicsEngine.earthquakeEffect();}, 650);
-        logger.log("Earthquake generated.");
-      }
-      else if(event.keyCode == 88) {
+        } else if((players[i].isplaying) && (players[i].quakeCount == 0) && (event.keyCode == 90)) {
+          //to trigger earthquake, press Z
+          renderingEngine.earthquake();
+          setTimeout(function(){physicsEngine.earthquakeEffect();}, 650);
+          players[i].quakeCount++;
+          logger.log("Earthquake generated.");
+        }
+      }//end for
+      /*keycode check for testing tornado*/
+      if(event.keyCode == 88) {
         //to trigger tornado ON/OFF, press X
         if(tornado.onScreen == true){
           tornado.onScreen = false;
+          logger.log("Tornado shut off.");
         } else {
           //tornado.onScreen = true;
           //tornado generate on impluse test
-          physicsEngine.tornadoGen(50);
+          physicsEngine.tornadoGen(50, new Point(200, 100));
           logger.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
         }
-      }
-    }});
+      }//end if(event.keyCode == 88)*/
+    }/*end function*/);//end addEventListener
     }
   }
