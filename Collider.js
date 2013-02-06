@@ -84,6 +84,10 @@ function Collider(){
 			if (centerPointDistance <= holes[i].radius){
 				logger.log('ball potted!');
 				ball.potted = true;
+		 for(var i=0;i<players.length;i++){
+				if(players[i].isplaying)
+				{players[i].ballsPotted.push(ball.id);}
+}
 				ball.stop();
 				ball.centerPoint.x =0;
 				ball.centerPoint.y = 600;
