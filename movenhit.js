@@ -213,11 +213,11 @@ prevnotmoving = false;
 
             item = new cueStick();
             //Event listeners for mousedown, mouseup and mousemove           
-       var firstcheck = false,secondcheck = false;
+       var firstcheck = true,secondcheck = false;
 for (var i=0;i<balls.length;i++){
-if(balls[i].velocity == 0)
+if(balls[i].velocity > 0)
 {   
-    firstcheck = true; 
+    firstcheck = false; 
 }
 }
 if(cueBall.velocity == 0)
