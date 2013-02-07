@@ -12,19 +12,19 @@ function Collider(){
 		var tableHeight = table.height;
 
 		if (((ball.centerPoint.x + ball.radius) >= table.width)){
-			logger.log('Ball hit right wall!');
+			//logger.log('Ball hit right wall!');
 			this.performCollisionWithWall(ball, 1);
 		}
 		else if (((ball.centerPoint.y + ball.radius) >= table.height)){
-			logger.log('Ball hit bottom wall');
+			//logger.log('Ball hit bottom wall');
 			this.performCollisionWithWall(ball, 2);
 		}
 		else if (((ball.centerPoint.y - ball.radius) <= 0)){
-			logger.log('Ball hit top wall');
+			//logger.log('Ball hit top wall');
 			this.performCollisionWithWall(ball,4);
 		}
 		else if (((ball.centerPoint.x - ball.radius) <= 0)){
-			logger.log('Ball hit left wall');
+			//logger.log('Ball hit left wall');
 			this.performCollisionWithWall(ball,3);
 		}
 	}

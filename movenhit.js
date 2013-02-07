@@ -244,7 +244,7 @@ if(firstcheck && secondcheck)
           for(var i=0;i<players.length;i++){
         if(players[i].isplaying && turn)
         {
-          if(players[i].ballsPotted.length == players[i].prevpottedlength)
+          if(players[i].ballsPotted.length == players[i].prevpottedlength || cueBall.potted)
           {
 
           if(i == 0)
@@ -252,6 +252,8 @@ if(firstcheck && secondcheck)
             logger.log("switch1");
           players[i].isplaying = !(players[i].isplaying);
           players[i+1].isplaying = !(players[i+1].isplaying);
+          if(cueBall.potted)
+          {players[i].prevpottedlength = players[i].ballsPotted.length;}
 break;
           }
           else //i=1
@@ -259,6 +261,8 @@ break;
             logger.log("switch2");
           players[i].isplaying = !(players[i].isplaying);
           players[i-1].isplaying = !(players[i-1].isplaying);
+          if(cueBall.potted)
+          {players[i].prevpottedlength = players[i].ballsPotted.length;}
 break;
           }
 
