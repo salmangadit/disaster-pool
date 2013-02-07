@@ -42,6 +42,9 @@ function Renderer(){
 			collider.detectPotting(cueBall);
 		}
 
+		if (physicsEngine.ballsAtRest() == true) {
+			initialCollision = true;
+		}
 	}
 
 	this.drawTable = function (){
@@ -195,7 +198,7 @@ function Renderer(){
 	    	this.writeText(stringToSend, pointToDisplay);
 	    }
 	    // make tornado last for 2 seconds
-	    //setTimeout(function () {tornado.onScreen = false;}, 2000);
+	    setTimeout(function () {tornado.onScreen = false;}, 2500);
 	}//end drawTornado*/
 
 	/*rotate image function*/

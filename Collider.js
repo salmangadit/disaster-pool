@@ -52,15 +52,6 @@ function Collider(){
 
 		// Check with cueball
 		if(this.detectBallToBallCollision(ball, cueBall)){
-			if(initialCollision == true){
-				//get impact force
-				var impactForce = 50;
-				var impactPoint = new Point(200, 100);
-				//call tornadoGen
-				physicsEngine.tornadoGen(impactForce, impactPoint);
-				initialCollision = false;
-				logger.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
-			}//end if(initialCollision == true)
 			if (!checkIfCollisionPairExists(ball,cueBall)) {
 				collisionPairs.push(new CollisionPair(ball.id, cueBall.id));
 				this.performCollisionBetweenBalls(ball,cueBall);
@@ -97,6 +88,20 @@ function Collider(){
 	this.detectBallToBallCollision = function(ball1, ball2){
 		var centerPointDistance = math.getDistanceBetweenTwoPoints(ball1.centerPoint, ball2.centerPoint);
 		if (centerPointDistance != 0 && centerPointDistance < (ball1.radius + ball2.radius) ){
+			if((ball1.id == 99 || ball2.id == 99 ) && initialCollision == true){
+				//get impact force
+				var impactForce = 50;
+				//var impactPoint = new Point(200, 100);
+				if (ball1.id == 99) {
+					var impactPoint = ball1.centerPoint;
+				} else {
+					var impactPoint = ball2.centerPoint;
+				}
+				//call tornadoGen
+				physicsEngine.tornadoGen(impactForce, impactPoint);
+				initialCollision = false;
+				logger.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
+			}//end if(initialCollision == true)*/
 			return true;
 		}
 		return false;
@@ -138,14 +143,12 @@ function Collider(){
 		if(tornado.onScreen == true){
 			var balls = table.getBalls();
 		    var random = Math.floor(Math.random() * 11); //generates a random number between 1 to 10
-
 		    // check with normal balls
 		    for (var i = 0; i < balls.length; i++) {
 		    	var centerPointDistance = math.getDistanceBetweenTwoPoints(tornado.centerPoint, balls[i].centerPoint);
 		    	var radiusAdded = tornado.radius + balls[i].radius;
 
 		    	if (centerPointDistance != 0 && centerPointDistance <= radiusAdded) {
-		            //alert('Ball entered tornado!');
 		            if(balls[i].spin == 0){
 		            	if(random % 2 != 1){
 		            		physicsEngine.turnLeft(balls[i], tornado.strength);
@@ -155,13 +158,10 @@ function Collider(){
 		            }/*end if(balls[i].spin == 0)*/
 		        }/*end if(centerPointDistance ...)*/
 		    }/*end for*/
-
 		    // check with cueball
 		    var centerPointDistance = math.getDistanceBetweenTwoPoints(tornado.centerPoint, cueBall.centerPoint);
 		    var radiusAdded = tornado.radius + cueBall.radius;
-
 		    if(centerPointDistance != 0 && centerPointDistance <= radiusAdded) {
-		        //alert('Cue ball entered tornado!');
 		        if(cueBall.spin == 0) {
 		        	if (random % 2 != 1) {
 		        		physicsEngine.turnLeft(cueBall, tornado.strength);

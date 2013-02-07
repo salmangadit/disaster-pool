@@ -76,9 +76,6 @@ function Physics(){
 			ball.acceleration = 0;
 			ball.velocity = 0;
 			ball.spin = 0;
-			if(cueBall.acceleration == 0){
-				initialCollision = true;
-			}
 		}
 		// console.log("distMoved"+ distMoved);
 		if (x_disp != 0 || y_disp != 0){
@@ -247,4 +244,23 @@ function Physics(){
 			setTimeout(function(){tornado.onScreen = true;}, 1000);
 		}
 	}//end tornadoGen*/
+
+	/*check if all balls are at rest to reset the tornado initial impact condition*/
+	this.ballsAtRest = function() {
+		var pointBalls = table.getBalls();
+		var rest = false;
+		if(cueBall.acceleration == 0) {
+			rest = true;
+		} else {
+			return false;
+		}//end if-else(cueBall.acceleration == 0)
+		for (var i = 0; i < pointBalls.length; i++) {
+			if(pointBalls[i].acceleration == 0) {
+				rest = true;
+			} else {
+				return false;
+			}//end if-else(pointBalls[i].acceleration == 0)
+		}//end for
+		return rest;
+	}
 }

@@ -40,7 +40,7 @@ function Movenhit()
        
                 for (var i=0;i<balls.length;i++){
       if (collider.detectBallToBallCollision(balls[i],dummyball)){
-                alert("Cant place cueball there");
+                alert("Can't place cueball there");
                 stillplacingcue = true;
       }
                                                 }
