@@ -169,7 +169,7 @@ function Physics(){
         } else {
             ball.spin = 0;
         }//end if-else
-        logger.log("Setting curve left strength of " + percent);
+       // logger.log("Setting curve left strength of " + percent);
 	}//end turnLeft*/
 
     /*spin ball right*/

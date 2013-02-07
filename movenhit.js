@@ -103,15 +103,7 @@ function Movenhit()
               
                this.cueBall = physicsEngine.applyForceAtAngle(cueBall,speed,ang);
 
-     for(var i=0;i<players.length;i++){
-        if(players[i].isplaying)
-        {
-          for(var j=0;j<players[i].ballsPotted.length;j++){
-          logger.log(players[i].ballsPotted[j]);
-        }
 
-        }
-}
               
 
 
@@ -282,6 +274,23 @@ break;
         else
           {logger.log("player 2 is playing");}
         turn++;
+
+players[0].score = 0;
+players[1].score = 0;
+
+     for(var i=0;i<players[0].ballsPotted.length;i++){
+         players[0].score += balls[players[0].ballsPotted[i]].radius;
+        }
+         for(var i=0;i<players[1].ballsPotted.length;i++){
+         players[1].score += balls[players[1].ballsPotted[i]].radius;
+        }
+logger.log("Player 1 score "+players[0].score+":: "+ players[1].score +" Player 2 Score");
+
+
+
+
+
+
     }
 
 
