@@ -9,27 +9,27 @@ function Table(){
 
 	// Always label regions from largest to smallest
 	this.regions[0] = new Region(0,0,1000,500, 0.8);
-	this.regions[0].color = 'brown';
+	this.regions[0].color = 'green';
 	this.regions[1] = new Region(50,50,900,400, 0.6);
-	this.regions[1].color = 'green';
+	this.regions[1].color = '#31B404';
 	this.regions[2] = new Region(150,130,700,240, 0.3);
-	this.regions[2].color = 'yellow';
+	this.regions[2].color = '#00FF00';
 
 	//0-5 medium balls
 	balls[0] = new Ball(new Point(700,250),23,2);
-	balls[0].color = 'red';
+	balls[0].color = 'yellow';
 	balls[0].id = 0;
 	
 	balls[1] = new Ball(new Point(700,203),23,2);
-	balls[1].color = 'blue';
+	balls[1].color = 'yellow';
 	balls[1].id = 1;
 
 	balls[2] = new Ball(new Point(700,297),23,2);
-	balls[2].color = 'purple';
+	balls[2].color = 'yellow';
 	balls[2].id = 2;
 
 	balls[3] = new Ball(new Point(741,274),23,2);
-	balls[3].color = 'orange';
+	balls[3].color = 'yellow';
 	balls[3].id = 3;
 
 	balls[4] = new Ball(new Point(741,227),23,2);
@@ -37,49 +37,49 @@ function Table(){
 	balls[4].id = 4;
 
 	balls[5] = new Ball(new Point(782,250),23,2);
-	balls[5].color = 'black';
+	balls[5].color = 'yellow';
 	balls[5].id = 5;
 
 	//6-8 big balls
 	balls[6] = new Ball(new Point(643,250),33,3);
-	balls[6].color = '#666666';
+	balls[6].color = 'red';
 	balls[6].id = 6;
 
 	balls[7] = new Ball(new Point(772,322),33,3);
-	balls[7].color = '#333333';
+	balls[7].color = 'red';
 	balls[7].id = 7;
 
 	balls[8] = new Ball(new Point(772,178),33,3);
-	balls[8].color = '#999999';
+	balls[8].color = 'red';
 	balls[8].id = 8;
 
 	//9-14 small balls
 	balls[9] = new Ball(new Point(726,178),12,1);
-	balls[9].color = '#00FF00';
+	balls[9].color = 'blue';
 	balls[9].id = 9;
 
 	balls[10] = new Ball(new Point(726,322),12,1);
-	balls[10].color = '#00FF00';
+	balls[10].color = 'blue';
 	balls[10].id = 10;
 
 	balls[11] = new Ball(new Point(665,210),12,1);
-	balls[11].color = '#00FF00';
+	balls[11].color = 'blue';
 	balls[11].id = 11;
 
 	balls[12] = new Ball(new Point(665,290),12,1);
-	balls[12].color = '#00FF00';
+	balls[12].color = 'blue';
 	balls[12].id = 12;	
 
 	balls[13] = new Ball(new Point(797,217),12,1);
-	balls[13].color = '#00FF00';	
+	balls[13].color = 'blue';	
 	balls[13].id = 13;
 
 	balls[14] = new Ball(new Point(797,283),12,1);
-	balls[14].color = '#00FF00';	
+	balls[14].color = 'blue';	
 	balls[14].id = 14;
 
 	//big holes
-	holes[0] = new Hole(new Point(0,0), 40);
+	holes[0] = new Hole(new Point(0,0), 60);
 
 	//medium holes
 	holes[1] = new Hole(new Point(500,500), 30);
