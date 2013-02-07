@@ -2,7 +2,7 @@
 function Movenhit()
 {   
 
-    var notmoving, prevnotmoving;
+    var notmoving, prevnotmoving,turn=0;
     this.setupmnh = function(pnm,nm)
     {notmoving = nm; prevnotmoving=pnm;}
      this.loadwindow = function(){
@@ -63,36 +63,7 @@ function Movenhit()
                 startpoint = event;
                 item.shooting = true;
                 }
-//check placement of function, it is wrong i think
-          var switchtemp =false;
-          for(var i=0;i<players.length;i++){
-        if(players[i].isplaying)
-        {
-          if(players[i].ballsPotted.length == players[i].prevpottedlength)
-          {
 
-          if(i == 0)
-          {
-
-          players[i].isplaying = !players[i].isplaying;
-          players[i+1].isplaying = !players[i+1].isplaying;
-
-          }
-          else //i=1
-          {
-          players[i].isplaying = !players[i].isplaying;
-          players[i-1].isplaying = !players[i-1].isplaying;
-          }
-
-          }
-          else
-          {
-
-          players[i].prevpottedlength = players[i].ballsPotted.length;
-          }
-
-        }
-}
 
               
             };
@@ -267,12 +238,49 @@ if(firstcheck && secondcheck)
         },100);
       logger.log("listener enabled");
       prevnotmoving=true;
-    }
-/*
+
+//check placement of function, it is wrong i think
+          
+          for(var i=0;i<players.length;i++){
+        if(players[i].isplaying && turn)
+        {
+          if(players[i].ballsPotted.length == players[i].prevpottedlength)
+          {
+
+          if(i == 0)
+          {
+            logger.log("switch1");
+          players[i].isplaying = !(players[i].isplaying);
+          players[i+1].isplaying = !(players[i+1].isplaying);
+break;
+          }
+          else //i=1
+          {
+            logger.log("switch2");
+          players[i].isplaying = !(players[i].isplaying);
+          players[i-1].isplaying = !(players[i-1].isplaying);
+break;
+          }
+
+          }
+          else
+          {
+
+          players[i].prevpottedlength = players[i].ballsPotted.length;
+break;
+          }
+
+        }
+                                            }      
+
         if(players[0].isplaying)
           {logger.log("player 1 is playing");}
         else
-          {logger.log("player 2 is playing");}*/
+          {logger.log("player 2 is playing");}
+        turn++;
+    }
+
+
 
 
 
