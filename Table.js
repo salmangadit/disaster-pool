@@ -79,7 +79,7 @@ function Table(){
 	balls[14].id = 14;
 
 	//big holes
-	holes[0] = new Hole(new Point(0,0), 60);
+	holes[0] = new Hole(new Point(0,0), 50);
 
 	//medium holes
 	holes[1] = new Hole(new Point(500,500), 30);
