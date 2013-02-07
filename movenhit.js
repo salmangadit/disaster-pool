@@ -178,6 +178,10 @@ prevnotmoving = false;
                 event.x = event.offsetX;
                 event.y = event.offsetY;
             }
+            else if (event.screenX || event.screenY == 0) {
+                event.x = event.screenX;
+                event.y = event.screenY;
+            }
 
             // activate item's handler.
             var fnc = item[event.type];
