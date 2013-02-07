@@ -197,7 +197,7 @@ function Renderer(){
 	    	var pointToDisplay = new Point(tornadoX, tornadoY);
 	    	this.writeText(stringToSend, pointToDisplay);
 	    }
-	    // make tornado last for 2 seconds
+	    // make tornado last for 2.5 seconds
 	    setTimeout(function () {tornado.onScreen = false;}, 2500);
 	}//end drawTornado*/
 

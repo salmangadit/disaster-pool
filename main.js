@@ -78,7 +78,7 @@
         }
       }//end for
       /*keycode check for testing tornado*/
-      if(event.keyCode == 88) {
+      if(event.keyCode == 88 && debugMode == true) {
         //to trigger tornado ON/OFF, press X
         if(tornado.onScreen == true){
           tornado.onScreen = false;
