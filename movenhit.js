@@ -59,7 +59,7 @@ function Movenhit()
                 if(!cueBall.potted && notmoving)
                 {
                 speed = 0;
-                timer = 15;
+                timer = 35;
                 startpoint = event;
                 item.shooting = true;
                 }
@@ -297,7 +297,7 @@ logger.log("Player 1 score "+players[0].score+":: "+ players[1].score +" Player 
 
 
 
-            
+            hud.updateHUD();
 
             
 

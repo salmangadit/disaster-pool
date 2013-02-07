@@ -21,6 +21,7 @@
   var debugMode = false;
   var degree = 0;
   var initialCollision = true;
+  var hud = new HUD();
 
 
   // Players
