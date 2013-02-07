@@ -178,9 +178,9 @@ prevnotmoving = false;
                 event.x = event.offsetX;
                 event.y = event.offsetY;
             }
-            else if (event.screenX || event.screenY == 0) {
-                event.x = event.screenX;
-                event.y = event.screenY;
+            else if (event.pageX  || event.pageY  == 0) {
+                event.x = event.pageX;
+                event.y = event.pageY;
             }
 
             // activate item's handler.
