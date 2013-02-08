@@ -135,7 +135,7 @@ function Physics(){
 
 	// F = ma
 	function getAccelerationFromForce(force, mass){
-		return force/mass;
+		return (force/mass);
 	}
 
 	// v = u + at
@@ -198,7 +198,7 @@ function Physics(){
 					//apply force to moving balls
 					dir = this.randomDirection();
 					pointBalls[i].direction += dir;
-					acc = physicsEngine.getAccelerationFromForce(earthquakeForce,pointBalls[i].mass);
+					acc = earthquakeForce/pointBalls[i].mass;
 					pointBalls[i].acceleration += acc;
 				}//end if-else
 			}//end if(pointBalls[i].potted == false)
@@ -213,7 +213,7 @@ function Physics(){
 				//apply force to moving balls
 				dir = this.randomDirection();
 				cueBall.direction += dir;
-				acc = physicsEngine.getAccelerationFromForce(earthquakeForce,cueBall.mass);
+				acc = earthquakeForce/cueBall.mass;
 				cueBall.acceleration += acc;
 			}//end if-else*/
 		}//end if(cueBall.potted == false)
