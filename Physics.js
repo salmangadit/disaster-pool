@@ -32,7 +32,7 @@ function Physics(){
 	        	ball.spinStop();
 	        }/*end if(ball.spin <= 0)*/
 
-            console.log("Applying tornado curving strength of " + ball.spin);
+        //    console.log("Applying tornado curving strength of " + ball.spin);
 	    }/*end if(ball.spin != 0)*/
 
 		var endVelocity = vuat(ball.velocity, ball.acceleration, 0.1);

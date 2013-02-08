@@ -273,6 +273,6 @@ function Renderer(){
 
 		cueBall = physicsEngine.applyForceAtAngle(cueBall, 150, direction);
 
-		console.log("Hurricane is applied at " + direction);
+		//console.log("Hurricane is applied at " + direction);
 	}
 }
