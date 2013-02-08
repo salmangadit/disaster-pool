@@ -51,7 +51,9 @@ function Movenhit()
               {
 
                 cueBall.potted = false;
-                cueBall.centerPoint = event;
+                cueBall.centerPoint.x = event.x;
+                cueBall.centerPoint.y = event.y;
+
               }       
                 
                 }
@@ -90,6 +92,8 @@ function Movenhit()
                     }
                     endpoint = event;
                 var ang = math.getAngleFromAnyPoint(cueBall,event);
+                 
+//line draw to indicate power
                   ctx.beginPath();
                   ctx.moveTo(startpoint.x,startpoint.y);
                   ctx.lineTo(endpoint.x,endpoint.y);
