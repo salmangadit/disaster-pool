@@ -146,7 +146,8 @@ function Movenhit()
         // Function to get mouse postition relative to canvas
         function mou2canv(event) {
   
-   prevnotmoving = notmoving;
+ 
+ //need to find a way to put this outside
    notmoving = true;
 for (var i=0;i<balls.length;i++){
 if(balls[i].velocity > 0)
@@ -158,8 +159,7 @@ if(cueBall.velocity > 0)
 {
 notmoving = false;
 }
-//logger.log(prevnotmoving + "and" + notmoving);
-//check for the listener disabled checks, not working properly
+
  if(prevnotmoving == true && notmoving == false){       
     canvas.removeEventListener('mousedown',mou2canv);
     canvas.removeEventListener('mousemove',mou2canv);
@@ -169,7 +169,7 @@ prevnotmoving = false;
 
   }
 
- // var position = $paper.offset();
+var rect = canvas.getBoundingClientRect();
             // For firefox browser
             if (event.layerX || event.layerX == 0) {
                 event.x = event.layerX;
@@ -180,10 +180,11 @@ prevnotmoving = false;
                 event.x = event.offsetX;
                 event.y = event.offsetY;
             }
-  //          else if (event.pageX  || event.pageY  == 0) {
-  //              event.x = (event.pageX - position.left);
-  //              event.y = (event.pageY - position.top);
-  //          }
+            else
+            {
+              event.x = event.clientX - rect.left;
+              event.x = event.clientY - rect.top;
+            }
 
             // activate item's handler.
             var fnc = item[event.type];
