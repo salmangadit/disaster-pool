@@ -14,13 +14,14 @@ function Renderer(){
 		for (var i=0;i<balls.length;i++){
 			//this.clearBall(balls[i]);
 
+if(!balls[i].potted) {
 			ballsPosXToClear.push(balls[i].centerPoint.x);
 			ballsPosYToClear.push(balls[i].centerPoint.y);
 			ballsRadToClear.push(balls[i].radius);
 
 			balls[i] = physicsEngine.updatePoint(balls[i]);
 
-			if(!balls[i].potted) {
+			
 				collider.detectCollisionWithWalls(balls[i]);
 				collider.detectCollisionWithBalls(balls[i]);
 				collider.detectPotting(balls[i]);
@@ -31,12 +32,12 @@ function Renderer(){
 
 		// Cue ball
 		//this.clearBall(cueBall);
-		if(!cueBall.potted) {
+	    if(!cueBall.potted) {
 		ballsPosXToClear.push(cueBall.centerPoint.x);
 		ballsPosYToClear.push(cueBall.centerPoint.y);
 		ballsRadToClear.push(cueBall.radius);
 		cueBall = physicsEngine.updatePoint(cueBall);
-	    
+
 			collider.detectCollisionWithWalls(cueBall);
 			collider.detectCollisionWithBalls(cueBall); 
 			collider.detectCollisionWithTornado(tornado);

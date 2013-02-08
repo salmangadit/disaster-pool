@@ -7,4 +7,6 @@ function Player(playerNum){
 	this.quakeCount = 0;
 	this.prevpottedlength = 0;
 	this.winning = false;
+	this.ballplacingoffsetx = 0;
+	this.ballplacingoffsety = 0;
 }

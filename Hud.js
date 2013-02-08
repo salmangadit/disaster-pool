@@ -59,6 +59,10 @@ else
 {
 ctx.fillText("Player 2 is leading", xpos, (ypos+48)); 
 }
+              ctx.fillStyle = "rgba(255, 0, 0, 1)";
+ ctx.fillText("Player 1 Potted Balls :", xpos, (ypos+72)); 
+               ctx.fillStyle = "rgba(0, 0, 255, 1)";
+ ctx.fillText("Player 2 Potted Balls :", xpos, 310); 
 
 if(players[0].score > 154)
   {gameover = 1;}

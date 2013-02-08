@@ -13,6 +13,8 @@ function Ball(centerPoint, radius, mass){
 	this.potted = false;
 
 	this.stop = function() {
+		this.direction=0;
+		this.spin=0;
 		this.velocity = 0;
 		this.acceleration = 0;
 	}
