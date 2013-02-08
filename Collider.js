@@ -79,7 +79,7 @@ function Collider(){
 					}//end if(players[i].isplaying)
 				}//end for(var i=0;i<players.length;i++)
 				ball.stop();
-				ball.centerPoint.x =0;
+				ball.centerPoint.x = 0;
 				ball.centerPoint.y = 600;
 			}//end if(centerPointDistance <= holes[i].radius)
 		}//end for(var i=0; i<holes.length; i++)

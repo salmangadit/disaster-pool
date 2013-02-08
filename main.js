@@ -37,13 +37,14 @@
       renderingEngine.drawTable();
       players[0].isplaying = true;
       players[1].isplaying = false;
+      shoot.setupmnh(false,true);
       setInterval(function () {
         renderingEngine.draw();
       }, screenUpdateTime);
       setInterval(function () {
         renderingEngine.updatePoints();
       }, screenUpdateTime);
-      shoot.setupmnh(false,true);
+      
       setInterval(function () {shoot.loadwindow();}, screenUpdateTime);
       
      

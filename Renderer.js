@@ -117,6 +117,7 @@ function Renderer(){
 		this.drawTable();
 		this.drawBalls();
 		this.drawHoles();
+		hud.updateHUD();
 
 		// Draw cue ball
 		if(!cueBall.potted){

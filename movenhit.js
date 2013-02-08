@@ -2,7 +2,7 @@
 function Movenhit()
 {   
 
-    var notmoving, prevnotmoving,turn=0;
+    var notmoving=true, prevnotmoving=false,turn=0;
     this.setupmnh = function(pnm,nm)
     {notmoving = nm; prevnotmoving=pnm;}
      this.loadwindow = function(){
@@ -159,7 +159,7 @@ if(cueBall.velocity > 0)
 notmoving = false;
 }
 //logger.log(prevnotmoving + "and" + notmoving);
-
+//check for the listener disabled checks, not working properly
  if(prevnotmoving == true && notmoving == false){       
     canvas.removeEventListener('mousedown',mou2canv);
     canvas.removeEventListener('mousemove',mou2canv);
@@ -168,6 +168,8 @@ logger.log("listener disabled");
 prevnotmoving = false;
 
   }
+
+ // var position = $paper.offset();
             // For firefox browser
             if (event.layerX || event.layerX == 0) {
                 event.x = event.layerX;
@@ -178,10 +180,10 @@ prevnotmoving = false;
                 event.x = event.offsetX;
                 event.y = event.offsetY;
             }
-            else if (event.pageX  || event.pageY  == 0) {
-                event.x = event.pageX;
-                event.y = event.pageY;
-            }
+  //          else if (event.pageX  || event.pageY  == 0) {
+  //              event.x = (event.pageX - position.left);
+  //              event.y = (event.pageY - position.top);
+  //          }
 
             // activate item's handler.
             var fnc = item[event.type];
@@ -227,11 +229,11 @@ if(firstcheck && secondcheck)
 //logger.log(prevnotmoving + "and" + notmoving);
 
        if(prevnotmoving == false && notmoving == true)
-        {this.setevent = setTimeout(function() {canvas.addEventListener('mousedown', mou2canv);
+        {
+
+          canvas.addEventListener('mousedown', mou2canv);
             canvas.addEventListener('mouseup', mou2canv);
             canvas.addEventListener('mousemove', mou2canv);
-
-        },100);
       logger.log("listener enabled");
       prevnotmoving=true;
 
@@ -295,13 +297,13 @@ logger.log("Player 1 score "+players[0].score+":: "+ players[1].score +" Player 
 
 
 
-    }
+    }  //end if of prenotmoving false and notmoving true
 
 
 
 
 
-            hud.updateHUD();
+            
 
             
 
