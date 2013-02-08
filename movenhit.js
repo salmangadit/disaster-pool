@@ -9,6 +9,8 @@ function Movenhit()
         
         var item,realtimer1=0,realtimer2=0;
         var balls = table.getBalls();
+        var maxspeed = 350;
+        var speedmodifier = 0.8;
 
 
 
@@ -79,8 +81,10 @@ function Movenhit()
                  timer--;
                  if(timer <= 0)
                     {item.shooting = false;
-                      endpoint.x = event;
-                      speed = math.getDistanceBetweenTwoPoints(startpoint,endpoint);
+                      endpoint = event;
+                      speed = speedmodifier * math.getDistanceBetweenTwoPoints(startpoint,endpoint);
+               if(speed >= maxspeed)
+                {speed = maxspeed;}                      
                     //ctx.clearRect(0, 0, canvas.width, canvas.height);
                     }
                     endpoint = event;
@@ -91,8 +95,7 @@ function Movenhit()
                   ctx.stroke();
                 //if(timer<12)
                  //{speed+=20;}
-               if(speed >= 270)
-                {speed = 270;}
+
 
               //  if((realtimer1-realtimer2) >190 && (realtimer1-realtimer2) < 700)
               //  {
@@ -128,7 +131,9 @@ function Movenhit()
                     item.shooting = false;
                      endpoint = event;
                      var ang = math.getAngleFromAnyPoint(cueBall,event);
-                    speed = math.getDistanceBetweenTwoPoints(startpoint,endpoint);
+                    speed = speedmodifier * math.getDistanceBetweenTwoPoints(startpoint,endpoint);
+               if(speed >= maxspeed)
+                {speed = maxspeed;}                    
                     this.cueBall = physicsEngine.applyForceAtAngle(cueBall,speed,ang);
                     //speed=0;
 

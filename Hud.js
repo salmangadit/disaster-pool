@@ -60,17 +60,21 @@ else
 ctx.fillText("Player 2 is leading", xpos, (ypos+48)); 
 }
 
+if(players[0].score > 154)
+  {gameover = 1;}
+if(players[1].score > 154)
+  {gameover = 1;}
 
 if(gameover == 1)
 {
               ctx.fillStyle = "rgba(255, 215, 0, 1)";
             ctx.font = "bold 100px Iceland";
             if(players[0].winning)
-            {ctx.fillText("Player 1 WINS!!", 350, 220);}
+            {ctx.fillText("Player 1 WINS!!", 170, 270);}
           else if(players[0].winning == players[1].winning)
-            {ctx.fillText("It is a TIE", 350, 220);}
+            {ctx.fillText("It is a TIE", 170, 270);}
           else
-          {ctx.fillText("Player 2 WINS!!", 350, 220);}
+          {ctx.fillText("Player 2 WINS!!", 170, 270);}
 }
 
 
