@@ -79,7 +79,7 @@ function Movenhit()
                  timer--;
                  if(timer <= 0)
                     {item.shooting = false;
-                      endpoint = event;
+                      endpoint.x = event;
                       speed = math.getDistanceBetweenTwoPoints(startpoint,endpoint);
                     //ctx.clearRect(0, 0, canvas.width, canvas.height);
                     }
@@ -194,7 +194,7 @@ var rect = canvas.getBoundingClientRect();
             //Event listeners for mousedown, mouseup and mousemove  
 
 
-            
+
  //need to find a way to put this outside
    notmoving = true;
 for (var i=0;i<balls.length;i++){
@@ -307,10 +307,7 @@ logger.log("Player 1 score "+players[0].score+":: "+ players[1].score +" Player 
 
 
 
-
     }  //end if of prenotmoving false and notmoving true
-
-
 
 
 

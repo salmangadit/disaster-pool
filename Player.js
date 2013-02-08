@@ -6,4 +6,5 @@ function Player(playerNum){
 	this.hurrCount = 0;
 	this.quakeCount = 0;
 	this.prevpottedlength = 0;
+	this.winning = false;
 }
