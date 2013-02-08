@@ -17,7 +17,7 @@
   var cueBall = new Ball(new Point(100,100), 23, 2);
   cueBall.id = 99;
   var shoot = new Movenhit();
-  var tornado = new Tornado(new Point(500,250), 15);
+  var tornado = new Tornado(new Point(500,250), 20);
   var debugMode = false;
   var degree = 0;
   var initialCollision = true;
