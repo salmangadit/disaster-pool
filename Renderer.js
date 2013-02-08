@@ -187,7 +187,7 @@ function Renderer(){
 		var imgY = tornado.centerPoint.y - tornado.radius;
 		var imgSize = tornado.radius * 2;
 	    var drawing = new Image();
-	    drawing.src = "tornado.png";
+	    drawing.src = "tornado_v2.png";
 	    ctr = this.tornadoRotation(ctr);
 	    this.drawImageRot(drawing, imgX, imgY, imgSize, imgSize, ctr);
 	    //ctx.drawImage(drawing, imgX, imgY, imgSize, imgSize);
