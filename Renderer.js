@@ -31,11 +31,12 @@ function Renderer(){
 
 		// Cue ball
 		//this.clearBall(cueBall);
+		if(!cueBall.potted) {
 		ballsPosXToClear.push(cueBall.centerPoint.x);
 		ballsPosYToClear.push(cueBall.centerPoint.y);
 		ballsRadToClear.push(cueBall.radius);
 		cueBall = physicsEngine.updatePoint(cueBall);
-	    if(!cueBall.potted) {
+	    
 			collider.detectCollisionWithWalls(cueBall);
 			collider.detectCollisionWithBalls(cueBall); 
 			collider.detectCollisionWithTornado(tornado);

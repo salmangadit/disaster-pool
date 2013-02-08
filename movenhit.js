@@ -3,6 +3,7 @@ function Movenhit()
 {   
 
     var notmoving=true, prevnotmoving=false,turn=0;
+    var eventonce = true;
     this.setupmnh = function(pnm,nm)
     {notmoving = nm; prevnotmoving=pnm;}
      this.loadwindow = function(){
@@ -214,10 +215,8 @@ notmoving = false;
 }
 
  if(prevnotmoving == true && notmoving == false){       
-    canvas.removeEventListener('mousedown',mou2canv);
-    canvas.removeEventListener('mousemove',mou2canv);
-    canvas.removeEventListener('mouseup',mou2canv); 
-logger.log("listener disabled");
+
+logger.log("Shooting started");
 prevnotmoving = false;
 
   }//end for (var i=0;i<balls.length;i++)
@@ -247,10 +246,15 @@ if(firstcheck && secondcheck)
        if(prevnotmoving == false && notmoving == true)
         {
 
-          canvas.addEventListener('mousedown', mou2canv);
+
+      if(eventonce)
+      {    canvas.addEventListener('mousedown', mou2canv);
             canvas.addEventListener('mouseup', mou2canv);
             canvas.addEventListener('mousemove', mou2canv);
       logger.log("listener enabled");
+      eventonce = false;
+}
+
       prevnotmoving=true;
 
 //check placement of function, it is wrong i think
