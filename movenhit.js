@@ -147,27 +147,7 @@ function Movenhit()
         function mou2canv(event) {
   
  
- //need to find a way to put this outside
-   notmoving = true;
-for (var i=0;i<balls.length;i++){
-if(balls[i].velocity > 0)
-{   
-    notmoving = false; 
-}
-}
-if(cueBall.velocity > 0)
-{
-notmoving = false;
-}
 
- if(prevnotmoving == true && notmoving == false){       
-    canvas.removeEventListener('mousedown',mou2canv);
-    canvas.removeEventListener('mousemove',mou2canv);
-    canvas.removeEventListener('mouseup',mou2canv); 
-logger.log("listener disabled");
-prevnotmoving = false;
-
-  }
 
 var rect = canvas.getBoundingClientRect();
             // For firefox browser
@@ -211,7 +191,34 @@ var rect = canvas.getBoundingClientRect();
 
 
             item = new cueStick();
-            //Event listeners for mousedown, mouseup and mousemove           
+            //Event listeners for mousedown, mouseup and mousemove  
+
+
+            
+ //need to find a way to put this outside
+   notmoving = true;
+for (var i=0;i<balls.length;i++){
+if(balls[i].velocity > 0)
+{   
+    notmoving = false; 
+}
+}
+if(cueBall.velocity > 0)
+{
+notmoving = false;
+}
+
+ if(prevnotmoving == true && notmoving == false){       
+    canvas.removeEventListener('mousedown',mou2canv);
+    canvas.removeEventListener('mousemove',mou2canv);
+    canvas.removeEventListener('mouseup',mou2canv); 
+logger.log("listener disabled");
+prevnotmoving = false;
+
+  }//end for (var i=0;i<balls.length;i++)
+
+
+
        var firstcheck = true,secondcheck = false;
 for (var i=0;i<balls.length;i++){
 if(balls[i].velocity > 0)
@@ -225,6 +232,9 @@ if(cueBall.velocity == 0)
 }
 if(firstcheck && secondcheck)
   {notmoving = true;}
+
+
+
 
 
 //logger.log(prevnotmoving + "and" + notmoving);
