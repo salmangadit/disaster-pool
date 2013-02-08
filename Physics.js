@@ -184,7 +184,7 @@ function Physics(){
 	/*move balls after earthquake*/
 	this.earthquakeEffect = function(){
 		var pointBalls = table.getBalls();
-		var earthquakeForce = 50;
+		var earthquakeForce = 100;
 		var dir = 0;
 		var acc = 0;
 		//apply force to all point balls in play
@@ -225,9 +225,9 @@ function Physics(){
 		return ((Math.PI/180)*random);
 	}//end randomDirection360*/
 
-	/*gives a random angle of direction from 5 to 25 and -5 to -25*/
+	/*gives a random angle of direction from 10 to 30 and -10 to -30*/
 	this.randomDirection = function(){
-		var random = 5 + Math.floor(Math.random()*(25+1-5)); //generates a random number between 5 and 25
+		var random = 10 + Math.floor(Math.random()*(30+1-10)); //generates a random number between 10 and 30
 		var posNeg = Math.floor(Math.random() * 3);
 		if(posNeg == 2){
 			random *= -1;
