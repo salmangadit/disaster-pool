@@ -42,6 +42,7 @@ function Collider(){
 				if (!checkIfCollisionPairExists(ball, balls[i])) {
 					collisionPairs.push(new CollisionPair(ball.id, balls[i].id));
 					this.performCollisionBetweenBalls(ball,balls[i]);
+					cleanseOverlap(ball);
 				} else {
 					ballPositionShift(ball, balls[i]);
 				}//end if-else(!checkIfCollisionPairExists(ball, balls[i]))
@@ -56,6 +57,7 @@ function Collider(){
 			if (!checkIfCollisionPairExists(ball,cueBall)) {
 				collisionPairs.push(new CollisionPair(ball.id, cueBall.id));
 				this.performCollisionBetweenBalls(ball,cueBall);
+				cleanseOverlap(cueBall);
 			} else{
 				ballPositionShift(ball, cueBall);
 			}//end if-else(!checkIfCollisionPairExists(ball,cueBall))
@@ -299,7 +301,13 @@ function Collider(){
     function ballPositionShift(ball1, ball2){
     	var cpDistance = math.getDistanceBetweenTwoPoints(ball1.centerPoint, ball2.centerPoint);
     	var overlap = (ball1.radius + ball2.radius) - cpDistance;
-    	var directionToGo = math.correctAngleToFirstCircle(ball1.direction + Math.PI);
+    	var directionToGo = 0;
+    	if (ball1.velocity >= ball2.velocity){
+    		directionToGo = math.correctAngleToFirstCircle(ball1.direction + Math.PI);
+		} else {
+			directionToGo = math.correctAngleToFirstCircle(ball2.direction + Math.PI);
+		}
+
     	var quadrant = math.getQuadrantByAngle(directionToGo);
 
     	var angleWithHoriz = math.getAngleWithQuadrant(directionToGo);
@@ -307,19 +315,138 @@ function Collider(){
     	var x_disp = overlap*Math.cos(angleWithHoriz) + 1;
     	var y_disp = overlap*Math.sin(angleWithHoriz) + 1;
 
-    	if (quadrant == 1){
-    		ball1.centerPoint.x += x_disp;
-    		ball1.centerPoint.y -= y_disp;
-    	} else if (quadrant == 2){
-    		ball1.centerPoint.x -= x_disp;
-    		ball1.centerPoint.y -= y_disp;
-    	} else if (quadrant == 3){
-    		ball1.centerPoint.x -= x_disp;
-    		ball1.centerPoint.y += y_disp;
+    	if (ball1.velocity >= ball2.velocity){
+	    	if (quadrant == 1){
+	    		ball1.centerPoint.x += x_disp;
+	    		ball1.centerPoint.y -= y_disp;
+	    	} else if (quadrant == 2){
+	    		ball1.centerPoint.x -= x_disp;
+	    		ball1.centerPoint.y -= y_disp;
+	    	} else if (quadrant == 3){
+	    		ball1.centerPoint.x -= x_disp;
+	    		ball1.centerPoint.y += y_disp;
+	    	} else {
+	    		ball1.centerPoint.x += x_disp;
+	    		ball1.centerPoint.y += y_disp;
+	    	}
     	} else {
-    		ball1.centerPoint.x += x_disp;
-    		ball1.centerPoint.y += y_disp;
+    		if (quadrant == 1){
+	    		ball2.centerPoint.x += x_disp;
+	    		ball2.centerPoint.y -= y_disp;
+	    	} else if (quadrant == 2){
+	    		ball2.centerPoint.x -= x_disp;
+	    		ball2.centerPoint.y -= y_disp;
+	    	} else if (quadrant == 3){
+	    		ball2.centerPoint.x -= x_disp;
+	    		ball2.centerPoint.y += y_disp;
+	    	} else {
+	    		ball2.centerPoint.x += x_disp;
+	    		ball2.centerPoint.y += y_disp;
+	    	}
     	}
+    }
+
+    function cleanseOverlap(ball){
+    	var balls = table.getBalls();
+
+    	for (var i=0; i<balls.length; i++){
+    		if (balls[i].id == ball.id){
+    			continue;
+    		}
+    		 cleanse(ball, balls[i]);
+    	}
+
+    	if (ball.id != 99){
+    		cleanse(ball, cueBall);
+    	}
+    }
+
+    function cleanse(ball, ballI){
+    	var cpDistance = math.getDistanceBetweenTwoPoints(ball.centerPoint, ballI.centerPoint);
+    		var overlap = (ball.radius + ballI.radius) - cpDistance;
+
+    		if (overlap > 0){
+    			var quad1=0, quad2=0, quad3=0, quad4=0;
+    			var quad1min=-1*Number.MAX_VALUE, quad2min=-1*Number.MAX_VALUE, quad3min=-1*Number.MAX_VALUE, quad4min=-1*Number.MAX_VALUE;
+    			var balls = table.getBalls();
+    			//perform density scan for best match spot
+    			for (var j=0; j<balls.length; j++){
+    				if (balls[j].id == ball.id){
+    					continue;
+    				}
+    				var resCpDistance = math.getDistanceBetweenTwoPoints(ball.centerPoint, balls[j].centerPoint);
+    				var resOverlap = (ball.radius + balls[j].radius) - resCpDistance;
+
+    				if (balls[j].centerPoint.x > ball.centerPoint.x && balls[j].centerPoint.y > ball.centerPoint.y ){
+    					quad4++;
+    					if (resOverlap > quad4min){
+    						quad4min = resOverlap;
+    					}
+    				} else if (balls[j].centerPoint.x > ball.centerPoint.x && balls[j].centerPoint.y < ball.centerPoint.y ){
+    					quad1++;
+    					if (resOverlap > quad1min){
+    						quad1min = resOverlap;
+    					}
+    				} else if (balls[j].centerPoint.x < ball.centerPoint.x && balls[j].centerPoint.y > ball.centerPoint.y ){
+    					quad3++;
+    					if (resOverlap > quad3min){
+    						quad3min = resOverlap;
+    					}
+    				} else if (balls[j].centerPoint.x < ball.centerPoint.x && balls[j].centerPoint.y < ball.centerPoint.y ){
+    					quad2++;
+    					if (resOverlap > quad2min){
+    						quad2min = resOverlap;
+    					}
+    				} 
+    			}
+
+    			var resCpDistance = math.getDistanceBetweenTwoPoints(ball.centerPoint,cueBall.centerPoint);
+    			var resOverlap = (ball.radius + cueBall.radius) - resCpDistance;
+
+    			if (ball.id != 99){
+    				if (cueBall.centerPoint.x > ball.centerPoint.x && cueBall.centerPoint.y > ball.centerPoint.y ){
+    					quad4++;
+    					if (resOverlap > quad4min){
+    						quad4min = resOverlap;
+    					}
+    				} else if (cueBall.centerPoint.x > ball.centerPoint.x && cueBall.centerPoint.y < ball.centerPoint.y ){
+    					quad1++;
+    					if (resOverlap > quad1min){
+    						quad1min = resOverlap;
+    					}
+    				} else if (cueBall.centerPoint.x < ball.centerPoint.x && cueBall.centerPoint.y > ball.centerPoint.y ){
+    					quad3++;
+    					if (resOverlap > quad3min){
+    						quad3min = resOverlap;
+    					}
+    				} else if (cueBall.centerPoint.x < ball.centerPoint.x && cueBall.centerPoint.y < ball.centerPoint.y ){
+    					quad2++;
+    					if (resOverlap > quad2min){
+    						quad2min = resOverlap;
+    					}
+    				} 
+    			}
+
+    			var min = Math.min(quad1, quad2, quad3, quad4);
+    			var minOverlap = Math.min(quad1min, quad2min, quad3min, quad4min);
+
+    			var x_disp = overlap*Math.cos(Math.PI/4) + 1;
+    			var y_disp = overlap*Math.sin(Math.PI/4) + 1;
+
+    			if (minOverlap == quad1min){
+    				ball.centerPoint.x += x_disp;
+	    			ball.centerPoint.y -= y_disp;
+    			} else if (minOverlap == quad2min){
+    				ball.centerPoint.x -= x_disp;
+	    			ball.centerPoint.y -= y_disp;
+    			} else if (minOverlap == quad3min){
+    				ball.centerPoint.x -= x_disp;
+	    			ball.centerPoint.y += y_disp;
+    			} else if (minOverlap == quad4min){
+    				ball.centerPoint.x += x_disp;
+	    			ball.centerPoint.y += y_disp;
+    			}  
+    		}
     }
 
 	//Distance between the centers of the balls only on y axis
