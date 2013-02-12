@@ -10,6 +10,9 @@
   var ctx;
   var logDiv;
 
+  var hudCanvas;
+  var hudCtx;
+
   // Objects
   var logger = new Logger();
   var table = new Table();
@@ -35,6 +38,11 @@
   function init(){
     logDiv = document.getElementById('logger');
     canvas = document.getElementById('gameCanvas');
+    hudCanvas = document.getElementById('hudCanvas');
+    if (hudCanvas.getContext){
+      hudCtx = hudCanvas.getContext('2d');
+    }
+
     if (canvas.getContext){
       ctx = canvas.getContext('2d');
       renderingEngine.drawTable();
@@ -49,16 +57,6 @@
       }, screenUpdateTime);
       
       setInterval(function () {shoot.loadwindow();}, screenUpdateTime);
-      
-     
-      // Ball - Force - Angle of hitting
-      //cueBall = physicsEngine.applyForceAtAngle(cueBall, 80,0);
-
-
-    //to trigger the hurricane
-    //also to trigger the earthquake
-    
-    //var hurrCount = 0;
 
     document.addEventListener('keydown', function(event) {
       for (var i=0; i<players.length; i++) { 

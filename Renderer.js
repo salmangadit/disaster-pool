@@ -51,7 +51,7 @@ if(!balls[i].potted) {
 	}
 
 	this.drawTable = function (){
-		canvas.width = table.width + 400;
+		canvas.width = table.width;
 		canvas.height = table.height;
 
 		// move registration point to the center of the canvas
