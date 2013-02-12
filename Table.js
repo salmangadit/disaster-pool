@@ -116,4 +116,19 @@ function Table(){
 	 	}
 
 	 }
+
+	 this.incrementFriction = function(){
+	 	for (var i=0; i<=2; i++){
+	 		this.regions[i].frictionIncrease();
+	 		logger.log("New friction: "+i+" :"+this.regions[i].coefficientOfFriction);
+	 	}
+
+	 }
+
+	 this.decrementFriction = function(){
+	 	for (var i=0; i<=2; i++){
+	 		this.regions[i].frictionDecrease();
+	 		logger.log("New friction: "+i+" :"+this.regions[i].coefficientOfFriction);
+	 	}
+	 }
 }

@@ -9,6 +9,7 @@ function HUD(){
 
     hudCtx.fillStyle = "rgba(255, 0, 0, 1)";
     hudCtx.font = "bold 20px Iceland";
+    
     if(players[0].isplaying) {
       hudCtx.fillText("Player 1's Turn", xpos + 430, ypos);
     }

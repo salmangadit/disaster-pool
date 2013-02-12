@@ -11,17 +11,19 @@ function Renderer(){
 		ballsPosYToClear.length = 0;
 		ballsRadToClear.length = 0;
 
+		manipulator.checkManipulation();
+
 		for (var i=0;i<balls.length;i++){
 			//this.clearBall(balls[i]);
 
-if(!balls[i].potted) {
-			ballsPosXToClear.push(balls[i].centerPoint.x);
-			ballsPosYToClear.push(balls[i].centerPoint.y);
-			ballsRadToClear.push(balls[i].radius);
+			if(!balls[i].potted) {
+				ballsPosXToClear.push(balls[i].centerPoint.x);
+				ballsPosYToClear.push(balls[i].centerPoint.y);
+				ballsRadToClear.push(balls[i].radius);
 
-			balls[i] = physicsEngine.updatePoint(balls[i]);
+				balls[i] = physicsEngine.updatePoint(balls[i]);
 
-			
+
 				collider.detectCollisionWithWalls(balls[i]);
 				collider.detectCollisionWithBalls(balls[i]);
 				collider.detectPotting(balls[i]);
@@ -32,11 +34,11 @@ if(!balls[i].potted) {
 
 		// Cue ball
 		//this.clearBall(cueBall);
-	    if(!cueBall.potted) {
-		ballsPosXToClear.push(cueBall.centerPoint.x);
-		ballsPosYToClear.push(cueBall.centerPoint.y);
-		ballsRadToClear.push(cueBall.radius);
-		cueBall = physicsEngine.updatePoint(cueBall);
+		if(!cueBall.potted) {
+			ballsPosXToClear.push(cueBall.centerPoint.x);
+			ballsPosYToClear.push(cueBall.centerPoint.y);
+			ballsRadToClear.push(cueBall.radius);
+			cueBall = physicsEngine.updatePoint(cueBall);
 
 			collider.detectCollisionWithWalls(cueBall);
 			collider.detectCollisionWithBalls(cueBall); 
@@ -65,22 +67,22 @@ if(!balls[i].potted) {
 			ctx.fillStyle = table.regions[i].color;
 			ctx.fillRect(table.regions[i].x, table.regions[i].y, table.regions[i].width, table.regions[i].height);
 		}
-	
+
 		//drawing holes
 		var holes = table.getHoles();
 
 		for (var i=0; i<holes.length; i++) {
 			this.drawHole(holes[i]);
 		}
-	
+
 		//drawing the starting line
 		ctx.beginPath();
-     	ctx.moveTo(300, 0);
-  	  	ctx.lineTo(300, 500);
-   		ctx.stroke();
-   		ctx.lineWidth = 5;
-   		ctx.strokeStyle = "#0B3B0B";
-    	ctx.stroke();
+		ctx.moveTo(300, 0);
+		ctx.lineTo(300, 500);
+		ctx.stroke();
+		ctx.lineWidth = 5;
+		ctx.strokeStyle = "#0B3B0B";
+		ctx.stroke();
 	}
 
 	this.drawHole = function(hole){
@@ -124,11 +126,11 @@ if(!balls[i].potted) {
 
 		// Draw cue ball
 		if(!cueBall.potted){
-		this.drawBall(cueBall);}
+			this.drawBall(cueBall);}
 
         //Draw tornado
-	    if(tornado.onScreen == true){
-	    	this.drawTornado(tornado);
+        if(tornado.onScreen == true){
+        	this.drawTornado(tornado);
 	    }//end if
 	}
 
@@ -153,31 +155,31 @@ if(!balls[i].potted) {
 		ctx.stroke();
 
 		if(debugMode == true){
-	    	var stringToSend = "Vel:"+ball.velocity;
-	    	var ballX = ball.centerPoint.x + ball.radius;
-	    	var ballY = ball.centerPoint.y;
-	    	var pointToDisplay = new Point(ballX, ballY);
-	    	this.writeText(stringToSend, pointToDisplay);
-	    	pointToDisplay.y += 10;
-	    	stringToSend = "Dir:"+ball.direction;
-	    	this.writeText(stringToSend, pointToDisplay);
-	    	pointToDisplay.y += 10;
-	    	stringToSend = "Acc:"+ball.acceleration;
-	    	this.writeText(stringToSend, pointToDisplay);
-	    	pointToDisplay.y += 10;
-	    	stringToSend = "Spin:"+ball.spin;
-	    	this.writeText(stringToSend, pointToDisplay);
+			var stringToSend = "Vel:"+ball.velocity;
+			var ballX = ball.centerPoint.x + ball.radius;
+			var ballY = ball.centerPoint.y;
+			var pointToDisplay = new Point(ballX, ballY);
+			this.writeText(stringToSend, pointToDisplay);
+			pointToDisplay.y += 10;
+			stringToSend = "Dir:"+ball.direction;
+			this.writeText(stringToSend, pointToDisplay);
+			pointToDisplay.y += 10;
+			stringToSend = "Acc:"+ball.acceleration;
+			this.writeText(stringToSend, pointToDisplay);
+			pointToDisplay.y += 10;
+			stringToSend = "Spin:"+ball.spin;
+			this.writeText(stringToSend, pointToDisplay);
 
 	    	// Draw arrow of velocity
 
 	    	var endX = ball.centerPoint.x + ball.velocity * Math.cos(ball.direction);
 	    	var endY = ball.centerPoint.y + ball.velocity * Math.sin(ball.direction);
 	    	ctx.beginPath();
-  			ctx.moveTo(ball.centerPoint.x,ball.centerPoint.y);
-  			ctx.lineTo(endX,endY);
-  			ctx.lineWidth = 5;
-  			ctx.strokeStyle = 'red';
-  			ctx.stroke();
+	    	ctx.moveTo(ball.centerPoint.x,ball.centerPoint.y);
+	    	ctx.lineTo(endX,endY);
+	    	ctx.lineWidth = 5;
+	    	ctx.strokeStyle = 'red';
+	    	ctx.stroke();
 	    }//end if(debugMode == true)
 
 		//console.log("Drew Ball, center "+ ball.centerPoint.toString() + ", radius "+ ball.radius);
@@ -188,10 +190,10 @@ if(!balls[i].potted) {
 		var imgX = tornado.centerPoint.x - tornado.radius;
 		var imgY = tornado.centerPoint.y - tornado.radius;
 		var imgSize = tornado.radius * 2;
-	    var drawing = new Image();
-	    drawing.src = "tornado_v2.png";
-	    ctr = this.tornadoRotation(ctr);
-	    this.drawImageRot(drawing, imgX, imgY, imgSize, imgSize, ctr);
+		var drawing = new Image();
+		drawing.src = "tornado_v2.png";
+		ctr = this.tornadoRotation(ctr);
+		this.drawImageRot(drawing, imgX, imgY, imgSize, imgSize, ctr);
 	    //ctx.drawImage(drawing, imgX, imgY, imgSize, imgSize);
 	    //tornado stats for debug mode
 	    if(debugMode == true){
@@ -220,8 +222,8 @@ if(!balls[i].potted) {
 	/*to control the spinning rate of the tornado*/
 	this.tornadoRotation = function(ctr){
 		if(ctr == 360){
-	    	ctr = 0;
-	    } else {
+			ctr = 0;
+		} else {
 	    	//increment ctr more to speed up tornado
 	    	ctr += 10;
 	    }//end if-else
@@ -240,29 +242,29 @@ if(!balls[i].potted) {
 		//for creating shaking movement
 		var oneDegree = (Math.PI/180);
 		setTimeout(function(){
-	      degree = oneDegree*20;
-	      setTimeout(function(){
-	        degree = oneDegree*340;
-	        setTimeout(function(){
-	          degree = oneDegree*20;
-	          setTimeout(function(){
-	            degree = oneDegree*340;
-	            setTimeout(function(){
-	              degree = oneDegree*20;
-	              setTimeout(function(){
-	                degree = oneDegree*340;
-	                setTimeout(function(){
-	                  degree = oneDegree*20;
-	                  setTimeout(function(){
-	                    degree = oneDegree*0;
-	                  }, 50);
-	                }, 50);
-	              }, 50);
-	            }, 50);
-	          }, 50);
-	        }, 50);
-	      }, 50);
-	    }, 500);
+			degree = oneDegree*20;
+			setTimeout(function(){
+				degree = oneDegree*340;
+				setTimeout(function(){
+					degree = oneDegree*20;
+					setTimeout(function(){
+						degree = oneDegree*340;
+						setTimeout(function(){
+							degree = oneDegree*20;
+							setTimeout(function(){
+								degree = oneDegree*340;
+								setTimeout(function(){
+									degree = oneDegree*20;
+									setTimeout(function(){
+										degree = oneDegree*0;
+									}, 50);
+								}, 50);
+							}, 50);
+						}, 50);
+					}, 50);
+				}, 50);
+			}, 50);
+		}, 500);
 	}//end earthquake*/
 
 	this.hurricane = function (direction) {

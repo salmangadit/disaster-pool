@@ -7,4 +7,17 @@ function Region(x, y, width, height, mu){
 	this.color = 'green';
 
 	this.coefficientOfFriction = mu;
+
+	this.frictionIncrease = function(){
+		if (this.coefficientOfFriction <=0.8){
+			this.coefficientOfFriction += 0.2;
+		}
+	}
+
+	this.frictionDecrease = function(){
+		if (this.coefficientOfFriction >=0.2){
+			this.coefficientOfFriction -= 0.2;
+		}
+	}
+		
 }
