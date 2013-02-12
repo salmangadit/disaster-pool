@@ -9,7 +9,7 @@ function HUD(){
 
     hudCtx.fillStyle = "rgba(255, 0, 0, 1)";
     hudCtx.font = "bold 20px Iceland";
-    
+
     if(players[0].isplaying) {
       hudCtx.fillText("Player 1's Turn", xpos + 430, ypos);
     }
@@ -63,15 +63,15 @@ function HUD(){
 
       if(players[0].winning)
       {
-        hudCtx.fillText("Player 1 is leading", xpos+420, (ypos+70));
+        hudCtx.fillText("Player 1 is winning", xpos+420, (ypos+70));
       }
       else if(players[1].winning == players[0].winning)
       {
-        hudCtx.fillText("Players are in a TIE", xpos+420, (ypos+70)); 
+        hudCtx.fillText("Scores are TIED", xpos+420, (ypos+70)); 
       }
       else
       {
-        hudCtx.fillText("Player 2 is leading", xpos+420, (ypos+70)); 
+        hudCtx.fillText("Player 2 is winning", xpos+420, (ypos+70)); 
       }
       // hudCtx.fillStyle = "rgba(255, 0, 0, 1)";
       // hudCtx.fillText("Player 1 Potted Balls :", xpos, (ypos+72)); 
