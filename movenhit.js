@@ -176,7 +176,8 @@ var rect = canvas.getBoundingClientRect();
               event.y = event.clientY - rect.top;
             }
 
-            event.y -= 100;
+            event.x -= 8;
+            event.y -= 115;
 
             // activate item's handler.
             var fnc = item[event.type];
