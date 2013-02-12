@@ -1,7 +1,8 @@
 ﻿
 function Movenhit()
 {   
-
+    var posx = 0;
+    var posy = 0;
     var notmoving=true, prevnotmoving=false,turn=0;
     var eventonce = true;
     this.setupmnh = function(pnm,nm)
@@ -21,10 +22,12 @@ function Movenhit()
             var item = this;
             var speed, timer;
             this.shooting = false;
-            var startpoint,endpoint;
+            var startpoint = new Point(0, 0);
+            var endpoint = new Point(0, 0);
         
             // Starts shooting/drawing when mouse is pressed
             this.mousedown = function (event) {
+                editevent(event);
              // logger.log(notmoving);
 
               // do ball with cueball check
@@ -33,7 +36,8 @@ function Movenhit()
 
                 var stillplacingcue = false;
                 var dummyball = new Ball(new Point(0,700), 23, 2);
-                dummyball.centerPoint = event;
+                dummyball.centerPoint.x = posx;
+                dummyball.centerPoint.y = posy;
                 //check cueball collision with any ball and if that happens change 
                 //cueBall.potted = true and put cueball position to out of screen again
                 //alert("Cant place cueball there");
@@ -51,8 +55,8 @@ function Movenhit()
               {
 
                 cueBall.potted = false;
-                cueBall.centerPoint.x = event.x;
-                cueBall.centerPoint.y = event.y;
+                cueBall.centerPoint.x = posx;
+                cueBall.centerPoint.y = posy;
 
               }       
                 
@@ -60,12 +64,14 @@ function Movenhit()
 
              //   ctx.clearRect(0, 0, canvas.width, canvas.height);
                 //ctx.beginPath();
-                //ctx.moveTo(event.x, event.y);
+                //ctx.moveTo(posx, posy);
                 if(!cueBall.potted && notmoving)
                 {
                 speed = 0;
                 timer = 35;
-                startpoint = event;
+                startpoint.x = posx;
+                startpoint.y = posy;
+
                 item.shooting = true;
                 }
 
@@ -75,23 +81,26 @@ function Movenhit()
 
             // Funtion to check whether mouse moves and only activated if shooting
             this.mousemove = function (event) {
-
+                editevent(event);
                 if (item.shooting) {
-
+    
                 var realtimer1 = new Date().getTime();
-                 //   ctx.lineTo(event.x, event.y);
+                 //   ctx.lineTo(posx, posy);
                  //   ctx.stroke();
                  timer--;
                  if(timer <= 0)
                     {item.shooting = false;
-                      endpoint = event;
+                    endpoint.x = posx;
+                    endpoint.y = posy;
+                     
                       speed = speedmodifier * math.getDistanceBetweenTwoPoints(startpoint,endpoint);
                if(speed >= maxspeed)
                 {speed = maxspeed;}                      
                     //ctx.clearRect(0, 0, canvas.width, canvas.height);
                     }
-                    endpoint = event;
-                var ang = math.getAngleFromAnyPoint(cueBall,event);
+                 endpoint.x = posx;
+                 endpoint.y = posy;
+                var ang = math.getAngleFromAnyPoint(cueBall,endpoint);
                  
 //line draw to indicate power
                   ctx.beginPath();
@@ -131,54 +140,56 @@ function Movenhit()
 
             // Function where the user releases mouse button
             this.mouseup = function (event) {
+                editevent(event);
                 if (item.shooting) {
                     item.mousemove(event);
+                    editevent(event);
                     item.shooting = false;
-                     endpoint = event;
-                     var ang = math.getAngleFromAnyPoint(cueBall,event);
+                    endpoint.x = posx;
+                    endpoint.y = posy;
+                     var ang = math.getAngleFromAnyPoint(cueBall,endpoint);
                     speed = speedmodifier * math.getDistanceBetweenTwoPoints(startpoint,endpoint);
                if(speed >= maxspeed)
                 {speed = maxspeed;}                    
                     this.cueBall = physicsEngine.applyForceAtAngle(cueBall,speed,ang);
                     //speed=0;
 
-                   //console.log("X: " + event.x + ", y: " + event.y);
+                   //console.log("X: " + posx + ", y: " + posy);
 
               // table.drawTable();
              //   ctx.font = '18pt Calibri';
              //   ctx.fillStyle = 'black';
-                //ctx.fillText("X: " + event.x + ", y: " + event.y, 10, 25);
+                //ctx.fillText("X: " + posx + ", y: " + posy, 10, 25);
                 //ctx.fillText("X: " + cueBall.centerPoint.x + ", y: " + cueBall.centerPoint.y, 200, 25);
                 }
             };
         }
 
+        function editevent(event) {
+
+            if (!event) var event = window.event;
+            if (event.pageX || event.pageY) {
+                posx = event.pageX;
+                posy = event.pageY;
+            }
+            else if (event.clientX || event.clientY) {
+                posx = event.clientX + document.body.scrollLeft
+                    + document.documentElement.scrollLeft;
+                posy = event.clientY + document.body.scrollTop
+                    + document.documentElement.scrollTop;
+            }
+            // posx and posy contain the mouse position relative to the document
+            // Do something with this information
+            posy -= 115;
+            posx -= 8;
+
+        }
+
+
         // Function to get mouse postition relative to canvas
         function mou2canv(event) {
   
- 
-
-
-var rect = canvas.getBoundingClientRect();
-            // For firefox browser
-            if (event.layerX || event.layerX == 0) {
-                event.x = event.layerX;
-                event.y = event.layerY;
-            }
-                // For opera browser, if anyone even uses it LOL
-            else if (event.offsetX || event.offsetX == 0) {
-                event.x = event.offsetX;
-                event.y = event.offsetY;
-            }
-            else
-            {
-              event.x = event.clientX - rect.left;
-              event.y = event.clientY - rect.top;
-            }
-
-            event.x -= 8;
-            event.y -= 115;
-
+            editevent(event);
             // activate item's handler.
             var fnc = item[event.type];
             if (fnc) {
@@ -187,7 +198,8 @@ var rect = canvas.getBoundingClientRect();
 
                 if(cueBall.potted && notmoving){
                 var dummyball = new Ball(new Point(0,700), 23, 2);
-                dummyball.centerPoint = event;                
+                dummyball.centerPoint.x = posx;
+                dummyball.centerPoint.y = posy;
                 ctx.beginPath();
                 ctx.arc(dummyball.centerPoint.x, dummyball.centerPoint.y, dummyball.radius, 0, 2 * Math.PI, false);
                 ctx.fillStyle =  "rgba(1, 1, 1, 0.5)";
