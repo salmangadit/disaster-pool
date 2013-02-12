@@ -81,36 +81,36 @@ function Collider(){
 				}//end for(var i=0;i<players.length;i++)
 				ball.stop();
 
-if(players[0].isplaying)
-{
-				ball.centerPoint.x = 1070 + players[0].ballplacingoffsetx;
-				ball.centerPoint.y = 150 + players[0].ballplacingoffsety;
+				if(players[0].isplaying)
+				{
+					ball.centerPoint.x = 1070 + players[0].ballplacingoffsetx;
+					ball.centerPoint.y = 150 + players[0].ballplacingoffsety;
 
-				if(ball.id !=99)
+					if(ball.id !=99)
+					{
+						players[0].ballplacingoffsetx +=70;
+						if(players[0].ballplacingoffsetx > 280)
+						{
+							players[0].ballplacingoffsetx = 0;
+							players[0].ballplacingoffsety += 70;
+						}
+					}
+				} //end if (players[0].isplaying)
+				else
 				{
-				players[0].ballplacingoffsetx +=70;
-				if(players[0].ballplacingoffsetx > 280)
-				{
-					players[0].ballplacingoffsetx = 0;
-					players[0].ballplacingoffsety += 70;
-				}
-				}
-} //end if (players[0].isplaying)
-else
-{
-				ball.centerPoint.x = 1070 + players[1].ballplacingoffsetx;
-				ball.centerPoint.y = 360 + players[1].ballplacingoffsety;
+					ball.centerPoint.x = 1070 + players[1].ballplacingoffsetx;
+					ball.centerPoint.y = 360 + players[1].ballplacingoffsety;
 
-				if(ball.id !=99)
-				{
-				players[1].ballplacingoffsetx +=70;
-				if(players[1].ballplacingoffsetx > 280)
-				{
-					players[1].ballplacingoffsetx = 0;
-					players[1].ballplacingoffsety += 70;
+					if(ball.id !=99)
+					{
+						players[1].ballplacingoffsetx +=70;
+						if(players[1].ballplacingoffsetx > 280)
+						{
+							players[1].ballplacingoffsetx = 0;
+							players[1].ballplacingoffsety += 70;
+						}
+					}
 				}
-				}
-}
 			}//end if(centerPointDistance <= holes[i].radius)
 		}//end for(var i=0; i<holes.length; i++)
 	}
@@ -179,35 +179,34 @@ else
 		    	var radiusAdded = tornado.radius + balls[i].radius;
 
 		    	if (centerPointDistance != 0 && centerPointDistance <= radiusAdded) {
-		            if(balls[i].spin == 0){
-		            	if(random % 2 != 1){
-		            		physicsEngine.turnLeft(balls[i], tornado.strength);
-		            	} else {
-		            		physicsEngine.turnRight(balls[i], tornado.strength);
-		            	}/*end if-else*/
-		            }/*end if(balls[i].spin == 0)*/
-		        }/*end if(centerPointDistance ...)*/
+		    		if(balls[i].spin == 0){
+		    			if(random % 2 != 1){
+		    				physicsEngine.turnLeft(balls[i], tornado.strength);
+		    			} else {
+		    				physicsEngine.turnRight(balls[i], tornado.strength);
+		    			}/*end if-else*/
+		    		}/*end if(balls[i].spin == 0)*/
+		    	}/*end if(centerPointDistance ...)*/
 		    }/*end for*/
 		    // check with cueball
 		    var centerPointDistance = math.getDistanceBetweenTwoPoints(tornado.centerPoint, cueBall.centerPoint);
 		    var radiusAdded = tornado.radius + cueBall.radius;
 		    if(centerPointDistance != 0 && centerPointDistance <= radiusAdded) {
-		        if(cueBall.spin == 0) {
-		        	if (random % 2 != 1) {
-		        		physicsEngine.turnLeft(cueBall, tornado.strength);
-		        	} else {
-		        		physicsEngine.turnRight(cueBall, tornado.strength);
-		        	}/*end if-else*/
-		        }/*end if(cueBall.spin == 0) */
+		    	if(cueBall.spin == 0) {
+		    		if (random % 2 != 1) {
+		    			physicsEngine.turnLeft(cueBall, tornado.strength);
+		    		} else {
+		    			physicsEngine.turnRight(cueBall, tornado.strength);
+		    		}/*end if-else*/
+		    	}/*end if(cueBall.spin == 0) */
 		    }/*end if(centerPointDistance ...)*/
 		}/*end if(tornado.onScreen == true)*/
 	}//end detectCollisionWithTornado*/
 
 	this.performCollisionBetweenBalls = function(ball1, ball2){
-		
-		// while (this.detectBallToBallCollision(ball1, ball2)){
+		 //while (this.detectBallToBallCollision(ball1, ball2)){
 			ballPositionShift(ball1, ball2);
-		// }
+		 //}
 
 		var initialVel1 = new Vector();
 		initialVel1.magnitude = ball1.velocity;
@@ -245,13 +244,13 @@ else
 		var finalVelY1 = initialVel1.getYComponent()-impactParameter*massRatio*deviationParameter;
 
        	// velocity correction for inelastic collisions ***
-        //finalVelX1=(finalVelX1-velocity_xCentreOfMass)*this.coefficientOfRestitution + velocity_xCentreOfMass;
-        //finalVelY1=(finalVelY1-velocity_yCenterOfMass)*this.coefficientOfRestitution + velocity_yCenterOfMass;
-        //finalVelX2=(finalVelX2-velocity_xCentreOfMass)*this.coefficientOfRestitution + velocity_xCentreOfMass;
-        //finalVelY2=(finalVelY2-velocity_yCenterOfMass)*this.coefficientOfRestitution + velocity_yCenterOfMass;
+       	finalVelX1=(finalVelX1-velocity_xCentreOfMass)*this.coefficientOfRestitution + velocity_xCentreOfMass;
+       	finalVelY1=(finalVelY1-velocity_yCenterOfMass)*this.coefficientOfRestitution + velocity_yCenterOfMass;
+       	finalVelX2=(finalVelX2-velocity_xCentreOfMass)*this.coefficientOfRestitution + velocity_xCentreOfMass;
+       	finalVelY2=(finalVelY2-velocity_yCenterOfMass)*this.coefficientOfRestitution + velocity_yCenterOfMass;
 
-        var finalVel1 = physicsEngine.getVector(finalVelX1, finalVelY1);
-        var finalVel2 = physicsEngine.getVector(finalVelX2, finalVelY2);
+       	var finalVel1 = physicsEngine.getVector(finalVelX1, finalVelY1);
+       	var finalVel2 = physicsEngine.getVector(finalVelX2, finalVelY2);
 
         //console.log("Ball1 final velocity: " + finalVel1.toString());
         //console.log("Ball2 final velocity: " + finalVel2.toString());
@@ -273,6 +272,28 @@ else
         ball2.direction = finalVel2.direction;
         ball2.acceleration = 0;
 
+        //manipulator.checkManipulation();
+        if (manipulator.check()){
+        	if (ball1.id == 99){
+        		performCollisionManipulation(ball2);
+        	} else if (ball2.id == 99){
+        		performCollisionManipulation(ball1);
+        	}
+        }
+    }
+
+    function performCollisionManipulation(ball){
+    	var holes = table.getHoles();
+    	for (var i =0; i<holes.length; i++){
+    		var holeDirection = math.getAngleFromCollisionPoint(ball, holes[i].centerPoint);
+    		var toleranceMin = holeDirection - (Math.PI/4);
+    		var toleranceMax = holeDirection + (Math.PI/4);
+
+    		if ((ball.direction >= toleranceMin) && (ball.direction <= toleranceMax)){
+    			logger.log("Result ball manipulated!");
+    			ball.direction = holeDirection;
+    		}
+    	}
     }
 
     function ballPositionShift(ball1, ball2){

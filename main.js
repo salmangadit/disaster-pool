@@ -19,7 +19,6 @@
   var math = new Maths();
   var renderingEngine = new Renderer();
   var physicsEngine = new Physics();
-  var collider = new Collider();
   var cueBall = new Ball(new Point(100,100), 23, 2);
   cueBall.id = 99;
   var shoot = new Movenhit();
@@ -36,6 +35,7 @@
 
   // Manipulator
   var manipulator = new Manipulator();
+  var collider = new Collider();
 
   function init(){
     logDiv = document.getElementById('logger');

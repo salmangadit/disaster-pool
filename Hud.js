@@ -19,21 +19,18 @@ function HUD(){
     }		
 
       hudCtx.fillStyle = "rgba(255,255,0,1)";
-      hudCtx.fillText("Player 1 ---", xpos+350, (ypos+50));
+      hudCtx.fillText("Player 1 ---", xpos+230, (ypos+50));
 
       hudCtx.fillStyle = "rgba(255,255,0,1)";
       hudCtx.font = "bold 40px Iceland";
-      hudCtx.fillText(players[0].score, xpos+460, (ypos+50));
+      hudCtx.fillText(players[0].score, xpos+340, (ypos+50));
 
       hudCtx.fillStyle = "rgba(255,255,0,1)";
-      hudCtx.fillText("::", xpos+510, (ypos+50));
-
-      hudCtx.fillStyle = "rgba(255,255,0,1)";
-      hudCtx.fillText(players[1].score, xpos+550, (ypos+50));
+      hudCtx.fillText(players[1].score, xpos+650, (ypos+50));
 
       hudCtx.fillStyle = "rgba(255,255,0,1)";
       hudCtx.font = "bold 20px Iceland";
-      hudCtx.fillText("--- Player 2", xpos+595, (ypos+50));
+      hudCtx.fillText("--- Player 2", xpos+695, (ypos+50));
 
 
       hudCtx.fillStyle = "rgba(100,100,100,1)";
