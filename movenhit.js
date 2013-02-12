@@ -173,8 +173,10 @@ var rect = canvas.getBoundingClientRect();
             else
             {
               event.x = event.clientX - rect.left;
-              event.x = event.clientY - rect.top;
+              event.y = event.clientY - rect.top;
             }
+
+            event.y -= 100;
 
             // activate item's handler.
             var fnc = item[event.type];
