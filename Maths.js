@@ -36,17 +36,23 @@ function Maths(){
 
 
 	this.getAngleFromCollisionPoint = function(ball, point){
-		var quadrant = this.getQuadrantByPoint(ball.centerPoint.x - point.x, ball.centerPoint.y - point.y);
+		var quadrant = this.getQuadrantByPoint(point.x - ball.centerPoint.x, point.y - ball.centerPoint.y);
 		var angle;
-		if (quadrant == 1 || quadrant == 4){
-			angle = Math.asin((point.x-ball.centerPoint.x)/ball.radius);
+		if (quadrant == 1){
+			angle = (2*Math.PI) - Math.atan((point.x-ball.centerPoint.x)/(-1*(point.y-ball.centerPoint.y)));
 		}
-		else{
-			angle = Math.asin((ball.centerPoint.x-point.x)/ball.radius);
+		else if (quadrant == 4){
+			angle = Math.atan((point.x-ball.centerPoint.x)/(point.y-ball.centerPoint.y));
+		} 
+		else if (quadrant == 2){
+			angle = Math.PI + Math.atan((ball.centerPoint.x-point.x)/(-1*(ball.centerPoint.y - point.y)));
+		}
+		else if (quadrant == 3){
+			angle = Math.PI - Math.atan((ball.centerPoint.x-point.x)/(-1*(ball.centerPoint.y - point.y)));
 		}
 		//console.log(quadrant);
 		//console.log(angle);
-		angle = Math.round(angle*100)/100;
+		//angle = Math.round(angle*100)/100;
 		return angle;
 	}
 

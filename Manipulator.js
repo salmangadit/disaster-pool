@@ -13,6 +13,20 @@ function Manipulator(){
 		}
 	}
 
+	this.check = function(){
+		if (players[0].isplaying && (players[0].score - players[1].score) > 20) {
+			return false;
+		} else if (players[1].isplaying && (players[0].score - players[1].score) > 20) {
+			return true;
+		} else if (players[1].isplaying && (players[1].score - players[0].score) > 20) {
+			return false;
+		} else if (players[0].isplaying && (players[1].score - players[0].score) > 20) {
+			return true;
+		}
+
+		return false;
+	}
+
 	this.manipulate = function(){
 		if (!this.manipulating){
 			this.manipulating = true;
