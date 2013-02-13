@@ -207,7 +207,7 @@ function Collider(){
 
 	this.performCollisionBetweenBalls = function(ball1, ball2){
 		 //while (this.detectBallToBallCollision(ball1, ball2)){
-			ballPositionShift(ball1, ball2);
+		ballPositionShift(ball1, ball2);
 		 //}
 
 		var initialVel1 = new Vector();
@@ -229,6 +229,9 @@ function Collider(){
 
 		var massRatio = ball2.mass/ball1.mass;
 		var impactParameter_x = ball2.centerPoint.x - ball1.centerPoint.x;
+		if (impactParameter_x == 0){
+			impactParameter_x = 1;
+		}
 		var impactParameter_y = ball2.centerPoint.y - ball1.centerPoint.y;
 		var velocity_xDiff = initialVel2.getXComponent() - initialVel1.getXComponent();
 		var velocity_yDiff = initialVel2.getYComponent() - initialVel1.getYComponent();
