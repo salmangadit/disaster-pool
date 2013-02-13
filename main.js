@@ -57,6 +57,8 @@
       setInterval(function () {
         renderingEngine.updatePoints();
       }, screenUpdateTime);
+
+      
       
       setInterval(function () {shoot.loadwindow();}, screenUpdateTime);
 

@@ -249,13 +249,13 @@ function Physics(){
 	this.ballsAtRest = function() {
 		var pointBalls = table.getBalls();
 		var rest = false;
-		if(cueBall.acceleration == 0) {
+		if(cueBall.acceleration == 0 && cueBall.velocity == 0) {
 			rest = true;
 		} else {
 			return false;
 		}//end if-else(cueBall.acceleration == 0)
 		for (var i = 0; i < pointBalls.length; i++) {
-			if(pointBalls[i].acceleration == 0) {
+			if(pointBalls[i].acceleration == 0 && pointBalls[i].velocity == 0) {
 				rest = true;
 			} else {
 				return false;
