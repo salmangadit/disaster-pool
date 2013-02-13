@@ -57,6 +57,12 @@
       setInterval(function () {
         renderingEngine.updatePoints();
       }, screenUpdateTime);
+      setInterval(function () {
+        if (physicsEngine.ballsAtRest() == true) {
+          initialCollision = true;
+          tornado.onScreen = false;
+        }
+      }, screenUpdateTime);
 
       
       

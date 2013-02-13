@@ -126,7 +126,8 @@ function Renderer(){
 
 		// Draw cue ball
 		if(!cueBall.potted){
-			this.drawBall(cueBall);}
+			this.drawBall(cueBall);
+		}
 
         //Draw tornado
         if(tornado.onScreen == true){
@@ -194,7 +195,6 @@ function Renderer(){
 		drawing.src = "tornado_v2.png";
 		ctr = this.tornadoRotation(ctr);
 		this.drawImageRot(drawing, imgX, imgY, imgSize, imgSize, ctr);
-	    //ctx.drawImage(drawing, imgX, imgY, imgSize, imgSize);
 	    //tornado stats for debug mode
 	    if(debugMode == true){
 	    	var stringToSend = "Str:"+tornado.strength;
