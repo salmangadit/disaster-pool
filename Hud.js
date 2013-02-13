@@ -8,30 +8,56 @@ function HUD(){
     hudCtx.fillRect(0, 0, 1000, 100);
 
     hudCtx.fillStyle = "rgba(255, 0, 0, 1)";
-    hudCtx.font = "bold 20px Iceland";
+    hudCtx.font = "bold 30px Iceland";
 
     if(players[0].isplaying) {
-      hudCtx.fillText("Player 1's Turn", xpos + 430, ypos);
+      hudCtx.fillText("Player 1's Turn", xpos + 410, ypos + 10);
     }
     else {
       hudCtx.fillStyle = "rgba(255, 0, 0, 1)";
-      hudCtx.fillText("Player 2's Turn", xpos + 430, ypos);
+      hudCtx.fillText("Player 2's Turn", xpos + 410, ypos + 10);
     }		
 
       hudCtx.fillStyle = "rgba(255,255,0,1)";
-      hudCtx.fillText("Player 1 ---", xpos+230, (ypos+50));
+      hudCtx.font = "bold 20px Iceland";
+      hudCtx.fillText("Player 1 ---", xpos+130, (ypos+10));
 
       hudCtx.fillStyle = "rgba(255,255,0,1)";
       hudCtx.font = "bold 40px Iceland";
-      hudCtx.fillText(players[0].score, xpos+340, (ypos+50));
+      hudCtx.fillText(players[0].score, xpos+240, (ypos+15));
 
       hudCtx.fillStyle = "rgba(255,255,0,1)";
-      hudCtx.fillText(players[1].score, xpos+650, (ypos+50));
+      hudCtx.fillText(players[1].score, xpos+745, (ypos+15));
 
       hudCtx.fillStyle = "rgba(255,255,0,1)";
       hudCtx.font = "bold 20px Iceland";
-      hudCtx.fillText("--- Player 2", xpos+695, (ypos+50));
+      hudCtx.fillText("--- Player 2", xpos+790, (ypos+10));
 
+
+      hudCtx.fillStyle = "#00FFFF";
+      hudCtx.font = "bold 20px Iceland";
+
+      if (players[0].hurrCount == 0) {
+        hudCtx.fillText("Hurricane x1", xpos + 130, ypos + 40);
+      } else {
+        hudCtx.fillText("Hurricane x0", xpos + 130, ypos + 40);
+      }
+      if (players[0].quakeCount == 0) {
+        hudCtx.fillText("Earthquake x1", xpos + 130, ypos + 58);
+      } else {
+        hudCtx.fillText("Earthquake x0", xpos + 130, ypos + 58);
+      }
+
+      if (players[1].hurrCount == 0) {
+        hudCtx.fillText("Hurricane x1", xpos + 745, ypos + 40);
+      } else {
+        hudCtx.fillText("Hurricane x0", xpos + 745, ypos + 40);
+      }
+      if (players[1].quakeCount == 0) {
+        hudCtx.fillText("Earthquake x1", xpos + 745, ypos + 58);
+      } else {
+        hudCtx.fillText("Earthquake x0", xpos + 745, ypos + 58);
+      }
 
       hudCtx.fillStyle = "rgba(100,100,100,1)";
 
