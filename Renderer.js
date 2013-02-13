@@ -120,8 +120,8 @@ function Renderer(){
 	this.draw = function(){
 		//this.clearBalls();
 		this.drawTable();
-		this.drawBalls();
 		this.drawHoles();
+		this.drawBalls();
 		hud.updateHUD();
 
 		// Draw cue ball
