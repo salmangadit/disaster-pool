@@ -16,7 +16,7 @@ function Table(){
 	this.regions[2].color = '#00FF00';
 
 	//0-5 medium balls
-	balls[0] = new Ball(new Point(700,250),23,2);
+	balls[0] = new Ball(new Point(699,250),23,2);
 	balls[0].color = 'yellow';
 	balls[0].id = 0;
 	
@@ -41,7 +41,7 @@ function Table(){
 	balls[5].id = 5;
 
 	//6-8 big balls
-	balls[6] = new Ball(new Point(643,250),33,3);
+	balls[6] = new Ball(new Point(641,250),33,3);
 	balls[6].color = 'red';
 	balls[6].id = 6;
 
@@ -62,11 +62,11 @@ function Table(){
 	balls[10].color = 'blue';
 	balls[10].id = 10;
 
-	balls[11] = new Ball(new Point(665,210),12,1);
+	balls[11] = new Ball(new Point(664,210),12,1);
 	balls[11].color = 'blue';
 	balls[11].id = 11;
 
-	balls[12] = new Ball(new Point(665,290),12,1);
+	balls[12] = new Ball(new Point(664,290),12,1);
 	balls[12].color = 'blue';
 	balls[12].id = 12;	
 
