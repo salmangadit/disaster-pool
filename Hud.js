@@ -108,7 +108,7 @@ function HUD(){
 
       if(gameover == 1)
       {
-        ctx.fillStyle = "rgba(255, 215, 0, 1)";
+        ctx.fillStyle = "rgba(0, 0, 0, 1)";
         ctx.font = "bold 100px Iceland";
         if(players[0].winning)
           {ctx.fillText("Player 1 WINS!!", 170, 270);}
