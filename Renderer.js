@@ -133,6 +133,24 @@ function Renderer(){
         if(tornado.onScreen == true){
         	this.drawTornado(tornado);
 	    }//end if
+
+	    if(showPlayerOne == true && players[0].isplaying == true){
+	    	ctx.fillStyle = "mistyrose";
+	    	ctx.font = "bold 60px Iceland";
+	    	ctx.fillText("P1 turn", 350, 250);
+	    	setTimeout(function(){
+	    		showPlayerOne = false;
+	    		showPlayerTwo = true;
+	    	}, 1000);
+	    } else if(showPlayerTwo == true && players[1].isplaying == true){
+	    	ctx.fillStyle = "skyblue";
+	    	ctx.font = "bold 60px Iceland";
+	    	ctx.fillText("P2 turn", 350, 250);
+	    	setTimeout(function(){
+	    		showPlayerOne = true;
+	    		showPlayerTwo = false;
+	    	}, 1000);
+	    }
 	}
 
 	this.drawBalls = function(){

@@ -35,6 +35,8 @@
   var players = new Array();
   players[0] = new Player(1);
   players[1] = new Player(2);
+  var showPlayerOne = true;
+  var showPlayerTwo = false;
 
   // Manipulator
   var manipulator = new Manipulator();
