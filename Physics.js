@@ -15,16 +15,19 @@ function Physics(){
 	}
 
 	this.updatePoint = function(ball){
-
+		var oneDegree = (Math.PI/180);
+		var threeSixtyDegrees = oneDegree * 360;
 		// to spin the ball due to tornado's effect
 	    if (ball.spin != 0) {
 	        //alert('Tornado effect!');
 	        ball.direction += ball.spin;
-	        if (ball.direction > 360) {
-	        	ball.direction -= 360;
+	        /*var 1degree = (Math.PI/180);
+	        var 360degrees = 1degree * 360;*/
+	        if (ball.direction > threeSixtyDegrees) {
+	        	ball.direction -= threeSixtyDegrees;
 	        } else if(ball.direction < 0){
-	        	ball.direction += 360;
-	        }
+	        	ball.direction += threeSixtyDegrees;
+	        }//end if-else*/
 	        ball.spinCounter -= 1;
 
 	        // decelerate ball every (5*1000/30) miliseconds
