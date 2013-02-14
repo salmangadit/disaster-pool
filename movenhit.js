@@ -235,7 +235,7 @@ notmoving = false;
 
  if(prevnotmoving == true && notmoving == false){       
 
-logger.log("Shooting started");
+//logger.log("Shooting started");
 prevnotmoving = false;
 
   }//end for (var i=0;i<balls.length;i++)
@@ -270,7 +270,7 @@ if(firstcheck && secondcheck)
       {    canvas.addEventListener('mousedown', mou2canv);
             canvas.addEventListener('mouseup', mou2canv);
             canvas.addEventListener('mousemove', mou2canv);
-      logger.log("listener enabled");
+//      logger.log("listener enabled");
       eventonce = false;
 }
 
@@ -286,7 +286,7 @@ if(firstcheck && secondcheck)
 
           if(i == 0)
           {
-            logger.log("switch1");
+//            logger.log("switch1");
           players[i].isplaying = !(players[i].isplaying);
           players[i+1].isplaying = !(players[i+1].isplaying);
           if(cueBall.potted)
@@ -295,7 +295,7 @@ break;
           }
           else //i=1
           {
-            logger.log("switch2");
+//            logger.log("switch2");
           players[i].isplaying = !(players[i].isplaying);
           players[i-1].isplaying = !(players[i-1].isplaying);
           if(cueBall.potted)

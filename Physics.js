@@ -178,7 +178,7 @@ function Physics(){
         } else {
             ball.spin = 0;
         }//end if-else*/
-        logger.log("Setting curve right strength of " + percent);
+//        logger.log("Setting curve right strength of " + percent);
 	}//end turnRight*/
 	
 	/*move balls after earthquake*/

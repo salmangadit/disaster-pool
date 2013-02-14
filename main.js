@@ -87,7 +87,7 @@
           renderingEngine.earthquake();
           setTimeout(function(){physicsEngine.earthquakeEffect();}, 650);
           players[i].quakeCount++;
-          logger.log("Earthquake generated.");
+          //logger.log("Earthquake generated.");
         }
       }//end for
       /*keycode check for testing tornado*/
@@ -95,7 +95,7 @@
         //to trigger tornado ON/OFF, press X
         if(tornado.onScreen == true){
           tornado.onScreen = false;
-          logger.log("Tornado shut off.");
+         // logger.log("Tornado shut off.");
         } else {
           //tornado.onScreen = true;
           //tornado generate on impluse test

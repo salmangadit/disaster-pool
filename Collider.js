@@ -71,7 +71,7 @@ function Collider(){
 		for (var i=0; i<holes.length; i++){
 			var centerPointDistance = math.getDistanceBetweenTwoPoints(ball.centerPoint, holes[i].centerPoint);
 			if (centerPointDistance <= holes[i].radius) {
-				logger.log('ball potted!');
+				//logger.log('ball potted!');
 				ball.potted = true;
 				for(var i=0;i<players.length;i++){
 					if(players[i].isplaying) {
@@ -132,7 +132,7 @@ function Collider(){
 				//call tornadoGen
 				physicsEngine.tornadoGen(impactForce, impactPoint);
 				initialCollision = false;
-				logger.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
+				//logger.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
 			}//end if(initialCollision == true)*/
 			return true;
 		}
