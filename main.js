@@ -13,6 +13,9 @@
   var hudCanvas;
   var hudCtx;
 
+  var potCanvas;
+  var potCtx;
+
   // Objects
   var logger = new Logger();
   var table = new Table();
@@ -41,6 +44,12 @@
     logDiv = document.getElementById('logger');
     canvas = document.getElementById('gameCanvas');
     hudCanvas = document.getElementById('hudCanvas');
+    potCanvas = document.getElementById('potCanvas');
+
+    if (hudCanvas.getContext){
+      potCtx = potCanvas.getContext('2d');
+    }
+
     if (hudCanvas.getContext){
       hudCtx = hudCanvas.getContext('2d');
     }

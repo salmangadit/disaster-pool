@@ -94,9 +94,12 @@ function Movenhit()
                     endpoint.y = posy;
                      
                       speed = speedmodifier * math.getDistanceBetweenTwoPoints(startpoint,endpoint);
+              
                if(speed >= maxspeed)
                 {speed = maxspeed;}                      
                     //ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    this.cueBall = physicsEngine.applyForceAtAngle(cueBall,speed,ang);
                     }
                  endpoint.x = posx;
                  endpoint.y = posy;
@@ -118,7 +121,7 @@ function Movenhit()
               //  else if((realtimer1-realtimer2)<191)
               //  {speed += (190 - (realtimer1-realtimer2))/3;}
               
-               this.cueBall = physicsEngine.applyForceAtAngle(cueBall,speed,ang);
+               
 
 
               
