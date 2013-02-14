@@ -14,7 +14,7 @@ function HUD(){
       hudCtx.fillText("Player 1's Turn", xpos + 410, ypos + 10);
     }
     else {
-      hudCtx.fillStyle = "rgba(255, 0, 0, 1)";
+      hudCtx.fillStyle = "rgba(0, 0, 255, 1)";
       hudCtx.fillText("Player 2's Turn", xpos + 410, ypos + 10);
     }		
 
