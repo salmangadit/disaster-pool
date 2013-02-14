@@ -202,8 +202,8 @@ function Renderer(){
 			stringToSend = "Spin:"+ball.spin;
 			this.writeText(stringToSend, pointToDisplay);
 
-			pointToDisplay.y = ball.centerPoint.y;
-			pointToDisplay.x = ball.centerPoint.x-3;
+			pointToDisplay.y = ball.centerPoint.y-3;
+			pointToDisplay.x = ball.centerPoint.x-4;
 			stringToSend = ball.id;
 			this.writeText(stringToSend, pointToDisplay);
 	    	// Draw arrow of velocity
@@ -215,6 +215,24 @@ function Renderer(){
 	    	ctx.lineTo(endX,endY);
 	    	ctx.lineWidth = 5;
 	    	ctx.strokeStyle = 'red';
+	    	ctx.stroke();
+
+	    	var horizX = ball.centerPoint.x - 45;
+	    	var horizY = ball.centerPoint.x + 45;
+	    	ctx.beginPath();
+	    	ctx.moveTo(horizX,ball.centerPoint.y);
+	    	ctx.lineTo(horizY,ball.centerPoint.y);
+	    	ctx.lineWidth = 1;
+	    	ctx.strokeStyle = 'black';
+	    	ctx.stroke();
+
+	    	var vertX = ball.centerPoint.y - 45;
+	    	var vertY = ball.centerPoint.y + 45;
+	    	ctx.beginPath();
+	    	ctx.moveTo(ball.centerPoint.x,vertX);
+	    	ctx.lineTo(ball.centerPoint.x,vertY);
+	    	ctx.lineWidth = 0.5;
+	    	ctx.strokeStyle = 'blue';
 	    	ctx.stroke();
 	    }//end if(debugMode == true)
 
