@@ -171,6 +171,10 @@ function Renderer(){
 			stringToSend = "Spin:"+ball.spin;
 			this.writeText(stringToSend, pointToDisplay);
 
+			pointToDisplay.y = ball.centerPoint.y;
+			pointToDisplay.x = ball.centerPoint.x-3;
+			stringToSend = ball.id;
+			this.writeText(stringToSend, pointToDisplay);
 	    	// Draw arrow of velocity
 
 	    	var endX = ball.centerPoint.x + ball.velocity * Math.cos(ball.direction);
