@@ -82,7 +82,7 @@ function Table(){
 	holes[0] = new Hole(new Point(0,0), 50);
 
 	//medium holes
-	holes[1] = new Hole(new Point(500,500), 30);
+	holes[1] = new Hole(new Point(500,500), 36);
 	holes[2] = new Hole(new Point(1000,0), 30);
 	holes[3] = new Hole(new Point(0,500), 30);
 
