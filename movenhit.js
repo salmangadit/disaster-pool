@@ -84,7 +84,6 @@ function Movenhit()
                 editevent(event);
                 if (item.shooting) {
     
-                var realtimer1 = new Date().getTime();
                  //   ctx.lineTo(posx, posy);
                  //   ctx.stroke();
                  timer--;
@@ -98,13 +97,13 @@ function Movenhit()
                if(speed >= maxspeed)
                 {speed = maxspeed;}                      
                     //ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+                var ang = math.getAngleFromAnyPoint(cueBall,endpoint);
                     this.cueBall = physicsEngine.applyForceAtAngle(cueBall,speed,ang);
                     }
-                 endpoint.x = posx;
-                 endpoint.y = posy;
-                var ang = math.getAngleFromAnyPoint(cueBall,endpoint);
-                 
+
+
+                    endpoint.x = posx;
+                    endpoint.y = posy;                 
 //line draw to indicate power
                   ctx.beginPath();
                   ctx.moveTo(startpoint.x,startpoint.y);
@@ -121,21 +120,6 @@ function Movenhit()
               //  else if((realtimer1-realtimer2)<191)
               //  {speed += (190 - (realtimer1-realtimer2))/3;}
               
-               
-
-
-              
-
-
-             //  console.log("Time difference = "+(realtimer1-realtimer2));
-
-               //logger.log("Timer = "+timer);
-              // renderingEngine.writeText((realtimer1-realtimer2),event);
-               // table.drawTable();
-               // ctx.font = '10pt Calibri';
-               // ctx.fillStyle = 'black';
-               // ctx.fillText("Timer1: " + realtimer1 + "Timer2: " + (realtimer2-realtimer1), 10, 25);
-                realtimer2 = new Date().getTime();
                 }
                 
 
