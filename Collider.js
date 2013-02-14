@@ -144,27 +144,27 @@ function Collider(){
 		var quadrant = math.getQuadrantByAngle(ball.direction);
 
 		if (wall == 1){
-			if (quadrant == 1){
+			if (quadrant == 1||quadrant == 3){
 				ball.direction = Math.PI+angleWithHoriz;
-			} else if (quadrant == 4){
+			} else if (quadrant == 4||quadrant == 2){
 				ball.direction = Math.PI-angleWithHoriz;
-			}
+			} 
 		} else if (wall == 2){
-			if (quadrant == 3){
+			if (quadrant == 3 || quadrant == 1){
 				ball.direction = Math.PI+angleWithHoriz;
-			} else if (quadrant == 4){
+			} else if (quadrant == 4 || quadrant == 2){
 				ball.direction = (2*Math.PI)-angleWithHoriz;
 			}
 		} else if (wall == 3){
-			if (quadrant == 2){
+			if (quadrant == 2 || quadrant == 4){
 				ball.direction = (2*Math.PI)-angleWithHoriz;
-			} else if (quadrant == 3){
+			} else if (quadrant == 3 || quadrant == 1){
 				ball.direction = angleWithHoriz;
 			}
 		} else {
-			if (quadrant == 1){
+			if (quadrant == 1 || quadrant == 3){
 				ball.direction = angleWithHoriz;
-			} else if (quadrant == 2){
+			} else if (quadrant == 2 || quadrant == 4){
 				ball.direction = Math.PI-angleWithHoriz;
 			}
 		}
