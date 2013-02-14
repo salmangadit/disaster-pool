@@ -41,17 +41,29 @@ function Maths(){
 		if (point.y-ball.centerPoint.y == 0){
 			logger.log("Div by zero error: line 42: Maths.js")
 		}
+
+		var x = point.x-ball.centerPoint.x;
+		var y = point.y-ball.centerPoint.y;
+
+		if (x < 0){
+			x = -1*x;
+		}
+
+		if (y < 0){
+			y = -1*y;
+		}
+
 		if (quadrant == 1){
-			angle = (2*Math.PI) - Math.atan((point.x-ball.centerPoint.x)/(-1*(point.y-ball.centerPoint.y)));
+			angle = (2*Math.PI) - Math.atan(y/x);
 		}
 		else if (quadrant == 4){
-			angle = Math.atan((point.x-ball.centerPoint.x)/(point.y-ball.centerPoint.y));
+			angle = Math.atan(y/x);
 		} 
 		else if (quadrant == 2){
-			angle = Math.PI + Math.atan((ball.centerPoint.x-point.x)/(-1*(ball.centerPoint.y - point.y)));
+			angle = Math.PI + Math.atan(y/x);
 		}
 		else if (quadrant == 3){
-			angle = Math.PI - Math.atan((ball.centerPoint.x-point.x)/(-1*(ball.centerPoint.y - point.y)));
+			angle = Math.PI - Math.atan(y/x);
 		}
 		//console.log(quadrant);
 		//console.log(angle);
