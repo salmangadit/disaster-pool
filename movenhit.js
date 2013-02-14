@@ -262,8 +262,9 @@ if(firstcheck && secondcheck)
 
 //logger.log(prevnotmoving + "and" + notmoving);
 
-       if(prevnotmoving == false && notmoving == true)
-        {
+       if(prevnotmoving == false && notmoving == true){
+          initialCollision = true;
+          tornado.onScreen = false;
 
 
       if(eventonce)

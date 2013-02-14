@@ -19,6 +19,11 @@ function Physics(){
 	    if (ball.spin != 0) {
 	        //alert('Tornado effect!');
 	        ball.direction += ball.spin;
+	        if (ball.direction > 360) {
+	        	ball.direction -= 360;
+	        } else if(ball.direction < 0){
+	        	ball.direction += 360;
+	        }
 	        ball.spinCounter -= 1;
 
 	        // decelerate ball every (5*1000/30) miliseconds
