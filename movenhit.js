@@ -86,6 +86,10 @@ this.loadwindow = function()
                 if(speed >= maxspeed)
                   {
                   speed = maxspeed;
+                  if(turn < 3)
+                    {
+                      speed = maxspeed - 120;
+                    }
                   }                      
                 var ang = math.getAngleFromAnyPoint(cueBall,endpoint);
                 this.cueBall = physicsEngine.applyForceAtAngle(cueBall,speed,ang);
@@ -118,6 +122,10 @@ this.loadwindow = function()
               if(speed >= maxspeed)
                 {
                 speed = maxspeed;
+                  if(turn < 3)
+                    {
+                      speed = maxspeed - 120;
+                    }                
                 }                    
               this.cueBall = physicsEngine.applyForceAtAngle(cueBall,speed,ang);              
               }
