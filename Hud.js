@@ -31,7 +31,7 @@ function HUD(){
 
       hudCtx.fillStyle = "rgba(255,255,0,1)";
       hudCtx.font = "bold 20px Iceland";
-      hudCtx.fillText("--- Player 2", xpos+790, (ypos+10));
+      hudCtx.fillText("--- Player 2", xpos+820, (ypos+10));
 
 
       hudCtx.fillStyle = "#00FFFF";
