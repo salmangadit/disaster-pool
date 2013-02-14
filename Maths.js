@@ -38,6 +38,9 @@ function Maths(){
 	this.getAngleFromCollisionPoint = function(ball, point){
 		var quadrant = this.getQuadrantByPoint(point.x - ball.centerPoint.x, point.y - ball.centerPoint.y);
 		var angle;
+		if (point.y-ball.centerPoint.y == 0){
+			logger.log("Div by zero error: line 42: Maths.js")
+		}
 		if (quadrant == 1){
 			angle = (2*Math.PI) - Math.atan((point.x-ball.centerPoint.x)/(-1*(point.y-ball.centerPoint.y)));
 		}
@@ -61,6 +64,11 @@ function Maths(){
 		var quadrant = this.getQuadrantByPointforshoot(ball.centerPoint.x - point.x, ball.centerPoint.y - point.y);
 		var angle;
 		var distancebetpoints = this.getDistanceBetweenTwoPoints(ball.centerPoint,point);
+
+		if ((point.y-ball.centerPoint.y == 0)||(ball.centerPoint.x-point.x)){
+			logger.log("Div by zero error: line 69: Maths.js")
+		}
+
 		if (quadrant == 1)
 		{angle = Math.atan((point.y - ball.centerPoint.y)/(point.x-ball.centerPoint.x));}
 		else if(quadrant == 2)
