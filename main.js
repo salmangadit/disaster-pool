@@ -82,19 +82,26 @@
 
     document.addEventListener('keydown', function(event) {
       for (var i=0; i<players.length; i++) { 
-        if((players[i].isplaying) && (players[i].hurrCount == 0) && (event.keyCode == 37)) {
-          renderingEngine.hurricane(Math.PI);
-          players[i].hurrCount++;
-        } else if((players[i].isplaying) && (players[i].hurrCount == 0) && (event.keyCode == 39)) {
-          renderingEngine.hurricane(0);
-          players[i].hurrCount++;
-        } else if((players[i].isplaying) && (players[i].hurrCount == 0) && (event.keyCode == 38)) {
-          renderingEngine.hurricane(Math.PI*3/2);
-          players[i].hurrCount++;
-        }  else if((players[i].isplaying) && (players[i].hurrCount == 0) && (event.keyCode == 40)) {
-          renderingEngine.hurricane(Math.PI/2);
-          players[i].hurrCount++;
-        } else if((players[i].isplaying) && (players[i].quakeCount == 0) && (event.keyCode == 90)) {
+
+        if((players[i].isplaying) && (players[i].hurrCount == 0))
+          {
+          if(event.keyCode == 37) {
+            renderingEngine.hurricane(Math.PI);
+            players[i].hurrCount++;
+          } if(event.keyCode == 39) {
+            renderingEngine.hurricane(0);
+            players[i].hurrCount++;
+          } if(event.keyCode == 38) {
+            renderingEngine.hurricane(Math.PI*3/2);
+            players[i].hurrCount++;
+          } if(event.keyCode == 40) {
+            renderingEngine.hurricane(Math.PI/2);
+            players[i].hurrCount++;
+          } 
+          }
+
+
+          if((players[i].isplaying) && (players[i].quakeCount == 0) && (event.keyCode == 90)) {
           //to trigger earthquake, press Z
           renderingEngine.earthquake();
           setTimeout(function(){physicsEngine.earthquakeEffect();}, 650);

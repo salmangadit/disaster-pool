@@ -239,8 +239,7 @@ this.loadwindow = function()
                               {
                                 players[i].prevpottedlength = players[i].ballsPotted.length;
                               }
-                              //need break check
-                              break;
+                            break;
                           }
                         else //i=1
                           {
