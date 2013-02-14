@@ -46,13 +46,14 @@
     hudCanvas = document.getElementById('hudCanvas');
     potCanvas = document.getElementById('potCanvas');
 
-    if (hudCanvas.getContext){
-      potCtx = potCanvas.getContext('2d');
-    }
 
     if (hudCanvas.getContext){
       hudCtx = hudCanvas.getContext('2d');
     }
+
+    if (potCanvas.getContext){
+      potCtx = potCanvas.getContext('2d');
+    }    
 
     if (canvas.getContext){
       ctx = canvas.getContext('2d');
