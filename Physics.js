@@ -7,6 +7,7 @@ function Physics(){
 
 		ball.direction = direction;
 		ball.acceleration = acceleration;
+		ball.velocity = 50;
 
 		//console.log("Force applied: "+force+" at angle: " + forceAngle);
 
