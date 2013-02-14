@@ -4,7 +4,6 @@ function CollisionPair(id1, id2){
 }
 
 function Collider(){
-	var ballplacingoffsetx = 0,ballplacingoffsety = 0;
 	this.coefficientOfRestitution = 0.8;
 	var collisionPairs = new Array();
 
@@ -85,32 +84,24 @@ function Collider(){
 
 				if(players[0].isplaying)
 				{
-					ball.centerPoint.x = 1070 + players[0].ballplacingoffsetx;
-					ball.centerPoint.y = 150 + players[0].ballplacingoffsety;
+					ball.centerPoint.x = 1035;
+					ball.centerPoint.y = players[0].ballplacingoffsety;
 
 					if(ball.id !=99)
 					{
-						players[0].ballplacingoffsetx +=70;
-						if(players[0].ballplacingoffsetx > 280)
-						{
-							players[0].ballplacingoffsetx = 0;
-							players[0].ballplacingoffsety += 70;
-						}
+							players[0].ballplacingoffsety += 50;
 					}
 				} //end if (players[0].isplaying)
 				else
 				{
-					ball.centerPoint.x = 1070 + players[1].ballplacingoffsetx;
-					ball.centerPoint.y = 360 + players[1].ballplacingoffsety;
+					ball.centerPoint.x = 1105;
+					ball.centerPoint.y = players[1].ballplacingoffsety;
 
 					if(ball.id !=99)
 					{
-						players[1].ballplacingoffsetx +=70;
-						if(players[1].ballplacingoffsetx > 280)
-						{
-							players[1].ballplacingoffsetx = 0;
-							players[1].ballplacingoffsety += 70;
-						}
+
+							players[1].ballplacingoffsety += 50;
+
 					}
 				}
 			}//end if(centerPointDistance <= holes[i].radius)

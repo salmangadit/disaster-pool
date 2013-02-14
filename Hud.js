@@ -20,7 +20,7 @@ function HUD(){
 
       hudCtx.fillStyle = "rgba(255,255,0,1)";
       hudCtx.font = "bold 20px Iceland";
-      hudCtx.fillText("Player 1 ---", xpos+130, (ypos+10));
+      hudCtx.fillText("Player 1 ---", xpos+90, (ypos+10));
 
       hudCtx.fillStyle = "rgba(255,255,0,1)";
       hudCtx.font = "bold 40px Iceland";
@@ -32,6 +32,7 @@ function HUD(){
       hudCtx.fillStyle = "rgba(255,255,0,1)";
       hudCtx.font = "bold 20px Iceland";
       hudCtx.fillText("--- Player 2", xpos+820, (ypos+10));
+
 
 
       hudCtx.fillStyle = "#00FFFF";
@@ -96,10 +97,17 @@ function HUD(){
       {
         hudCtx.fillText("Player 2 is winning", xpos+420, (ypos+70)); 
       }
-      // hudCtx.fillStyle = "rgba(255, 0, 0, 1)";
-      // hudCtx.fillText("Player 1 Potted Balls :", xpos, (ypos+72)); 
-      // hudCtx.fillStyle = "rgba(0, 0, 255, 1)";
-      // hudCtx.fillText("Player 2 Potted Balls :", xpos, 310); 
+
+
+       potCtx.font = "bold 30px Iceland";      
+       potCtx.fillStyle = "rgba(255, 0, 0, 1)";
+       potCtx.fillText("P1", 15, 15); 
+       potCtx.fillStyle = "rgba(0, 0, 255, 1)";
+       potCtx.fillText("P2", 85, 15); 
+       potCtx.beginPath();
+       potCtx.moveTo(70,0);
+       potCtx.lineTo(70,500);
+       potCtx.stroke();       
 
       if(players[0].score > 154)
         {gameover = 1;}

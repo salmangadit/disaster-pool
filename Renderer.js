@@ -164,6 +164,7 @@ function Renderer(){
 	}
 
 	this.drawBall = function(ball){
+		if(!ball.potted || ball.id == 99){
 		ctx.beginPath();
 		ctx.arc(ball.centerPoint.x, ball.centerPoint.y, ball.radius, 0, 2 * Math.PI, false);
 		ctx.fillStyle = ball.color;
@@ -172,7 +173,19 @@ function Renderer(){
 
 		ctx.strokeStyle = '#000000';
 		ctx.stroke();
+						}
+		else
+		{
+		potCtx.beginPath();
+		potCtx.arc(ball.centerPoint.x-1000, ball.centerPoint.y+50, ball.radius*0.7, 0, 2 * Math.PI, false);
+		potCtx.fillStyle = ball.color;
+		potCtx.fill();
+		potCtx.lineWidth = 1;
 
+		potCtx.strokeStyle = '#000000';
+		potCtx.stroke();
+
+		}
 		if(debugMode == true){
 			var stringToSend = "Vel:"+ball.velocity;
 			var ballX = ball.centerPoint.x + ball.radius;
