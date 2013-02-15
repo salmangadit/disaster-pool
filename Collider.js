@@ -106,7 +106,7 @@ function Collider(){
 
 				if(players[0].isplaying)
 				{
-					ball.centerPoint.x = 1035;
+					ball.centerPoint.x = 2035;
 					ball.centerPoint.y = players[0].ballplacingoffsety;
 
 					if(ball.id !=99)
@@ -116,7 +116,7 @@ function Collider(){
 				} //end if (players[0].isplaying)
 				else
 				{
-					ball.centerPoint.x = 1105;
+					ball.centerPoint.x = 2105;
 					ball.centerPoint.y = players[1].ballplacingoffsety;
 
 					if(ball.id !=99)

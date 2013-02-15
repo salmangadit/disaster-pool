@@ -177,7 +177,7 @@ function Renderer(){
 		else
 		{
 		potCtx.beginPath();
-		potCtx.arc(ball.centerPoint.x-1000, ball.centerPoint.y+50, ball.radius*0.7, 0, 2 * Math.PI, false);
+		potCtx.arc(ball.centerPoint.x-2000, ball.centerPoint.y+50, ball.radius*0.7, 0, 2 * Math.PI, false);
 		potCtx.fillStyle = ball.color;
 		potCtx.fill();
 		potCtx.lineWidth = 1;
