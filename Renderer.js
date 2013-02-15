@@ -46,22 +46,27 @@ function Renderer(){
 			collider.detectPotting(cueBall);
 		}
 
+		/*Lionel(A0073872)*/
 		if (physicsEngine.ballsAtRest() == true) {
 			initialCollision = true;
 			tornado.onScreen = false;
 		}
+		/*end Lionel(A0073872)*/
 	}
 
 	this.drawTable = function (){
 		canvas.width = table.width;
 		canvas.height = table.height;
 
+		/*Lionel(A0073872)*/
+		/*for earthquake*/
 		// move registration point to the center of the canvas
 		ctx.translate(table.width/2, table.height/2);
 		// rotate canvas by set degree[s]
 		ctx.rotate(degree);
 		// move registration point back to the top left corner of canvas
 		ctx.translate(-table.width/2, -table.height/2);
+		/*Lionel(A0073872)*/
 
 		for (var i = 0; i<table.regions.length; i++){
 			ctx.fillStyle = table.regions[i].color;
@@ -129,6 +134,7 @@ function Renderer(){
 			this.drawBall(cueBall);
 		}
 
+        /*Lionel(A0073872)*/
         //Draw tornado
         if(tornado.onScreen == true){
         	this.drawTornado(tornado);
@@ -150,7 +156,8 @@ function Renderer(){
 	    		showPlayerOne = true;
 	    		showPlayerTwo = false;
 	    	}, 1000);
-	    }
+	    }//end if-else
+	    /*end Lionel(A0073872)*/
 	}
 
 	this.drawBalls = function(){
@@ -239,6 +246,7 @@ function Renderer(){
 		//console.log("Drew Ball, center "+ ball.centerPoint.toString() + ", radius "+ ball.radius);
 	}
 
+	/*Lionel(A0073872)*/
 	/*drawTornado function using png file*/
 	this.drawTornado = function (tornado) {
 		var imgX = tornado.centerPoint.x - tornado.radius;
@@ -320,6 +328,7 @@ function Renderer(){
 			}, 50);
 		}, 500);
 	}//end earthquake*/
+	/*end Lionel(A0073872)*/
 
 	this.hurricane = function (direction) {
 

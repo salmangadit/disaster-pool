@@ -1,9 +1,11 @@
   // Globals
   /*const FPS = 30;
   const screenUpdateTime = 1000/FPS;*/
+  /*Lionel(A0073872)*/
   //IE does not support const, so must use var
   var FPS = 30;
   var screenUpdateTime = 1000/FPS;
+  /*end Lionel(A0073872)*/
 
   // Canvas
   var canvas;
@@ -25,14 +27,16 @@
   var cueBall = new Ball(new Point(100,100), 23, 2);
   cueBall.id = 99;
   var shoot = new Movenhit();
+  var hud = new HUD();
+
+  /*Lionel(A0073872)*/
   var tornado = new Tornado(new Point(500,250), 20);
   var debugMode = false;
   var degree = 0;
   var initialCollision = true;
-  var hud = new HUD();
-
   var tornadoCurrent = 0;
   var tornadoCtr = 0;
+  /*end Lionel(A0073872)*/
 
   // Players
   var players = new Array();
@@ -45,6 +49,7 @@
   var manipulator = new Manipulator();
   var collider = new Collider();
 
+  /*Lionel(A0073872)*/
   // shim layer with setTimeout fallback
   window.requestAnimFrame = (function(){
     return  window.requestAnimationFrame       ||
@@ -62,6 +67,7 @@
     requestAnimFrame(animloop);
     renderingEngine.draw();
   })();
+  /*end Lionel(A0073872)*/
 
 
   function init(){
@@ -113,6 +119,7 @@
             players[i].hurrCount++;
           }//end if(event.keyCode == 40)
         }//end if((players[i].isplaying) && (players[i].hurrCount == 0))*/
+        /*Lionel(A0073872)*/
         //earthquake input detection
         if((players[i].isplaying) && (players[i].quakeCount == 0) && (event.keyCode == 90)) {
           //to trigger earthquake, press Z
@@ -121,7 +128,9 @@
           players[i].quakeCount++;
           //logger.log("Earthquake generated.");
         }//end if((players[i].isplaying) && (players[i].quakeCount == 0) && (event.keyCode == 90))
+        /*end Lionel(A0073872)*/
       }//end for(var i=0; i<players.length; i++)
+      /*Lionel(A0073872)*/
       /*keycode check for testing tornado*/
       if(event.keyCode == 88 && debugMode == true) {
         //to trigger tornado ON/OFF, press X
@@ -135,6 +144,7 @@
           logger.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
         }//end if(tornado.onScreen == true)
       }//end if(event.keyCode == 88)*/
+      /*end Lionel(A0073872)*/
     }/*end function*/);//end addEventListener
     }
   }

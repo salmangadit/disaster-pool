@@ -133,6 +133,7 @@ function Collider(){
 	this.detectBallToBallCollision = function(ball1, ball2){
 		var centerPointDistance = math.getDistanceBetweenTwoPoints(ball1.centerPoint, ball2.centerPoint);
 		if (centerPointDistance != 0 && centerPointDistance < (ball1.radius + ball2.radius) ){
+			/*Lionel(A0073872)*/
 			if((ball1.id == 99 || ball2.id == 99 ) && initialCollision == true){
 				//get impact force
 				var impactForce = 50;
@@ -147,6 +148,7 @@ function Collider(){
 				initialCollision = false;
 				//logger.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
 			}//end if(initialCollision == true)*/
+			/*end Lionel(A0073872)*/
 			return true;
 		}
 		return false;
@@ -183,6 +185,7 @@ function Collider(){
 		}
 	}
 
+	/*Lionel(A0073872)*/
 	/*to detect any balls entering the tornado*/
 	this.detectCollisionWithTornado = function (tornado) {
 		if(tornado.onScreen == true){
@@ -217,6 +220,7 @@ function Collider(){
 		    }/*end if(centerPointDistance ...)*/
 		}/*end if(tornado.onScreen == true)*/
 	}//end detectCollisionWithTornado*/
+	/*end Lionel(A0073872)*/
 
 	this.performCollisionBetweenBalls = function(ball1, ball2){
 		 //while (this.detectBallToBallCollision(ball1, ball2)){

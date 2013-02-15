@@ -6,8 +6,9 @@ function Physics(){
 		var acceleration = getAccelerationFromForce(force,ball.mass);
 
 		ball.direction = direction;
+		/*Lionel(A0073872) - bug fix*/
 		ball.acceleration = acceleration*1.5;
-		//ball.velocity = force*0.2;
+		/*end Lionel(A0073872)*/
 
 		//console.log("Force applied: "+force+" at angle: " + forceAngle);
 
@@ -15,6 +16,7 @@ function Physics(){
 	}
 
 	this.updatePoint = function(ball){
+		/*Lionel(A0073872)*/
 		var oneDegree = (Math.PI/180);
 		var threeSixtyDegrees = oneDegree * 360;
 		// to spin the ball due to tornado's effect
@@ -41,6 +43,7 @@ function Physics(){
 
             //console.log("Applying tornado curving strength of " + ball.spin);
 	    }/*end if(ball.spin != 0)*/
+	    /*end Lionel(A0073872)*/
 
 		var endVelocity = vuat(ball.velocity, ball.acceleration, 0.1);
 		var distMoved = sutat2(ball.velocity, 0.1, ball.acceleration);
@@ -161,6 +164,7 @@ function Physics(){
 		return resultant;
 	}
 
+    /*Lionel(A0073872)*/
     /*spin ball left*/
     this.turnLeft = function (ball, percent) {
         if(percent < 1 && percent >= 0){
@@ -275,4 +279,5 @@ function Physics(){
 		}//end for
 		return rest;
 	}
+	/*end Lionel(A0073872)*/
 }

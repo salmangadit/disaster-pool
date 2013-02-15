@@ -1,3 +1,4 @@
+/*Lionel(A0073872)*/
 function Tornado(centerPoint, radius){
 	this.centerPoint = centerPoint;
 	this.radius = radius;
@@ -18,3 +19,4 @@ function Tornado(centerPoint, radius){
      //   console.log("Changed tornado strength to " + this.strength);
     }//end setRandomStrength*/
 }
+/*end Lionel(A0073872)*/
