@@ -29,6 +29,28 @@ function Collider(){
 		}
 	}
 
+	this.detectCollisionWithWallsBoolean = function(ball) {
+		var tableWidth = table.width;
+		var tableHeight = table.height;
+
+		if (((ball.centerPoint.x + ball.radius) >= table.width)){
+			//logger.log('Ball hit right wall!');
+			return true;
+		}
+		else if (((ball.centerPoint.y + ball.radius) >= table.height)){
+			//logger.log('Ball hit bottom wall');
+			return true;
+		}
+		else if (((ball.centerPoint.y - ball.radius) <= 0)){
+			//logger.log('Ball hit top wall');
+			return true;
+		}
+		else if (((ball.centerPoint.x - ball.radius) <= 0)){
+			//logger.log('Ball hit left wall');
+			return true;
+		}
+	}	
+
 	this.detectCollisionWithBalls = function(ball){
 		var balls = table.getBalls();
 

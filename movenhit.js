@@ -44,7 +44,7 @@ this.loadwindow = function()
                 //alert("Cant place cueball there");
                 for (var i=0;i<balls.length;i++)
                   {
-                  if (collider.detectBallToBallCollision(balls[i],dummyball))
+                  if (collider.detectBallToBallCollision(balls[i],dummyball) || collider.detectCollisionWithWallsBoolean(dummyball))
                     {
                     alert("Can't place cueball there");
                     stillplacingcue = true;
@@ -88,7 +88,7 @@ this.loadwindow = function()
                   speed = maxspeed;
                   if(turn < 3)
                     {
-                      speed = maxspeed - 120;
+                      speed = maxspeed - 80;
                     }
                   }                      
                 var ang = math.getAngleFromAnyPoint(cueBall,endpoint);
@@ -124,7 +124,7 @@ this.loadwindow = function()
                 speed = maxspeed;
                   if(turn < 3)
                     {
-                      speed = maxspeed - 120;
+                      speed = maxspeed - 80;
                     }                
                 }                    
               this.cueBall = physicsEngine.applyForceAtAngle(cueBall,speed,ang);              
