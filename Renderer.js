@@ -58,7 +58,7 @@ function Renderer(){
 
 		// move registration point to the center of the canvas
 		ctx.translate(table.width/2, table.height/2);
-		// rotate 1 degree
+		// rotate canvas by set degree[s]
 		ctx.rotate(degree);
 		// move registration point back to the top left corner of canvas
 		ctx.translate(-table.width/2, -table.height/2);
@@ -247,6 +247,7 @@ function Renderer(){
 		var drawing = new Image();
 		drawing.src = "tornado_v2.png";
 		ctr = this.tornadoRotation(ctr);
+		//to create spinning effect of tornado
 		this.drawImageRot(drawing, imgX, imgY, imgSize, imgSize, ctr);
 	    //tornado stats for debug mode
 	    if(debugMode == true){

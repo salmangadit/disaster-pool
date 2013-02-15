@@ -7,7 +7,7 @@ function Physics(){
 
 		ball.direction = direction;
 		ball.acceleration = acceleration;
-		//ball.velocity = force*0.2;
+		ball.velocity = force*0.2;
 
 		//console.log("Force applied: "+force+" at angle: " + forceAngle);
 
@@ -19,10 +19,8 @@ function Physics(){
 		var threeSixtyDegrees = oneDegree * 360;
 		// to spin the ball due to tornado's effect
 	    if (ball.spin != 0) {
-	        //alert('Tornado effect!');
 	        ball.direction += ball.spin;
-	        /*var 1degree = (Math.PI/180);
-	        var 360degrees = 1degree * 360;*/
+	        //ensure that direction is between 0 and 360 degrees
 	        if (ball.direction > threeSixtyDegrees) {
 	        	ball.direction -= threeSixtyDegrees;
 	        } else if(ball.direction < 0){
@@ -41,7 +39,7 @@ function Physics(){
 	        	ball.spinStop();
 	        }/*end if(ball.spin <= 0)*/
 
-        //    console.log("Applying tornado curving strength of " + ball.spin);
+            //console.log("Applying tornado curving strength of " + ball.spin);
 	    }/*end if(ball.spin != 0)*/
 
 		var endVelocity = vuat(ball.velocity, ball.acceleration, 0.1);
@@ -76,16 +74,14 @@ function Physics(){
 		if (ball.velocity > 0){
 			if (ball.acceleration > 0){
 			ball.acceleration = ball.acceleration - getAccelerationFromFriction(ball.centerPoint);
-			}
-			else
-			{
+			} else {
 				ball.acceleration = - getAccelerationFromFriction(ball.centerPoint);
-			}
+			}//end if(ball.acceleration > 0)
 		} else {
 			ball.acceleration = 0;
 			ball.velocity = 0;
 			ball.spin = 0;
-		}
+		}//end if(ball.velocity > 0)
 		// console.log("distMoved"+ distMoved);
 		if (x_disp != 0 || y_disp != 0){
 			/* console.log("Direction "+ ball.direction);
@@ -96,8 +92,7 @@ function Physics(){
 			 console.log("Ball position updated to "+ball.centerPoint.x);
 			 console.log ("Ball acceleration " + ball.acceleration);
 			 console.log ("Ball velocity " + ball.velocity);*/
-		}
-
+		}//end if(x_disp != 0 || y_disp != 0)
 		return ball;
 	}
 
@@ -175,7 +170,7 @@ function Physics(){
         } else {
             ball.spin = 0;
         }//end if-else
-       // logger.log("Setting curve left strength of " + percent);
+        //logger.log("Setting curve left strength of " + percent);
 	}//end turnLeft*/
 
     /*spin ball right*/
@@ -187,7 +182,7 @@ function Physics(){
         } else {
             ball.spin = 0;
         }//end if-else*/
-//        logger.log("Setting curve right strength of " + percent);
+        //logger.log("Setting curve right strength of " + percent);
 	}//end turnRight*/
 	
 	/*move balls after earthquake*/
@@ -248,9 +243,12 @@ function Physics(){
 	this.tornadoGen =  function(impactForce, impactPoint){
 		var tornadoCondition = 10;
 		if(impactForce >= tornadoCondition){
+			//place tornado at impact point
 			tornado.centerPoint.x = impactPoint.x;
 			tornado.centerPoint.y = impactPoint.y;
+			//delay 1s for balls to part before turning on tornado
 			setTimeout(function(){tornado.onScreen = true;}, 1000);
+			//set up for secondary check parameter
 			if(players[0].isplaying == true){
 				tornadoCurrent = 1;
 			} else if(players[1].isplaying == true){

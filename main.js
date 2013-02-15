@@ -75,19 +75,21 @@
       setInterval(function () {
         if(tornado.onScreen == true){
           tornadoCtr += 1;
-        }
-        if (physicsEngine.ballsAtRest() == true) {
+        }//end if(tornado.onScreen == true)*/
+        //to stop tornado after the player has finished shooting the ball
+        if(physicsEngine.ballsAtRest() == true){
           initialCollision = true;
           tornado.onScreen = false;
         } else if(tornadoCtr == 300){
+          //secondary check, for if above condition fails to detect fails
           if(players[0].isplaying == true && tornadoCurrent == 1){
             initialCollision = true;
             tornado.onScreen = false;
           } else if(players[1].isplaying == true && tornadoCurrent == 2){
             initialCollision = true;
             tornado.onScreen = false;
-          }
-        }
+          }//end if-else secondary check
+        }//endif-else primary check
       }, screenUpdateTime);
 
       
@@ -95,34 +97,35 @@
       setInterval(function () {shoot.loadwindow();}, screenUpdateTime);
 
     document.addEventListener('keydown', function(event) {
-      for (var i=0; i<players.length; i++) { 
-
-        if((players[i].isplaying) && (players[i].hurrCount == 0))
-          {
+      for(var i=0; i<players.length; i++) { 
+        //hurricane input detection
+        if((players[i].isplaying) && (players[i].hurrCount == 0)){
           if(event.keyCode == 37) {
             renderingEngine.hurricane(Math.PI);
             players[i].hurrCount++;
-          } if(event.keyCode == 39) {
+          }//end if(event.keyCode == 37)
+          if(event.keyCode == 39) {
             renderingEngine.hurricane(0);
             players[i].hurrCount++;
-          } if(event.keyCode == 38) {
+          }//end if(event.keyCode == 39)
+          if(event.keyCode == 38) {
             renderingEngine.hurricane(Math.PI*3/2);
             players[i].hurrCount++;
-          } if(event.keyCode == 40) {
+          }//end if(event.keyCode == 38)
+          if(event.keyCode == 40) {
             renderingEngine.hurricane(Math.PI/2);
             players[i].hurrCount++;
-          } 
-          }
-
-
-          if((players[i].isplaying) && (players[i].quakeCount == 0) && (event.keyCode == 90)) {
+          }//end if(event.keyCode == 40)
+        }//end if((players[i].isplaying) && (players[i].hurrCount == 0))*/
+        //earthquake input detection
+        if((players[i].isplaying) && (players[i].quakeCount == 0) && (event.keyCode == 90)) {
           //to trigger earthquake, press Z
           renderingEngine.earthquake();
           setTimeout(function(){physicsEngine.earthquakeEffect();}, 650);
           players[i].quakeCount++;
           //logger.log("Earthquake generated.");
-        }
-      }//end for
+        }//end if((players[i].isplaying) && (players[i].quakeCount == 0) && (event.keyCode == 90))
+      }//end for(var i=0; i<players.length; i++)
       /*keycode check for testing tornado*/
       if(event.keyCode == 88 && debugMode == true) {
         //to trigger tornado ON/OFF, press X
@@ -134,7 +137,7 @@
           //tornado generate on impluse test
           physicsEngine.tornadoGen(50, new Point(200, 100));
           logger.log("Drew Tornado, center "+ tornado.centerPoint.toString() + ", radius "+ tornado.radius);
-        }
+        }//end if(tornado.onScreen == true)
       }//end if(event.keyCode == 88)*/
     }/*end function*/);//end addEventListener
     }
