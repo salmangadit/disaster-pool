@@ -251,6 +251,11 @@ function Physics(){
 			tornado.centerPoint.x = impactPoint.x;
 			tornado.centerPoint.y = impactPoint.y;
 			setTimeout(function(){tornado.onScreen = true;}, 1000);
+			if(players[0].isplaying == true){
+				tornadoCurrent = 1;
+			} else if(players[1].isplaying == true){
+				tornadoCurrent = 2;
+			}//end if-else*/
 		}
 	}//end tornadoGen*/
 

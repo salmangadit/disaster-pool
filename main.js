@@ -31,6 +31,9 @@
   var initialCollision = true;
   var hud = new HUD();
 
+  var tornadoCurrent = 0;
+  var tornadoCtr = 0;
+
   // Players
   var players = new Array();
   players[0] = new Player(1);
@@ -70,9 +73,20 @@
         renderingEngine.updatePoints();
       }, screenUpdateTime);
       setInterval(function () {
+        if(tornado.onScreen == true){
+          tornadoCtr += 1;
+        }
         if (physicsEngine.ballsAtRest() == true) {
           initialCollision = true;
           tornado.onScreen = false;
+        } else if(tornadoCtr == 300){
+          if(players[0].isplaying == true && tornadoCurrent == 1){
+            initialCollision = true;
+            tornado.onScreen = false;
+          } else if(players[1].isplaying == true && tornadoCurrent == 2){
+            initialCollision = true;
+            tornado.onScreen = false;
+          }
         }
       }, screenUpdateTime);
 
