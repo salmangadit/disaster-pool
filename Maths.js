@@ -77,18 +77,38 @@ function Maths(){
 		var angle;
 		var distancebetpoints = this.getDistanceBetweenTwoPoints(ball.centerPoint,point);
 
-		if ((point.y-ball.centerPoint.y == 0)||(ball.centerPoint.x-point.x)){
-			logger.log("Div by zero error: line 69: Maths.js")
-		}
+	//	if ((point.y-ball.centerPoint.y == 0)||(ball.centerPoint.x-point.x)){
+	//		logger.log("Div by zero error: line 69: Maths.js")
+	//	}
 
 		if (quadrant == 1)
-		{angle = Math.atan((point.y - ball.centerPoint.y)/(point.x-ball.centerPoint.x));}
-		else if(quadrant == 2)
-		{angle = (Math.PI/2) + Math.atan((ball.centerPoint.x-point.x)/(point.y - ball.centerPoint.y));}
-		else if(quadrant == 3)
-		{angle = (Math.PI) + Math.atan((ball.centerPoint.y - point.y)/(ball.centerPoint.x-point.x));}
+		{
+			if((point.x-ball.centerPoint.x) != 0)
+			{angle = Math.atan((point.y - ball.centerPoint.y)/(point.x-ball.centerPoint.x));}
 		else
-		{angle = (3*Math.PI/2) + Math.atan((point.x - ball.centerPoint.x)/(ball.centerPoint.y - point.y));}
+			{angle = Math.atan(0);}
+		}
+		else if(quadrant == 2)
+		{
+			if((point.y - ball.centerPoint.y) != 0)
+			{angle = (Math.PI/2) + Math.atan((ball.centerPoint.x-point.x)/(point.y - ball.centerPoint.y));}
+		else
+			{angle = Math.atan(0);}		
+		}
+		else if(quadrant == 3)
+		{
+			if((ball.centerPoint.x-point.x) != 0)
+			{angle = (Math.PI) + Math.atan((ball.centerPoint.y - point.y)/(ball.centerPoint.x-point.x));}
+		else
+			{angle = Math.atan(0);}			
+		}
+		else
+		{
+			if((ball.centerPoint.y - point.y) != 0)			
+			{angle = (3*Math.PI/2) + Math.atan((point.x - ball.centerPoint.x)/(ball.centerPoint.y - point.y));}
+		else
+			{angle = Math.atan(0);}			
+		}
 
 		//console.log(quadrant);
 		
