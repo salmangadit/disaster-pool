@@ -45,12 +45,32 @@
   var manipulator = new Manipulator();
   var collider = new Collider();
 
+  // shim layer with setTimeout fallback
+  window.requestAnimFrame = (function(){
+    return  window.requestAnimationFrame       ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame    ||
+            window.oRequestAnimationFrame      ||
+            window.msRequestAnimationFrame     ||
+            function( callback ){
+              window.setTimeout(callback, 1000 / 60);
+            };
+          })();
+  // usage:
+  // instead of setInterval(render, 16) ....
+  (function animloop(){
+    requestAnimFrame(animloop);
+    renderingEngine.draw();
+  })();
+
+
   function init(){
     logDiv = document.getElementById('logger');
     canvas = document.getElementById('gameCanvas');
     hudCanvas = document.getElementById('hudCanvas');
     potCanvas = document.getElementById('potCanvas');
 
+    
 
     if (hudCanvas.getContext){
       hudCtx = hudCanvas.getContext('2d');
@@ -67,32 +87,8 @@
       players[1].isplaying = false;
       shoot.setupmnh(false,true);
       setInterval(function () {
-        renderingEngine.draw();
-      }, screenUpdateTime);
-      setInterval(function () {
         renderingEngine.updatePoints();
       }, screenUpdateTime);
-      /*setInterval(function () {
-        if(tornado.onScreen == true){
-          tornadoCtr += 1;
-        }//end if(tornado.onScreen == true)
-        //to stop tornado after the player has finished shooting the ball
-        if(physicsEngine.ballsAtRest() == true){
-          initialCollision = true;
-          tornado.onScreen = false;
-        } else if(tornadoCtr == 300){
-          //secondary check, for if above condition fails to detect fails
-          if(players[0].isplaying == true && tornadoCurrent == 1){
-            initialCollision = true;
-            tornado.onScreen = false;
-          } else if(players[1].isplaying == true && tornadoCurrent == 2){
-            initialCollision = true;
-            tornado.onScreen = false;
-          }//end if-else secondary check
-        }//endif-else primary check
-      }, screenUpdateTime);*/
-
-      
       
       setInterval(function () {shoot.loadwindow();}, screenUpdateTime);
 
