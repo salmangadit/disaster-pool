@@ -1,3 +1,4 @@
+/*Salman (U095146E) and Azri (A0073951B)*/
 function HUD(){
   var xpos = 0;
   var ypos = 20;

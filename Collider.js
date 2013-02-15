@@ -1,8 +1,10 @@
+/*Salman (U095146E)*/
 function CollisionPair(id1, id2){
 	this.id1 = id1;
 	this.id2 = id2;
 }
 
+/*Salman (U095146E)*/
 function Collider(){
 	this.coefficientOfRestitution = 0.8;
 	var collisionPairs = new Array();

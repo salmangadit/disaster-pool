@@ -1,3 +1,4 @@
+/*Salman (U095146E)*/
 function Vector(){
 	this.magnitude = 0;
 	this.direction = 0;

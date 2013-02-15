@@ -1,3 +1,4 @@
+/*Salman (U095146E)*/
 function Player(playerNum){
 	this.playerNumber = playerNum;
 	this.score = 0;

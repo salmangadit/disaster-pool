@@ -1,3 +1,4 @@
+/*Salman (U095146E)*/
 function Point(x,y){
 	this.x = x;
 	this.y = y;

@@ -1,7 +1,7 @@
   // Globals
   /*const FPS = 30;
   const screenUpdateTime = 1000/FPS;*/
-  /*Lionel(A0073872)*/
+  /*Everyone contributed*/
   //IE does not support const, so must use var
   var FPS = 30;
   var screenUpdateTime = 1000/FPS;

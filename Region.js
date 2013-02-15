@@ -1,3 +1,4 @@
+/*Salman (U095146E)*/
 function Region(x, y, width, height, mu){
 	this.x = x;
 	this.y = y;

@@ -1,3 +1,4 @@
+/*Salman (U095146E)*/
 function Maths(){
 	this.calculatePointInCircumference = function(ball, angularPoint){
 		var resultPoint = new Point(0,0);
@@ -70,7 +71,7 @@ function Maths(){
 		//angle = Math.round(angle*100)/100;
 		return angle;
 	}
-
+	/*Azri (A0073951B)*/
 //Need to recalculate for every quadrant because t is not a circle.
 	this.getAngleFromAnyPoint = function(ball, point){
 		var quadrant = this.getQuadrantByPointforshoot(ball.centerPoint.x - point.x, ball.centerPoint.y - point.y);
@@ -142,6 +143,8 @@ function Maths(){
 			}
 		}
 	}
+
+	/*end Azri (A0073951B)*/
 
 	this.getQuadrantByPoint = function(xDiff,yDiff){
 		//if point is on the right side

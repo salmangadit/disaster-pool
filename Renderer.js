@@ -5,6 +5,7 @@ function Renderer(){
 	var ballsRadToClear = new Array();
 	var ctr = 0;
 
+	/*Salman (U095146E)*/
 	this.updatePoints = function(){
 		var balls = table.getBalls();
 		ballsPosXToClear.length = 0;
@@ -54,6 +55,7 @@ function Renderer(){
 		/*end Lionel(A0073872)*/
 	}
 
+	/*Everyone contributed*/
 	this.drawTable = function (){
 		canvas.width = table.width;
 		canvas.height = table.height;
@@ -90,6 +92,7 @@ function Renderer(){
 		ctx.stroke();
 	}
 
+	/*Azri (A0073951B)*/
 	this.drawHole = function(hole){
 		ctx.beginPath();
 		ctx.arc(hole.centerPoint.x, hole.centerPoint.y, hole.radius, 0, 2 * Math.PI, false);
@@ -110,7 +113,7 @@ function Renderer(){
 		}
 	}
 
-
+	/*Salman (U095146E)*/
 	this.clearBall = function(x, y, radius){
 		ctx.clearRect(x - radius - 1, 
 			y - radius - 1, radius * 2 + 2, radius * 2 + 2);
@@ -122,6 +125,7 @@ function Renderer(){
 		}
 	}
 
+	/*Everyone contributed*/
 	this.draw = function(){
 		//this.clearBalls();
 		this.drawTable();
@@ -160,6 +164,7 @@ function Renderer(){
 	    /*end Lionel(A0073872)*/
 	}
 
+	/*Salman (U095146E)*/
 	this.drawBalls = function(){
 		var balls = table.getBalls();
 
@@ -170,6 +175,7 @@ function Renderer(){
 		//console.log("Drew "+ balls.length + " balls");
 	}
 
+	/*Everyone contributed*/
 	this.drawBall = function(ball){
 		if(!ball.potted || ball.id == 99){
 		ctx.beginPath();
@@ -330,6 +336,7 @@ function Renderer(){
 	}//end earthquake*/
 	/*end Lionel(A0073872)*/
 
+	/*Aaron (A0072144N)*/
 	this.hurricane = function (direction) {
 
 		var balls = table.getBalls();

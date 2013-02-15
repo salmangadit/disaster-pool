@@ -1,3 +1,4 @@
+/*Salman (U095146E)*/
 function Physics(){
     var gravity = 9.81;
 

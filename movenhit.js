@@ -1,4 +1,4 @@
-﻿
+﻿/*Azri (A0073951B)*/
 function Movenhit()
 {   
 var posx = 0;

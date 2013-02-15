@@ -1,3 +1,4 @@
+/*Salman (U095146E) and Aaron (A0072144N)*/
 function Table(){
 	var balls = new Array();
 	var holes = new Array();
