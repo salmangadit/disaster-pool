@@ -1,3 +1,4 @@
+/*Salman (U095146E)*/
 function Logger(){
 	this.logMessages = new Array();
 

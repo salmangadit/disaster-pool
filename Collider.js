@@ -310,8 +310,8 @@ function Collider(){
     	var holes = table.getHoles();
     	for (var i =0; i<holes.length; i++){
     		var holeDirection = math.getAngleFromCollisionPoint(ball, holes[i].centerPoint);
-    		var toleranceMin = holeDirection - (Math.PI/4);
-    		var toleranceMax = holeDirection + (Math.PI/4);
+    		var toleranceMin = holeDirection - (Math.PI/8);
+    		var toleranceMax = holeDirection + (Math.PI/8);
 
     		if ((ball.direction >= toleranceMin) && (ball.direction <= toleranceMax)){
     			logger.log("Result ball manipulated!");

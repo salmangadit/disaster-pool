@@ -1,3 +1,4 @@
+/*Salman (U095146E)*/
 function Ball(centerPoint, radius, mass){
 	this.id = 0;
 	this.centerPoint = centerPoint;
