@@ -325,9 +325,16 @@ function Renderer(){
 
 		var balls = table.getBalls();
 
-		for (var i=0; i<balls.length; i++) {
+		//big and medium balls
+		for (var i=0; i<=8; i++) {
 			balls[i] = physicsEngine.applyForceAtAngle(balls[i], 150, direction);
 		}
+
+		//small balls
+		for (i=9; i<balls.length; i++) {
+			balls[i] = physicsEngine.applyForceAtAngle(balls[i], 120, direction);
+		}
+
 
 		cueBall = physicsEngine.applyForceAtAngle(cueBall, 150, direction);
 
