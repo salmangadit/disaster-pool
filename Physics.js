@@ -6,7 +6,7 @@ function Physics(){
 		var acceleration = getAccelerationFromForce(force,ball.mass);
 
 		ball.direction = direction;
-		ball.acceleration = acceleration;
+		ball.acceleration = acceleration*1.5;
 		//ball.velocity = force*0.2;
 
 		//console.log("Force applied: "+force+" at angle: " + forceAngle);
