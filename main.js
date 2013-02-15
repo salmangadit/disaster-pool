@@ -72,10 +72,10 @@
       setInterval(function () {
         renderingEngine.updatePoints();
       }, screenUpdateTime);
-      setInterval(function () {
+      /*setInterval(function () {
         if(tornado.onScreen == true){
           tornadoCtr += 1;
-        }//end if(tornado.onScreen == true)*/
+        }//end if(tornado.onScreen == true)
         //to stop tornado after the player has finished shooting the ball
         if(physicsEngine.ballsAtRest() == true){
           initialCollision = true;
@@ -90,7 +90,7 @@
             tornado.onScreen = false;
           }//end if-else secondary check
         }//endif-else primary check
-      }, screenUpdateTime);
+      }, screenUpdateTime);*/
 
       
       

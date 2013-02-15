@@ -249,7 +249,7 @@ function Physics(){
 			//delay 1s for balls to part before turning on tornado
 			setTimeout(function(){tornado.onScreen = true;}, 1000);
 			//set up for secondary check parameter
-			if(players[0].isplaying == true){
+			/*if(players[0].isplaying == true){
 				tornadoCurrent = 1;
 			} else if(players[1].isplaying == true){
 				tornadoCurrent = 2;
